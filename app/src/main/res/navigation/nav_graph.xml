@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/splashScreenFragment">
+    <fragment
+        android:id="@+id/splashScreenFragment"
+        android:name="com.salahtawqit.coffee.fragments.SplashPageFragment"
+        android:label="fragment_splash_screen"
+        tools:layout="@layout/fragment_splash_page" >
+        <action
+            android:id="@+id/action_splashScreenFragment_to_homeScreenFragment"
+            app:destination="@id/homeScreenFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/slide_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out"
+            app:popUpTo="@id/splashScreenFragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
+    <fragment
+        android:id="@+id/homeScreenFragment"
+        android:name="com.salahtawqit.coffee.fragments.HomePageFragment"
+        android:label="home_screen_fragment"
+        tools:layout="@layout/fragment_home_page" >
+        <action
+            android:id="@+id/action_homeScreenFragment_to_loadingPageFragment"
+            app:destination="@id/loadingPageFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/slide_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out">
+            <argument
+                android:name="calculationMode"
+                app:argType="string" />
+        </action>
+        <action
+            android:id="@+id/action_homeScreenFragment_to_networkErrorFragment"
+            app:destination="@id/networkErrorFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/slide_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out">
+            <argument
+                android:name="calculationMode"
+                app:argType="string" />
+        </action>
+        <action
+            android:id="@+id/action_homeScreenFragment_to_locationRationaleFragment"
+            app:destination="@id/locationRationaleFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/slide_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out">
+            <argument
+                android:name="calculationMode"
+                app:argType="string" />
+        </action>
+        <action
+            android:id="@+id/action_homeScreenFragment_to_manualCalculationFragment"
+            app:destination="@id/manualCalculationFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/slide_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out">
+            <argument
+                android:name="calculationMode"
+                app:argType="string" />
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/loadingPageFragment"
+        android:name="com.salahtawqit.coffee.fragments.LoadingPageFragment"
+        android:label="fragment_loading_page"
+        tools:layout="@layout/fragment_loading_page" >
+        <argument
+            android:name="calculationMode"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/networkErrorFragment"
+        android:name="com.salahtawqit.coffee.fragments.NetworkErrorFragment"
+        android:label="fragment_network_error"
+        tools:layout="@layout/fragment_network_error" >
+        <action
+            android:id="@+id/action_networkErrorFragment_to_loadingPageFragment"
+            app:destination="@id/loadingPageFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/slide_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out"
+            app:popUpTo="@id/networkErrorFragment"
+            app:popUpToInclusive="true">
+            <argument
+                android:name="calculationMode"
+                app:argType="string" />
+        </action>
+        <argument
+            android:name="calculationMode"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_networkErrorFragment_to_locationRationaleFragment"
+            app:destination="@id/locationRationaleFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/slide_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out"
+            app:popUpTo="@id/networkErrorFragment"
+            app:popUpToInclusive="true">
+            <argument
+                android:name="calculationMode"
+                app:argType="string" />
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/locationRationaleFragment"
+        android:name="com.salahtawqit.coffee.fragments.LocationRationaleFragment"
+        android:label="fragment_location_rationale"
+        tools:layout="@layout/fragment_location_rationale" >
+        <action
+            android:id="@+id/action_locationRationaleFragment_to_loadingPageFragment"
+            app:destination="@id/loadingPageFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/slide_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out"
+            app:popUpTo="@id/locationRationaleFragment"
+            app:popUpToInclusive="true">
+            <argument
+                android:name="calculationMode"
+                app:argType="string" />
+        </action>
+        <argument
+            android:name="calculationMode"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/manualCalculationFragment"
+        android:name="com.salahtawqit.coffee.ManualCalculationFragment"
+        android:label="fragment_manual_calculation"
+        tools:layout="@layout/fragment_manual_calculation" >
+        <action
+            android:id="@+id/action_manualCalculationFragment_to_networkErrorFragment"
+            app:destination="@id/networkErrorFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/slide_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out">
+            <argument
+                android:name="calculationMode"
+                app:argType="string" />
+        </action>
+        <action
+            android:id="@+id/action_manualCalculationFragment_to_loadingPageFragment"
+            app:destination="@id/loadingPageFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/slide_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out">
+            <argument
+                android:name="calculationMode"
+                app:argType="string" />
+        </action>
+        <argument
+            android:name="calculationMode"
+            app:argType="string" />
+    </fragment>
+</navigation>

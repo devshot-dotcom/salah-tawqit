@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.LoadingPageFragment">
+
+    <VideoView
+        android:id="@+id/gif_video_view"
+        android:layout_width="@dimen/cover_vector_largest"
+        android:layout_height="@dimen/cover_vector_largest"
+        android:layout_centerInParent="true" />
+
+    <TextView
+        android:id="@+id/loading_status_text"
+        style="@style/typography.title"
+        tools:text="Calculating Timings"
+        android:textAlignment="center"
+        android:layout_below="@id/gif_video_view"
+        android:layout_centerInParent="true" />
+
+</RelativeLayout>

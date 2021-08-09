@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_centerInParent="true"
+    android:divider="@drawable/divider_vertical"
+    android:showDividers="middle"
+    android:dividerPadding="@dimen/mp_large"
+    android:gravity="center"
+    android:padding="@dimen/mp_large"
+    tools:context=".fragments.NetworkErrorFragment">
+
+    <ImageView
+        android:layout_width="@dimen/cover_vector_medium"
+        android:layout_height="@dimen/cover_vector_medium"
+        android:src="@drawable/vector_hijabi_cry"
+        android:contentDescription="@string/cute_hijabi_cries"/>
+
+    <TextView
+        style="@style/typography.importantText"
+        android:textAlignment="center"
+        android:text="@string/network_connection_too_slow"/>
+
+    <!-- Pseudo Button -->
+    <TextView
+        android:id="@+id/network_retry_button"
+        style="@style/button.secondary"
+        android:text="@string/retry"/>
+
+</LinearLayout>

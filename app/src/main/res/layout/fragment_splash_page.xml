@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:id="@+id/splash_screen"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/primary_100">
+
+    <ImageView
+        android:layout_width="@dimen/cover_vector_medium"
+        android:layout_height="@dimen/cover_vector_medium"
+        android:src="@drawable/logo_roundedsquare"
+        android:layout_centerInParent="true"
+        android:contentDescription="@string/welcome_to_salah_tawqit" />
+
+    <TextView
+        style="@style/typography.subtitle"
+        android:padding="@dimen/mp_large"
+        android:text="@string/version_name"
+        android:textAlignment="textEnd"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"/>
+
+</RelativeLayout>

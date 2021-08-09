@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_focused="true">
+        <layer-list>
+            <item>
+                <shape>
+                    <solid android:color="@color/color_tertiary" />
+                    <corners android:radius="@dimen/mp_medium" />
+                </shape>
+            </item>
+            <item android:bottom="1dp">
+                <shape>
+                    <solid android:color="@color/color_secondary" />
+                    <corners android:radius="@dimen/mp_medium" />
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+    <item android:state_pressed="true">
+        <layer-list>
+            <item>
+                <shape>
+                    <solid android:color="@color/color_tertiary" />
+                    <corners android:radius="@dimen/mp_medium" />
+                </shape>
+            </item>
+            <item android:bottom="1dp">
+                <shape>
+                    <solid android:color="@color/color_secondary" />
+                    <corners android:radius="@dimen/mp_medium" />
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+    <item android:state_enabled="false">
+        <layer-list>
+            <item>
+                <shape>
+                    <solid android:color="@color/color_secondary" />
+                    <corners android:radius="@dimen/mp_medium" />
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+    <item>
+        <layer-list>
+            <item>
+                <shape>
+                    <solid android:color="@color/color_tertiary" />
+                    <corners android:radius="@dimen/mp_medium" />
+                </shape>
+            </item>
+            <item android:bottom="@dimen/mp_small">
+                <shape>
+                    <solid android:color="@color/color_secondary" />
+                    <corners android:radius="@dimen/mp_medium" />
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+</selector>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.HomePageFragment">
+
+    <!-- ViewPager2 -->
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/home_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <!-- Home Scroll Button. -->
+    <ImageButton
+        android:id="@+id/home_scroll_button"
+        style="@style/icon.large"
+        android:visibility="invisible"
+        android:layout_alignParentEnd="true"
+        android:src="@drawable/icon_arrowforwards_plain"
+        android:contentDescription="@string/scroll_to_prayer_times"/>
+
+</RelativeLayout>

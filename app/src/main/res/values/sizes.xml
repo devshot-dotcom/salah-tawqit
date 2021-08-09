@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Font sizes. -->
+    <dimen name="fs_title">20sp</dimen>
+    <dimen name="fs_primary">16sp</dimen>
+    <dimen name="fs_secondary">14sp</dimen>
+    <dimen name="fs_subtitle">12sp</dimen>
+    <!-- Cover vectors. -->
+    <dimen name="cover_vector_medium">120dp</dimen>
+    <dimen name="cover_vector_large">140dp</dimen>
+    <dimen name="cover_vector_larger">160dp</dimen>
+    <dimen name="cover_vector_largest">180dp</dimen>
+    <!-- Margin, Padding. -->
+    <dimen name="mp_smallest">1dp</dimen>
+    <dimen name="mp_smaller">2.5dp</dimen>
+    <dimen name="mp_small">5dp</dimen>
+    <dimen name="mp_medium">10dp</dimen>
+    <dimen name="mp_large">15dp</dimen>
+    <!-- View sizes. -->
+    <dimen name="item_height">60dp</dimen>
+    <dimen name="icon_small">20dp</dimen>
+    <dimen name="icon_medium">30dp</dimen>
+    <dimen name="icon_medium_large">40dp</dimen>
+    <dimen name="icon_large">60dp</dimen>
+</resources>

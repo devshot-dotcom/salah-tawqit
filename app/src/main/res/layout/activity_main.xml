@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/primary_100"
+    tools:context=".MainActivity">
+
+    <!-- App Bar. -->
+    <LinearLayout
+        android:id="@+id/appbar"
+        style="@style/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:visibility="invisible"
+        >
+        <ImageView
+            android:id="@+id/appbar_icon"
+            style="@style/appbar.icon"
+            android:src="@drawable/logo_circle"
+            android:contentDescription="@string/the_application_logo" />
+        <TextView
+            android:id="@+id/appbar_title"
+            style="@style/typography.title"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="@string/app_name"/>
+        <ImageButton
+            android:id="@+id/appbar_menuItem"
+            style="@style/appbar.menuItem"
+            android:src="@drawable/icon_settings_plain"
+            android:contentDescription="@string/go_to_settings"/>
+    </LinearLayout>
+
+    <!-- Fragment Container. -->
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragment_container"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/appbar"
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/nav_graph"/>
+
+</RelativeLayout>

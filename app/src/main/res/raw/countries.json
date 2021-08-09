@@ -1,0 +1,990 @@
+[
+  {
+    "name": "Afghanistan",
+    "timezoneOffset": 4.3
+  },
+  {
+    "name": "Albania",
+    "timezoneOffset": 2.0
+  },
+  {
+    "name": "Algeria",
+    "timezoneOffset": 2.0
+  },
+  {
+    "name": "American Samoa",
+    "timezoneOffset": -11
+  },
+  {
+    "name": "Angola",
+    "timezoneOffset": 1.0
+  },
+  {
+    "name": "Anguilla",
+    "timezoneOffset": -4.0
+  },
+  {
+    "name": "Antarctica",
+    "timezoneOffset": 0.0
+  },
+  {
+    "name": "Antigua and Barbuda",
+    "timezoneOffset": -4.0
+  },
+  {
+    "name": "Argentina",
+    "timezoneOffset": -3.0
+  },
+  {
+    "name": "Armenia",
+    "timezoneOffset": 4.0
+  },
+  {
+    "name": "Aruba",
+    "timezoneOffset": -4.0
+  },
+  {
+    "name": "Ashmore and Cartier Island",
+    "timezoneOffset": 10.0
+  },
+  {
+    "name": "Australia",
+    "timezoneOffset": 10.0
+  },
+  {
+    "name": "Austria",
+    "timezoneOffset": 1.0
+  },
+  {
+    "name": "Azerbaijan",
+    "timezoneOffset": 4.0
+  },
+  {
+    "name": "Bahamas",
+    "timezoneOffset": -5.0
+  },
+  {
+    "name": "Bahrain",
+    "timezoneOffset": 3.0
+  },
+  {
+    "name": "Bangladesh",
+    "timezoneOffset": 6.0
+  },
+  {
+    "name": "Barbados",
+    "timezoneOffset": -4.0
+  },
+  {
+    "name": "Belarus",
+    "timezoneOffset": 3.0
+  },
+  {
+    "name": "Belgium",
+    "timezoneOffset": 1.0
+  },
+  {
+    "name": "Belize",
+    "timezoneOffset": -6.0
+  },
+  {
+    "name": "Benin",
+    "timezoneOffset": 1.0
+  },
+  {
+    "name": "Bermuda",
+    "timezoneOffset": -4.0
+  },
+  {
+    "name": "Bhutan",
+    "timezoneOffset": 6.0
+  },
+  {
+    "name": "Bolivia",
+    "timezoneOffset": -4.0
+  },
+  {
+    "name": "Bosnia and Herzegovina",
+    "timezoneOffset": 1.0
+  },
+  {
+    "name": "Botswana",
+    "timezoneOffset": 2.0
+  },
+  {
+    "name": "Brazil",
+    "timezoneOffset": -5.0
+  },
+  {
+    "name": "British Virgin Islands",
+    "timezoneOffset": -4.0
+  },
+  {
+    "name": "Brunei",
+    "timezoneOffset": 8.0
+  },
+  {
+    "name": "Bulgaria",
+    "timezoneOffset": 2.0
+  },
+  {
+    "name": "Burkina Faso",
+    "timezoneOffset": 0.0
+  },
+  {
+    "name": "Burma",
+    "timezoneOffset": 6.3
+  },
+  {
+    "name": "Burundi",
+    "timezoneOffset": 2.0
+  },
+  {
+    "name": "Cambodia",
+    "timezoneOffset": 7.0
+  },
+  {
+    "name": "Cameroon",
+    "timezoneOffset": 1.0
+  },
+  {
+    "name": "Canada",
+    "timezoneOffset": -6.0
+  },
+  {
+    "name": "Cape Verde",
+    "timezoneOffset": -1.0
+  },
+  {
+    "name": "Cayman Islands",
+    "timezoneOffset": -5.0
+  },
+  {
+    "name": "Central African Republic",
+    "timezoneOffset": 1.0
+  },
+  {
+    "name": "Chad",
+    "timezoneOffset": 1.0
+  },
+  {
+    "name": "Chile",
+    "timezoneOffset": -3.0
+  },
+  {
+    "name": "China",
+    "timezoneOffset": 8.0
+  },
+  {
+    "name": "Christmas Island",
+    "timezoneOffset": 7.0
+  },
+  {
+    "name": "Clipperton Island",
+    "timezoneOffset": -8.0
+  },
+  {
+    "name": "Cocos (Keeling) Islands",
+    "timezoneOffset": 6.3
+  },
+  {
+    "name": "Colombia",
+    "timezoneOffset": -5.0
+  },
+  {
+    "name": "Comoros",
+    "timezoneOffset": 3.0
+  },
+  {
+    "name": "Congo, Democratic Republic of the",
+    "timezoneOffset": 1.0
+  },
+  {
+    "name": "Cook Islands",
+    "timezoneOffset": -10.0
+  },
+  {
+    "name": "Costa Rica",
+    "timezoneOffset": -6.0
+  },
+  {
+    "name": "Cote d'Ivoire",
+    "timezoneOffset": 0.0
+  },
+  {
+    "name": "Croatia",
+    "timezoneOffset": 1.0
+  },
+  {
+    "name": "Cyprus",
+    "timezoneOffset": 2.0
+  },
+  {
+    "name": "Czech Republic",
+    "timezoneOffset": 1.0
+  },
+  {
+    "name": "Denmark",
+    "timezoneOffset": 1.0
+  },
+  {
+    "name": "Djibouti",
+    "timezoneOffset": 3.0
+  },
+  {
+    "name": "Dominica",
+    "timezoneOffset": -4.0
+  },
+  {
+    "name": "Dominican Republic",
+    "timezoneOffset": -4.0
+  },
+  {
+    "name": "Ecuador",
+    "timezoneOffset": -5.0
+  },
+  {
+    "name": "Egypt",
+    "timezoneOffset": 2.0
+  },
+  {
+    "name": "El Salvador",
+    "timezoneOffset": -6.0
+  },
+  {
+    "name": "Equatorial Guinea",
+    "timezoneOffset": 1.0
+  },
+  {
+    "name": "Eritrea",
+    "timezoneOffset": 3.0
+  },
+  {
+    "name": "Estonia",
+    "timezoneOffset": 2.0
+  },
+  {
+    "name": "Ethiopia",
+    "timezoneOffset": 3.0
+  },
+  {
+    "name": "Europa Island",
+    "timezoneOffset": 3.0
+  },
+  {
+    "name": "Falkland Islands (Islas Malvinas)",
+    "timezoneOffset": -3.0
+  },
+  {
+    "name": "Faroe Islands",
+    "timezoneOffset": 0.0
+  },
+  {
+    "name": "Fiji",
+    "timezoneOffset": 12.0
+  },
+  {
+    "name": "Finland",
+    "timezoneOffset": 2.0
+  },
+  {
+    "name": "France",
+    "timezoneOffset": 1.0
+  },
+  {
+    "name": "French Guiana",
+    "timezoneOffset": -3.0
+  },
+  {
+    "name": "French Polynesia",
+    "timezoneOffset": -10.0
+  },
+  {
+    "name": "French Southern and Antarctic Lands",
+    "timezoneOffset": 3.0
+  },
+  {
+    "name": "Gabon",
+    "timezoneOffset": 1.0
+  },
+  {
+    "name": "Gambia, The",
+    "timezoneOffset": 0.0
+  },
+  {
+    "name": "Gaza Strip",
+    "timezoneOffset": 3.0
+  },
+  {
+    "name": "Georgia",
+    "timezoneOffset": 4.0
+  },
+  {
+    "name": "Germany",
+    "timezoneOffset": 1.0
+  },
+  {
+    "name": "Ghana",
+    "timezoneOffset": 0.0
+  },
+  {
+    "name": "Gibraltar",
+    "timezoneOffset": 1.0
+  },
+  {
+    "name": "Glorioso Islands",
+    "timezoneOffset": 4.0
+  },
+  {
+    "name": "Greece",
+    "timezoneOffset": 2.0
+  },
+  {
+    "name": "Greenland",
+    "timezoneOffset": -3.0
+  },
+  {
+    "name": "Grenada",
+    "timezoneOffset": -4.0
+  },
+  {
+    "name": "Guadeloupe",
+    "timezoneOffset": -4.0
+  },
+  {
+    "name": "Guam",
+    "timezoneOffset": 10.0
+  },
+  {
+    "name": "Guatemala",
+    "timezoneOffset": -6.0
+  },
+  {
+    "name": "Guernsey",
+    "timezoneOffset": 0.0
+  },
+  {
+    "name": "Guinea",
+    "timezoneOffset": 0.0
+  },
+  {
+    "name": "Guinea-Bissau",
+    "timezoneOffset": 0.0
+  },
+  {
+    "name": "Guyana",
+    "timezoneOffset": -4.0
+  },
+  {
+    "name": "Haiti",
+    "timezoneOffset": -5.0
+  },
+  {
+    "name": "Heard Island and McDonald Islands",
+    "timezoneOffset": 5.0
+  },
+  {
+    "name": "Holy See (Vatican City)",
+    "timezoneOffset": 1.0
+  },
+  {
+    "name": "Honduras",
+    "timezoneOffset": -6.0
+  },
+  {
+    "name": "Hong Kong",
+    "timezoneOffset": 8.0
+  },
+  {
+    "name": "Howland Island",
+    "timezoneOffset": -12.0
+  },
+  {
+    "name": "Hungary",
+    "timezoneOffset": 1.0
+  },
+  {
+    "name": "Iceland",
+    "timezoneOffset": 0.0
+  },
+  {
+    "name": "India",
+    "timezoneOffset": 5.3
+  },
+  {
+    "name": "Indonesia",
+    "timezoneOffset": 7.0
+  },
+  {
+    "name": "Iran",
+    "timezoneOffset": 3.3
+  },
+  {
+    "name": "Iraq",
+    "timezoneOffset": 3.0
+  },
+  {
+    "name": "Ireland",
+    "timezoneOffset": 0.0
+  },
+  {
+    "name": "Ireland, Northern",
+    "timezoneOffset": 0.0
+  },
+  {
+    "name": "Israel",
+    "timezoneOffset": 2.0
+  },
+  {
+    "name": "Italy",
+    "timezoneOffset": 1.0
+  },
+  {
+    "name": "Jamaica",
+    "timezoneOffset": -5.0
+  },
+  {
+    "name": "Jan Mayen",
+    "timezoneOffset": 1.0
+  },
+  {
+    "name": "Japan",
+    "timezoneOffset": 9.0
+  },
+  {
+    "name": "Jarvis Island",
+    "timezoneOffset": -11.0
+  },
+  {
+    "name": "Jersey",
+    "timezoneOffset": 0.0
+  },
+  {
+    "name": "Johnston Atoll",
+    "timezoneOffset": -10.0
+  },
+  {
+    "name": "Jordan",
+    "timezoneOffset": 2.0
+  },
+  {
+    "name": "Juan de Nova Island",
+    "timezoneOffset": 3.0
+  },
+  {
+    "name": "Kazakhstan",
+    "timezoneOffset": 5.0
+  },
+  {
+    "name": "Kenya",
+    "timezoneOffset": 3.0
+  },
+  {
+    "name": "Kiribati",
+    "timezoneOffset": 12.0
+  },
+  {
+    "name": "Korea, North",
+    "timezoneOffset": 8.3
+  },
+  {
+    "name": "Korea, South",
+    "timezoneOffset": 9.0
+  },
+  {
+    "name": "Kuwait",
+    "timezoneOffset": 3.0
+  },
+  {
+    "name": "Kyrgyzstan",
+    "timezoneOffset": 6.0
+  },
+  {
+    "name": "Laos",
+    "timezoneOffset": 7.0
+  },
+  {
+    "name": "Latvia",
+    "timezoneOffset": 2.0
+  },
+  {
+    "name": "Lebanon",
+    "timezoneOffset": 2.0
+  },
+  {
+    "name": "Lesotho",
+    "timezoneOffset": 2.0
+  },
+  {
+    "name": "Liberia",
+    "timezoneOffset": 0.0
+  },
+  {
+    "name": "Libya",
+    "timezoneOffset": 1.0
+  },
+  {
+    "name": "Liechtenstein",
+    "timezoneOffset": 1.0
+  },
+  {
+    "name": "Lithuania",
+    "timezoneOffset": 2.0
+  },
+  {
+    "name": "Luxembourg",
+    "timezoneOffset": 1.0
+  },
+  {
+    "name": "Macau",
+    "timezoneOffset": 8.0
+  },
+  {
+    "name": "Macedonia, Former Yugoslav Republic of",
+    "timezoneOffset": 1.0
+  },
+  {
+    "name": "Madagascar",
+    "timezoneOffset": 3.0
+  },
+  {
+    "name": "Malawi",
+    "timezoneOffset": 2.0
+  },
+  {
+    "name": "Malaysia",
+    "timezoneOffset": 8.0
+  },
+  {
+    "name": "Maldives",
+    "timezoneOffset": 5.0
+  },
+  {
+    "name": "Mali",
+    "timezoneOffset": 0.0
+  },
+  {
+    "name": "Malta",
+    "timezoneOffset": 0.0
+  },
+  {
+    "name": "Man, Isle of",
+    "timezoneOffset": 0.0
+  },
+  {
+    "name": "Marshall Islands",
+    "timezoneOffset": 12.0
+  },
+  {
+    "name": "Martinique",
+    "timezoneOffset": -4.0
+  },
+  {
+    "name": "Mauritania",
+    "timezoneOffset": 0.0
+  },
+  {
+    "name": "Mauritius",
+    "timezoneOffset": 4.0
+  },
+  {
+    "name": "Mayotte",
+    "timezoneOffset": 3.0
+  },
+  {
+    "name": "Mexico",
+    "timezoneOffset": -6.0
+  },
+  {
+    "name": "Micronesia, Federated States of",
+    "timezoneOffset": 10.0
+  },
+  {
+    "name": "Midway Islands",
+    "timezoneOffset": -11.0
+  },
+  {
+    "name": "Moldova",
+    "timezoneOffset": 2.0
+  },
+  {
+    "name": "Monaco",
+    "timezoneOffset": 1.0
+  },
+  {
+    "name": "Mongolia",
+    "timezoneOffset": 8.0
+  },
+  {
+    "name": "Montserrat",
+    "timezoneOffset": -4.0
+  },
+  {
+    "name": "Morocco",
+    "timezoneOffset": 0.0
+  },
+  {
+    "name": "Mozambique",
+    "timezoneOffset": 2.0
+  },
+  {
+    "name": "Namibia",
+    "timezoneOffset": 1.0
+  },
+  {
+    "name": "Nauru",
+    "timezoneOffset": 12.0
+  },
+  {
+    "name": "Nepal",
+    "timezoneOffset": 5.45
+  },
+  {
+    "name": "Netherlands",
+    "timezoneOffset": 1.0
+  },
+  {
+    "name": "Netherlands Antilles",
+    "timezoneOffset": -4.0
+  },
+  {
+    "name": "New Zealand",
+    "timezoneOffset": 12.0
+  },
+  {
+    "name": "Nicaragua",
+    "timezoneOffset": -6.0
+  },
+  {
+    "name": "Niger",
+    "timezoneOffset": 1.0
+  },
+  {
+    "name": "Nigeria",
+    "timezoneOffset": 1.0
+  },
+  {
+    "name": "Niue",
+    "timezoneOffset": -11.0
+  },
+  {
+    "name": "Norfolk Island",
+    "timezoneOffset": 11.3
+  },
+  {
+    "name": "Northern Mariana Islands",
+    "timezoneOffset": 10.0
+  },
+  {
+    "name": "Norway",
+    "timezoneOffset": 1.0
+  },
+  {
+    "name": "Oman",
+    "timezoneOffset": 4.0
+  },
+  {
+    "name": "Pakistan",
+    "timezoneOffset": 5.0
+  },
+  {
+    "name": "Palau",
+    "timezoneOffset": 9.0
+  },
+  {
+    "name": "Panama",
+    "timezoneOffset": -5.0
+  },
+  {
+    "name": "Papua New Guinea",
+    "timezoneOffset": 10.0
+  },
+  {
+    "name": "Paraguay",
+    "timezoneOffset": -4.0
+  },
+  {
+    "name": "Peru",
+    "timezoneOffset": -5.0
+  },
+  {
+    "name": "Philippines",
+    "timezoneOffset": 8.0
+  },
+  {
+    "name": "Pitcaim Islands",
+    "timezoneOffset": -8.0
+  },
+  {
+    "name": "Poland",
+    "timezoneOffset": 1.0
+  },
+  {
+    "name": "Portugal",
+    "timezoneOffset": 0.0
+  },
+  {
+    "name": "Puerto Rico",
+    "timezoneOffset": -4.0
+  },
+  {
+    "name": "Qatar",
+    "timezoneOffset": 3.0
+  },
+  {
+    "name": "Reunion",
+    "timezoneOffset": 4.0
+  },
+  {
+    "name": "Romainia",
+    "timezoneOffset": 2.0
+  },
+  {
+    "name": "Russia",
+    "timezoneOffset": 0.0
+  },
+  {
+    "name": "Rwanda",
+    "timezoneOffset": 2.0
+  },
+  {
+    "name": "Saint Helena",
+    "timezoneOffset": 0.0
+  },
+  {
+    "name": "Saint Kitts and Nevis",
+    "timezoneOffset": -4.0
+  },
+  {
+    "name": "Saint Lucia",
+    "timezoneOffset": -4.0
+  },
+  {
+    "name": "Saint Pierre and Miquelon",
+    "timezoneOffset": -3.0
+  },
+  {
+    "name": "Saint Vincent and the Grenadines",
+    "timezoneOffset": -4.0
+  },
+  {
+    "name": "Samoa",
+    "timezoneOffset": 13.0
+  },
+  {
+    "name": "San Marino",
+    "timezoneOffset": 1.0
+  },
+  {
+    "name": "Sao Tome and Principe",
+    "timezoneOffset": 0.0
+  },
+  {
+    "name": "Saudi Arabia",
+    "timezoneOffset": 3.0
+  },
+  {
+    "name": "Scotland",
+    "timezoneOffset": 0.0
+  },
+  {
+    "name": "Senegal",
+    "timezoneOffset": 0.0
+  },
+  {
+    "name": "Seychelles",
+    "timezoneOffset": 4.0
+  },
+  {
+    "name": "Sierra Leone",
+    "timezoneOffset": 0.0
+  },
+  {
+    "name": "Singapore",
+    "timezoneOffset": 8.0
+  },
+  {
+    "name": "Slovakia",
+    "timezoneOffset": 1.0
+  },
+  {
+    "name": "Slovenia",
+    "timezoneOffset": 1.0
+  },
+  {
+    "name": "Solomon Islands",
+    "timezoneOffset": 11.0
+  },
+  {
+    "name": "Somalia",
+    "timezoneOffset": 3.0
+  },
+  {
+    "name": "South Africa",
+    "timezoneOffset": 2.0
+  },
+  {
+    "name": "South Georgia and South Sandwich Islands",
+    "timezoneOffset": -2.0
+  },
+  {
+    "name": "Spain",
+    "timezoneOffset": 1.0
+  },
+  {
+    "name": "Sri Lanka",
+    "timezoneOffset": 5.3
+  },
+  {
+    "name": "Sudan",
+    "timezoneOffset": 3.0
+  },
+  {
+    "name": "Suriname",
+    "timezoneOffset": -3.0
+  },
+  {
+    "name": "Svalbard",
+    "timezoneOffset": 1.0
+  },
+  {
+    "name": "Swaziland",
+    "timezoneOffset": 2.0
+  },
+  {
+    "name": "Sweden",
+    "timezoneOffset": 1.0
+  },
+  {
+    "name": "Switzerland",
+    "timezoneOffset": 1.0
+  },
+  {
+    "name": "Syria",
+    "timezoneOffset": 2.0
+  },
+  {
+    "name": "Taiwan",
+    "timezoneOffset": 8.0
+  },
+  {
+    "name": "Tajikistan",
+    "timezoneOffset": 5.0
+  },
+  {
+    "name": "Tanzania",
+    "timezoneOffset": 3.0
+  },
+  {
+    "name": "Thailand",
+    "timezoneOffset": 7.0
+  },
+  {
+    "name": "Tobago",
+    "timezoneOffset": -4.0
+  },
+  {
+    "name": "Togo",
+    "timezoneOffset": 0.0
+  },
+  {
+    "name": "Tokelau",
+    "timezoneOffset": 13.0
+  },
+  {
+    "name": "Tonga",
+    "timezoneOffset": 13.0
+  },
+  {
+    "name": "Trinidad",
+    "timezoneOffset": 13.0
+  },
+  {
+    "name": "Tunisia",
+    "timezoneOffset": 1.0
+  },
+  {
+    "name": "Turkey",
+    "timezoneOffset": 2.0
+  },
+  {
+    "name": "Turkmenistan",
+    "timezoneOffset": 5.0
+  },
+  {
+    "name": "Tuvalu",
+    "timezoneOffset": 12.0
+  },
+  {
+    "name": "Uganda",
+    "timezoneOffset": 3.0
+  },
+  {
+    "name": "Ukraine",
+    "timezoneOffset": 2.0
+  },
+  {
+    "name": "United Arab Emirates",
+    "timezoneOffset": 4.0
+  },
+  {
+    "name": "United Kingdom",
+    "timezoneOffset": 0.0
+  },
+  {
+    "name": "Uruguay",
+    "timezoneOffset": -3.0
+  },
+  {
+    "name": "USA",
+    "timezoneOffset": 0.0
+  },
+  {
+    "name": "Uzbekistan",
+    "timezoneOffset": 5.0
+  },
+  {
+    "name": "Vanuatu",
+    "timezoneOffset": 11.0
+  },
+  {
+    "name": "Venezuela",
+    "timezoneOffset": -4.3
+  },
+  {
+    "name": "Vietnam",
+    "timezoneOffset": 7.0
+  },
+  {
+    "name": "Virgin Islands",
+    "timezoneOffset": -4.0
+  },
+  {
+    "name": "Wales",
+    "timezoneOffset": 10.0
+  },
+  {
+    "name": "Wallis and Futuna",
+    "timezoneOffset": 12.0
+  },
+  {
+    "name": "West Bank",
+    "timezoneOffset": 3.0
+  },
+  {
+    "name": "Western Sahara",
+    "timezoneOffset": 1.0
+  },
+  {
+    "name": "Yemen",
+    "timezoneOffset": 3.0
+  },
+  {
+    "name": "Zambia",
+    "timezoneOffset": 1.0
+  },
+  {
+    "name": "Zimbabwe",
+    "timezoneOffset": 2.0
+  }
+]

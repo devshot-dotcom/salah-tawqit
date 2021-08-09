@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/layout.horizontalFill"
+    android:orientation="vertical"
+    android:layout_centerInParent="true"
+    android:divider="@drawable/divider_vertical"
+    android:showDividers="middle"
+    android:dividerPadding="@dimen/mp_large"
+    android:gravity="center"
+    android:padding="@dimen/mp_large"
+    tools:context=".fragments.LandingPageFragment">
+
+    <!-- Mosque Vector. -->
+    <ImageView
+        android:layout_width="@dimen/cover_vector_medium"
+        android:layout_height="@dimen/cover_vector_medium"
+        android:src="@drawable/vector_mosque"
+        android:contentDescription="@string/welcome_to_salah_tawqit"/>
+
+    <!-- Please Select a Mode. -->
+    <TextView
+        style="@style/typography.secondaryText"
+        android:text="@string/please_select_a_calculation_mode"/>
+
+    <!-- Automatic Button + Help Button -->
+    <RelativeLayout
+        style="@style/layout.horizontalFill">
+
+        <!-- Button [Custom TextView overrides vanilla Button] -->
+        <TextView
+            android:id="@+id/home_auto_button"
+            style="@style/button.secondary"
+            android:text="@string/automatic"/>
+
+        <!-- Help Icon. -->
+        <ImageButton
+            android:id="@+id/home_auto_button_help"
+            style="@style/icon.large.altBackground"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/icon_help_plain"
+            android:contentDescription="@string/what_is_automatic_calculation"/>
+
+    </RelativeLayout>
+
+    <!-- Manual Button + Help Button -->
+    <RelativeLayout
+        style="@style/layout.horizontalFill">
+
+        <!-- Button [Custom TextView overrides vanilla Button] -->
+        <TextView
+            android:id="@+id/home_manual_button"
+            style="@style/button.tertiary"
+            android:text="@string/manual"/>
+
+        <!-- Help Icon. -->
+        <ImageButton
+            android:id="@+id/home_manual_button_help"
+            android:tint="@color/primary_100"
+            style="@style/icon.large.altBackground"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/icon_help_plain"
+            android:contentDescription="@string/what_is_manual_calculation"
+            tools:ignore="UseAppTint" />
+
+    </RelativeLayout>
+
+    <!-- Bottom Line. -->
+    <TextView
+        style="@style/typography.subtitle"
+        android:textAlignment="center"
+        android:text="@string/by_selecting_one_or_the_other"/>
+
+</LinearLayout>
