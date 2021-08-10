@@ -13,6 +13,7 @@
         android:roundIcon="@drawable/logo_circle"
         android:supportsRtl="true"
         android:theme="@style/Theme.SalahTawqit"
+        android:windowSoftInputMode="adjustResize"
         tools:ignore="AllowBackup">
         <activity android:name="com.salahtawqit.coffee.MainActivity">
             <intent-filter>

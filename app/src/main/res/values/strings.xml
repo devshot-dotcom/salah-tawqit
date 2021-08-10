@@ -57,4 +57,13 @@
     <string name="ishraq_detail">Can be prayed 10–20 minutes after sunrise, although 20 minutes are preferred to stay safe from post-sunrise makruh time.</string>
     <string name="duha_detail">Can be prayed right next to ishraq until dhuhr but, it\'s preferred to pray when the sun has risen quite high above the sky.</string>
     <string name="awwabin_detail">Can be prayed right next to maghrib but it\'s preferred to complete maghrib and pray awwabin anytime before isha starts.</string>
+    <string name="just_a_doodle">Just a doodle.</string>
+    <string name="manual_calculation">Manual Calculation</string>
+    <string name="prayer_times_for_any_city">Prayer times for any city</string>
+    <string name="select_country">Select Country</string>
+    <string name="enter_city_name">Enter City Name</string>
+    <string name="calculate">Calculate</string>
+    <string name="enter_country_name">Enter Country Name</string>
+    <string name="invalid_city">Invalid city name, Please enter an actual city\'s name.</string>
+    <string name="error_timezone_not_found">Error finding timezone for this city, please try again or use automatic calculation.</string>
 </resources>

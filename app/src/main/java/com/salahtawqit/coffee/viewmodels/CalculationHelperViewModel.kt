@@ -6,10 +6,10 @@ import android.location.Geocoder
 import android.location.Location
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import com.salahtawqit.coffee.calculators.PrayerTimesCalculator
-import com.salahtawqit.coffee.helpers.PreferencesHelper
 import com.salahtawqit.coffee.Utilities
+import com.salahtawqit.coffee.calculators.PrayerTimesCalculator
 import com.salahtawqit.coffee.calculators.VoluntaryPrayersCalculator
+import com.salahtawqit.coffee.helpers.PreferencesHelper
 import com.salahtawqit.coffee.helpers.RoomDatabaseHelper
 import java.util.*
 
@@ -120,12 +120,18 @@ class CalculationHelperViewModel(application: Application) : AndroidViewModel(ap
         isCalculated.value = true
     }
 
+    // Getters.
+    fun getDataMap(): HashMap<String, String> {
+        return this.dataMap
+    }
+
+    // Setters.
     fun setLocation(location: Location) {
         this.location = location
     }
 
-    fun getDataMap(): HashMap<String, String> {
-        return this.dataMap
+    fun setDataMap(dataMap: HashMap<String, String>) {
+        this.dataMap = dataMap
     }
 
     /**

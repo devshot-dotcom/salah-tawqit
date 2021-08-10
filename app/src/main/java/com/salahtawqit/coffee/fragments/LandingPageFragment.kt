@@ -8,14 +8,9 @@ import android.widget.ImageButton
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.google.gson.Gson
 import com.salahtawqit.coffee.R
 import com.salahtawqit.coffee.helpers.AutomaticCalculationHelper
-import com.salahtawqit.coffee.helpers.CountrySet
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 /**
  * The landing page that opens up right after the [SplashPageFragment].
@@ -68,16 +63,8 @@ class LandingPageFragment : Fragment() {
                 findNavController(), requestPermissionsLauncher).onButtonClick()
         }
         manualCalcButton.setOnClickListener {
-            lifecycleScope.launch(Dispatchers.IO) {
-                resources.openRawResource(R.raw.countries).bufferedReader().use {
-                    val json = Gson().fromJson(it, Array<CountrySet>::class.java)
-                    for(index in json) {
-                        println("${index.getName()} | ${index.getTimezoneOffset()}")
-                    }
-                }
-            }
             findNavController().navigate(HomePageFragmentDirections
-                .actionHomeScreenFragmentToManualCalculationFragment("manual"))
+                .actionHomeScreenFragmentToManualCalculationFragment())
         }
     }
 

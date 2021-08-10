@@ -6,8 +6,12 @@
         <entry key="..\:/workspace/android/salah-tawqit/app/src/main/res/drawable/button_primary.xml" value="0.2295" />
         <entry key="..\:/workspace/android/salah-tawqit/app/src/main/res/drawable/divider_horizontal.xml" value="0.2295" />
         <entry key="..\:/workspace/android/salah-tawqit/app/src/main/res/drawable/divider_vertical.xml" value="0.2295" />
+        <entry key="..\:/workspace/android/salah-tawqit/app/src/main/res/drawable/divider_vertical_large.xml" value="0.2295" />
         <entry key="..\:/workspace/android/salah-tawqit/app/src/main/res/drawable/gradient_primary.xml" value="0.2295" />
         <entry key="..\:/workspace/android/salah-tawqit/app/src/main/res/drawable/input_primary.xml" value="0.2295" />
+        <entry key="..\:/workspace/android/salah-tawqit/app/src/main/res/drawable/input_primary_erred.xml" value="0.2295" />
+        <entry key="..\:/workspace/android/salah-tawqit/app/src/main/res/drawable/input_secondary_erred.xml" value="0.2295" />
+        <entry key="..\:/workspace/android/salah-tawqit/app/src/main/res/drawable/input_tertiary_erred.xml" value="0.2295" />
         <entry key="..\:/workspace/android/salah-tawqit/app/src/main/res/drawable/list.xml" value="0.2295" />
         <entry key="..\:/workspace/android/salah-tawqit/app/src/main/res/drawable/list_primary.xml" value="0.2295" />
         <entry key="..\:/workspace/android/salah-tawqit/app/src/main/res/layout/activity_main.xml" value="0.4322916666666667" />
@@ -15,6 +19,7 @@
         <entry key="..\:/workspace/android/salah-tawqit/app/src/main/res/layout/fragment_landing_page.xml" value="0.4322916666666667" />
         <entry key="..\:/workspace/android/salah-tawqit/app/src/main/res/layout/fragment_loading_page.xml" value="0.4322916666666667" />
         <entry key="..\:/workspace/android/salah-tawqit/app/src/main/res/layout/fragment_location_rationale.xml" value="0.4180253623188406" />
+        <entry key="..\:/workspace/android/salah-tawqit/app/src/main/res/layout/fragment_manual_calculation.xml" value="0.38055555555555554" />
         <entry key="..\:/workspace/android/salah-tawqit/app/src/main/res/layout/fragment_network_error.xml" value="0.4322916666666667" />
         <entry key="..\:/workspace/android/salah-tawqit/app/src/main/res/layout/fragment_prayer_times.xml" value="0.4322916666666667" />
         <entry key="..\:/workspace/android/salah-tawqit/app/src/main/res/layout/fragment_splash_page.xml" value="0.4322916666666667" />

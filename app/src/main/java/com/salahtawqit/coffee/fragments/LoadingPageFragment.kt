@@ -2,21 +2,21 @@ package com.salahtawqit.coffee.fragments
 
 import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.VideoView
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.salahtawqit.coffee.R
 import com.salahtawqit.coffee.viewmodels.CalculationHelperViewModel
 import com.salahtawqit.coffee.viewmodels.LocationHelperViewModel
-import com.salahtawqit.coffee.R
-import java.util.Timer
+import java.util.*
 import kotlin.concurrent.schedule
 
 /**
@@ -31,7 +31,7 @@ import kotlin.concurrent.schedule
 class LoadingPageFragment : Fragment() {
     private lateinit var videoView : VideoView
     private var loadingStatusView : TextView? = null
-    private lateinit var locationHelperViewModel : LocationHelperViewModel
+    private val locationHelperViewModel: LocationHelperViewModel by viewModels()
     private val calculationHelperViewModel: CalculationHelperViewModel by activityViewModels()
 
     /**
@@ -94,11 +94,6 @@ class LoadingPageFragment : Fragment() {
                 navigateBackwardsDelayed(3000)
             }
         }
-
-        // Observe calculation completion.
-        calculationHelperViewModel.isCalculated.observe(this) {
-            if(it) navigateBackwardsDelayed(2000)
-        }
     }
 
     private fun handleManualCalculation() {
@@ -122,15 +117,19 @@ class LoadingPageFragment : Fragment() {
         // Loading status TextView
         loadingStatusView = activity?.findViewById(R.id.loading_status_text)
 
-        // Initialize the ViewModels
-        locationHelperViewModel = ViewModelProvider(this).get(LocationHelperViewModel::class.java)
-
-        /** Set loading status Text as the one in the [LocationHelperViewModel] */
+        /**
+         * Set loading status Text as the one in the [LocationHelperViewModel]
+         */
         loadingStatusView?.text = locationHelperViewModel.loadingStatus.value
 
         // Observe loading status.
         locationHelperViewModel.loadingStatus.observe(viewLifecycleOwner) {
             loadingStatus -> loadingStatusView?.text = loadingStatus
+        }
+
+        // Observe calculation completion.
+        calculationHelperViewModel.isCalculated.observe(viewLifecycleOwner) {
+            if(it) navigateBackwardsDelayed(2000)
         }
 
         // Get the navigation arguments [calculationMode in this case]

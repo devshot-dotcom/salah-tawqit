@@ -16,6 +16,8 @@
     <dimen name="mp_small">5dp</dimen>
     <dimen name="mp_medium">10dp</dimen>
     <dimen name="mp_large">15dp</dimen>
+    <dimen name="mp_larger">20dp</dimen>
+    <dimen name="mp_largest">30dp</dimen>
     <!-- View sizes. -->
     <dimen name="item_height">60dp</dimen>
     <dimen name="icon_small">20dp</dimen>

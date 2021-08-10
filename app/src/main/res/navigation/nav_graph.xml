@@ -63,11 +63,7 @@
             app:enterAnim="@anim/fade_in"
             app:exitAnim="@anim/slide_out"
             app:popEnterAnim="@anim/fade_in"
-            app:popExitAnim="@anim/slide_out">
-            <argument
-                android:name="calculationMode"
-                app:argType="string" />
-        </action>
+            app:popExitAnim="@anim/slide_out" />
     </fragment>
     <fragment
         android:id="@+id/loadingPageFragment"
@@ -137,20 +133,9 @@
     </fragment>
     <fragment
         android:id="@+id/manualCalculationFragment"
-        android:name="com.salahtawqit.coffee.ManualCalculationFragment"
-        android:label="fragment_manual_calculation"
-        tools:layout="@layout/fragment_manual_calculation" >
-        <action
-            android:id="@+id/action_manualCalculationFragment_to_networkErrorFragment"
-            app:destination="@id/networkErrorFragment"
-            app:enterAnim="@anim/fade_in"
-            app:exitAnim="@anim/slide_out"
-            app:popEnterAnim="@anim/fade_in"
-            app:popExitAnim="@anim/slide_out">
-            <argument
-                android:name="calculationMode"
-                app:argType="string" />
-        </action>
+        android:name="com.salahtawqit.coffee.fragments.ManualCalculationFragment"
+        android:label="fragment_manual_calculation2"
+        tools:layout="@layout/fragment_manual_calculation">
         <action
             android:id="@+id/action_manualCalculationFragment_to_loadingPageFragment"
             app:destination="@id/loadingPageFragment"
@@ -162,8 +147,5 @@
                 android:name="calculationMode"
                 app:argType="string" />
         </action>
-        <argument
-            android:name="calculationMode"
-            app:argType="string" />
     </fragment>
 </navigation>

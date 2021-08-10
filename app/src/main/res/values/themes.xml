@@ -85,6 +85,7 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/item_height</item>
         <item name="android:textCursorDrawable">@null</item>
+        <item name="android:textSize">@dimen/fs_primary</item>
     </style>
     <style name="input.primary" parent="input">
         <item name="android:background">@drawable/input_primary</item>
