@@ -30,12 +30,14 @@ class CalculationHelperViewModel(application: Application) : AndroidViewModel(ap
     private var dataMap: HashMap<String, String> = hashMapOf()
     val isGeocodeErred = MutableLiveData(false)
     val isCalculated = MutableLiveData(false)
+    var isJustLaunched = true
 
     // Calculate prayer timings.
     private fun calculatePrayerTimes(
-        timezone: Long, dataMap: HashMap<String, String>): HashMap<String, String> {
-        val calculator =
-            PrayerTimesCalculator()
+        timezone: Long?, dataMap: HashMap<String, String>,
+        latitude: Double?, longitude: Double?
+    ): HashMap<String, String> {
+        val calculator = PrayerTimesCalculator()
         prefHelper.setCalculator(calculator)
 
         // Get values based on user preferences.
@@ -55,7 +57,7 @@ class CalculationHelperViewModel(application: Application) : AndroidViewModel(ap
         // Map all the data to be presented to the user.
         val prayerNames = calculator.timeNames
         val prayerTimes = calculator.getPrayerTimes(
-            cal, location.latitude, location.longitude, timezone.toDouble())
+            cal, latitude, longitude, timezone?.toDouble())
 
         // Enter prayer times into the dataMap.
         for (i in prayerTimes.indices) {
@@ -101,6 +103,9 @@ class CalculationHelperViewModel(application: Application) : AndroidViewModel(ap
         return addressList[0]
     }
 
+    /**
+     * Make preparations for automatic calculation and then call [calculatePrayerTimes].
+     */
     fun automaticallyCalculate() {
         val address = reverseGeocode()
 
@@ -111,7 +116,24 @@ class CalculationHelperViewModel(application: Application) : AndroidViewModel(ap
         dataMap["lon"] = address.longitude.toString()
 
         // Map prayer times to dataMap.
-        dataMap = calculatePrayerTimes(utilities.getTimezoneOffset(), dataMap)
+        dataMap = calculatePrayerTimes(
+            utilities.getTimezoneOffset(), dataMap, location.latitude, location.longitude)
+
+        // Map additional times to dataMap.
+        dataMap = calculateAdditionalTimes(dataMap)
+
+        // LiveData instance that's being observed by the observer.
+        isCalculated.value = true
+    }
+
+    /**
+     * Make preparations for manual calculation and then call [calculatePrayerTimes].
+     */
+    fun manuallyCalculate() {
+        // Map prayer times to dataMap.
+        dataMap = calculatePrayerTimes(
+            dataMap["timezone"]?.toDouble()?.toLong(),
+            dataMap, dataMap["lat"]?.toDouble(), dataMap["lon"]?.toDouble())
 
         // Map additional times to dataMap.
         dataMap = calculateAdditionalTimes(dataMap)

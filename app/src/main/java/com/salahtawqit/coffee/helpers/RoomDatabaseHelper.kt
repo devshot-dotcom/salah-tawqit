@@ -1,6 +1,7 @@
 package com.salahtawqit.coffee.helpers
 
 import android.content.Context
+import androidx.lifecycle.LiveData
 import androidx.room.*
 
 /**
@@ -61,6 +62,13 @@ object RoomDatabaseHelper {
          */
         @Query("SELECT * FROM CalculationResults")
         fun selectAll(): List<CalculationResults>
+
+        /**
+         * Select all rows of [CalculationResults] from the database.
+         * @return [LiveData]<[List]<[CalculationResults]>>.
+         */
+        @Query("SELECT * FROM CalculationResults")
+        fun selectAllAsLiveData(): LiveData<List<CalculationResults>>
 
         /**
          * Update a row of [CalculationResults] from the database.

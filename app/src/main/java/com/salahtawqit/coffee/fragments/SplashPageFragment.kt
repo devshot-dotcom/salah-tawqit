@@ -1,10 +1,11 @@
 package com.salahtawqit.coffee.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.transition.TransitionInflater
 import com.salahtawqit.coffee.R
 
 /**
@@ -14,9 +15,15 @@ import com.salahtawqit.coffee.R
  */
 class SplashPageFragment : Fragment() {
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val inflater = TransitionInflater.from(requireContext())
+        exitTransition = inflater.inflateTransition(R.transition.slide_out)
+
+    }
+
+    override fun onCreateView(inflater: LayoutInflater,
+        container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_splash_page, container, false)
     }
 }

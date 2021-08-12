@@ -111,9 +111,6 @@ class ManualCalculationFragment : Fragment() {
                 // Get the data map.
                 dataMap = viewModel.getDataMap(dataMap)
 
-                // Get the timezone offset.
-                dataMap["timezone"] = viewModel.getTimezoneOffset()
-
                 // In case the timezone is found.
                 if(dataMap["timezone"]?.isNotEmpty() == true) {
 

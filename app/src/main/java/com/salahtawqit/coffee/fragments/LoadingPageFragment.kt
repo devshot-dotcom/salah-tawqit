@@ -49,13 +49,14 @@ class LoadingPageFragment : Fragment() {
     }
 
     /**
-     * Navigate to the last fragment after a set delay.
+     * Navigate to the next fragment after a set delay.
      */
-    private fun navigateBackwardsDelayed(delay: Int) {
+    private fun navigateForwardsDelayed(delay: Int) {
         Timer().schedule(delay.toLong()) {
             activity?.runOnUiThread {
                 lifecycleScope.launchWhenResumed {
-                    findNavController().popBackStack()
+                    findNavController().navigate(LoadingPageFragmentDirections
+                        .actionLoadingPageFragmentToPrayerTimesFragment())
                 }
             }
         }
@@ -71,14 +72,14 @@ class LoadingPageFragment : Fragment() {
 
         // Observe location error.
         locationHelperViewModel.isLocationErred.observe(this) {
-            if(it) navigateBackwardsDelayed(3000)
+            if(it) navigateForwardsDelayed(3000)
         }
 
         // Observe location changes.
         locationHelperViewModel.location.observe(this) {
             if (it == null) {
                 // Navigate back to the previous fragment after a delay.
-                navigateBackwardsDelayed(3000)
+                navigateForwardsDelayed(3000)
                 return@observe
             }
 
@@ -91,13 +92,9 @@ class LoadingPageFragment : Fragment() {
         calculationHelperViewModel.isGeocodeErred.observe(this) {
             if(it) {
                 loadingStatusView?.text = getString(R.string.error_finding_location)
-                navigateBackwardsDelayed(3000)
+                navigateForwardsDelayed(3000)
             }
         }
-    }
-
-    private fun handleManualCalculation() {
-        TODO("Handle Manual Calculation")
     }
 
     override fun onCreateView(
@@ -129,7 +126,7 @@ class LoadingPageFragment : Fragment() {
 
         // Observe calculation completion.
         calculationHelperViewModel.isCalculated.observe(viewLifecycleOwner) {
-            if(it) navigateBackwardsDelayed(2000)
+            if(it) navigateForwardsDelayed(2000)
         }
 
         // Get the navigation arguments [calculationMode in this case]
@@ -137,7 +134,7 @@ class LoadingPageFragment : Fragment() {
 
         when (args.calculationMode) {
             "automatic" -> handleAutomaticCalculation()
-            "manual" -> handleManualCalculation()
+            "manual" -> calculationHelperViewModel.manuallyCalculate()
         }
     }
 

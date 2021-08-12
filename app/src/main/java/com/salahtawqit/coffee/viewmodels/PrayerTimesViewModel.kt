@@ -21,28 +21,6 @@ class PrayerTimesViewModel(application: Application): AndroidViewModel(applicati
     var dataMap = HashMap<String, String>()
 
     /**
-     * Calculate the Hijri date and add it to the dataMap.
-     */
-    fun calculateHijriDate() {
-        val calendar = UmmalquraCalendar()
-        val format = SimpleDateFormat("d MMMM, y", Locale.ENGLISH)
-        format.calendar = calendar
-
-        dataMap["hijri"] = format.format(calendar.time)
-    }
-
-    /**
-     * Calculate the Gregorian date and add it to the dataMap.
-     */
-    fun calculateGregorianDate() {
-        val calendar = Calendar.getInstance()
-        val format = SimpleDateFormat("d MMMM, y", Locale.ENGLISH)
-        format.calendar = calendar
-
-        dataMap["gregorian"] = format.format(calendar.time)
-    }
-
-    /**
      * Use Room to store data in the database.
      */
     fun storeData() {
@@ -76,6 +54,28 @@ class PrayerTimesViewModel(application: Application): AndroidViewModel(applicati
             // Update otherwise.
             else dao.update(calculationResults)
         }
+    }
+
+    /**
+     * Calculate the Hijri date and add it to the dataMap.
+     */
+    fun calculateHijriDate() {
+        val calendar = UmmalquraCalendar()
+        val format = SimpleDateFormat("d MMMM, y", Locale.ENGLISH)
+        format.calendar = calendar
+
+        dataMap["hijri"] = format.format(calendar.time)
+    }
+
+    /**
+     * Calculate the Gregorian date and add it to the dataMap.
+     */
+    fun calculateGregorianDate() {
+        val calendar = Calendar.getInstance()
+        val format = SimpleDateFormat("d MMMM, y", Locale.ENGLISH)
+        format.calendar = calendar
+
+        dataMap["gregorian"] = format.format(calendar.time)
     }
 
     /**

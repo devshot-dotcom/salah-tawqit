@@ -1,10 +1,10 @@
 package com.salahtawqit.coffee.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import com.salahtawqit.coffee.databinding.FragmentPrayerTimesBinding
@@ -20,7 +20,7 @@ import com.salahtawqit.coffee.viewmodels.PrayerTimesViewModel
 class PrayerTimesFragment : Fragment() {
     private lateinit var binding: FragmentPrayerTimesBinding
     private val calculationHelperViewModel: CalculationHelperViewModel by activityViewModels()
-    private val prayerTimesViewModel : PrayerTimesViewModel by viewModels()
+    private val viewModel: PrayerTimesViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,17 +33,22 @@ class PrayerTimesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        prayerTimesViewModel.dataMap = calculationHelperViewModel.getDataMap()
+        // Set isJustLaunched to false as now we're not on the first screen.
+        calculationHelperViewModel.isJustLaunched = false
 
-        // Perform necessary operations on the map.
-        prayerTimesViewModel.calculateHijriDate()
-        prayerTimesViewModel.calculateGregorianDate()
-        prayerTimesViewModel.storeData()
+        viewModel.dataMap = calculationHelperViewModel.getDataMap()
+
+        // Store the data in the database.
+        viewModel.storeData()
+
+        // Calculate the dates.
+        viewModel.calculateHijriDate()
+        viewModel.calculateGregorianDate()
 
         // Once everything has been calculated and stored, do presentational changes.
-        prayerTimesViewModel.formatTimesWithPreferences()
+        viewModel.formatTimesWithPreferences()
 
         // Finally, bind the map to the binding class.
-        binding.dataMap = prayerTimesViewModel.dataMap
+        binding.dataMap = viewModel.dataMap
     }
 }

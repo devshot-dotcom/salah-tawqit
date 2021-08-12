@@ -79,9 +79,9 @@ class ManualCalculationViewModel(application: Application): AndroidViewModel(app
             getApplication<Application>().resources
                 .openRawResource(com.salahtawqit.coffee.R.raw.countries).bufferedReader().use {
 
-                    // Parse the JSON string using GSON.
-                    countrySets = Gson().fromJson(it, Array<CountrySet>::class.java)
-                }
+                // Parse the JSON string using GSON.
+                countrySets = Gson().fromJson(it, Array<CountrySet>::class.java)
+            }
         }
     }
 
@@ -90,7 +90,7 @@ class ManualCalculationViewModel(application: Application): AndroidViewModel(app
      * In case of no match, inform the user with an error message.
      * @return [String]. The timezone offset as a string.
      */
-    fun getTimezoneOffset(): String {
+    private fun getTimezoneOffset(): String {
 
         // Iterate over the generated array of country sets.
         for(countrySet in countrySets) {
@@ -120,6 +120,7 @@ class ManualCalculationViewModel(application: Application): AndroidViewModel(app
         dataMap["country"] = enteredCountry
         dataMap["lat"] = address.latitude.toString()
         dataMap["lon"] = address.longitude.toString()
+        dataMap["timezone"] = getTimezoneOffset()
 
         return dataMap
     }

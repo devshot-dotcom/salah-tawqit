@@ -75,6 +75,7 @@
     </style>
     <style name="button.secondary" parent="button">
         <item name="android:background">@drawable/button_secondary</item>
+        <item name="android:textColor">@color/color_tertiary</item>
     </style>
     <style name="button.tertiary" parent="button">
         <item name="android:background">@drawable/button_tertiary</item>

@@ -9,7 +9,7 @@ import androidx.core.app.ActivityCompat.shouldShowRequestPermissionRationale
 import androidx.navigation.NavController
 import com.salahtawqit.coffee.R
 import com.salahtawqit.coffee.Utilities
-import com.salahtawqit.coffee.fragments.HomePageFragmentDirections
+import com.salahtawqit.coffee.fragments.LandingPageFragmentDirections
 import com.salahtawqit.coffee.fragments.LoadingPageFragment
 import com.salahtawqit.coffee.fragments.LocationRationaleFragment
 import com.salahtawqit.coffee.fragments.NetworkErrorFragment
@@ -44,8 +44,8 @@ class AutomaticCalculationHelper(
          * string to [LocationRationaleFragment].
          */
         if(shouldShowRequestPermissionRationale(context as Activity, permissionName)) {
-            navController.navigate(HomePageFragmentDirections
-                .actionHomeScreenFragmentToLocationRationaleFragment("automatic"))
+            navController.navigate(LandingPageFragmentDirections
+                .actionLandingPageFragmentToLocationRationaleFragment("automatic"))
             return
         }
 
@@ -82,9 +82,8 @@ class AutomaticCalculationHelper(
          * Add the "automatic" as an argument to the [navigation] action.
          */
         if(!utilities.isConnectedToInternet(context)) {
-            navController.navigate(
-                HomePageFragmentDirections
-                    .actionHomeScreenFragmentToNetworkErrorFragment("automatic"))
+            navController.navigate(LandingPageFragmentDirections
+                    .actionLandingPageFragmentToNetworkErrorFragment("automatic"))
             return
         }
 
@@ -99,7 +98,7 @@ class AutomaticCalculationHelper(
         }
 
         /** Else navigate to the [LoadingPageFragment] */
-        navController.navigate(HomePageFragmentDirections
-            .actionHomeScreenFragmentToLoadingPageFragment("automatic"))
+        navController.navigate(LandingPageFragmentDirections
+            .actionLandingPageFragmentToLoadingPageFragment("automatic"))
     }
 }
