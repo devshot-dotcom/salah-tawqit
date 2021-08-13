@@ -63,6 +63,19 @@ class LoadingPageFragment : Fragment() {
     }
 
     /**
+     * Navigate to the last fragment after a set delay.
+     */
+    private fun navigateBackwardsDelayed(delay: Int) {
+        Timer().schedule(delay.toLong()) {
+            activity?.runOnUiThread {
+                lifecycleScope.launchWhenResumed {
+                    findNavController().popBackStack()
+                }
+            }
+        }
+    }
+
+    /**
      * Use [locationHelperViewModel] to calculate user location.
      * Observe the calculated location and pass it onto the [calculationHelperViewModel] for
      * unpacking and parsing purposes.
@@ -72,14 +85,14 @@ class LoadingPageFragment : Fragment() {
 
         // Observe location error.
         locationHelperViewModel.isLocationErred.observe(this) {
-            if(it) navigateForwardsDelayed(3000)
+            if(it) navigateBackwardsDelayed(3000)
         }
 
         // Observe location changes.
         locationHelperViewModel.location.observe(this) {
             if (it == null) {
                 // Navigate back to the previous fragment after a delay.
-                navigateForwardsDelayed(3000)
+                navigateBackwardsDelayed(3000)
                 return@observe
             }
 
@@ -92,7 +105,7 @@ class LoadingPageFragment : Fragment() {
         calculationHelperViewModel.isGeocodeErred.observe(this) {
             if(it) {
                 loadingStatusView?.text = getString(R.string.error_finding_location)
-                navigateForwardsDelayed(3000)
+                navigateBackwardsDelayed(3000)
             }
         }
     }

@@ -11,6 +11,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.salahtawqit.coffee.R
 import com.salahtawqit.coffee.helpers.AutomaticCalculationHelper
@@ -22,8 +23,7 @@ import kotlinx.coroutines.launch
 /**
  * The landing page that opens up right after the [SplashPageFragment].
  * Returns the landing page's layout XML file.
- * Is a part of a ViewPager2 in the [HomePageFragment].
- -* @since v1.0
+ * @since v1.0
  * @author Devshot devshot.coffee@gmail.com
  */
 class LandingPageFragment : Fragment() {
@@ -32,6 +32,11 @@ class LandingPageFragment : Fragment() {
     private lateinit var autoCalcHelpButton: ImageButton
     private lateinit var manualCalcHelpButton: ImageButton
     private val calculationHelperViewModel: CalculationHelperViewModel by activityViewModels()
+    private val navListener = NavController.OnDestinationChangedListener { _, _, _ ->
+        // Set the app launch to false, since we're past the initial launch state.
+        calculationHelperViewModel.isJustLaunched = false
+    }
+
 
     /**
      * Register for the permission result.
@@ -51,8 +56,8 @@ class LandingPageFragment : Fragment() {
     }
 
     /**
-     * Select the database row of calculation results and navigate to the [PrayerTimesFragment] if
-     * they exist.
+     * Select the database row of calculation results and navigate to the [PrayerTimesFragment]
+     * if they exist.
      */
     private fun checkExistingCalculationResults(context: Context) {
         lifecycleScope.launch(Dispatchers.IO) {
@@ -107,12 +112,15 @@ class LandingPageFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // If the fragment is called on app launched, check database.
+        // If the fragment is called on app launch, check database.
         if(calculationHelperViewModel.isJustLaunched) {
+
             // Check if calculation results exist, navigate to the results page if so.
             checkExistingCalculationResults(view.context)
         }
 
+        findNavController().addOnDestinationChangedListener(navListener)
+        
         initLateInit(view)
         setListeners(view)
     }
