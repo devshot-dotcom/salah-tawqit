@@ -1,12 +1,12 @@
 package com.salahtawqit.coffee.calculators
 
-import com.salahtawqit.coffee.Utilities
+import com.salahtawqit.coffee.addMinutes
+import com.salahtawqit.coffee.subtractMinutes
 import java.text.SimpleDateFormat
 import java.util.*
 
 class VoluntaryPrayersCalculator {
     private val timeFormat = SimpleDateFormat("HH:mm", Locale.getDefault()) //24 hour format
-    private val utilities = Utilities()
     private lateinit var dataMap: MutableMap<String, String>
 
     /**
@@ -42,7 +42,7 @@ class VoluntaryPrayersCalculator {
     fun getTahajjudTime(): String {
         //hours to minutes
         val nightTimeInMinutes = (calculateNightTime() / 7 * 60).toInt()
-        return utilities.subtractMinutes(
+        return subtractMinutes(
             minutes = nightTimeInMinutes,
             source = dataMap["Fajr"] ?: "06:00",
             format = timeFormat)
@@ -60,7 +60,7 @@ class VoluntaryPrayersCalculator {
         val sunrise = dataMap["Sunrise"] ?: "06:00"
 
         // Add 10 minutes to sunrise.
-        return utilities.addMinutes(
+        return addMinutes(
             minutes = 20,
             source = sunrise,
             format = timeFormat)
@@ -79,7 +79,7 @@ class VoluntaryPrayersCalculator {
         val ishraq = getIshraqTime()
 
         // Add 10 minutes to ishraq.
-        return utilities.addMinutes(
+        return addMinutes(
             minutes = 20,
             source = ishraq,
             format = timeFormat)

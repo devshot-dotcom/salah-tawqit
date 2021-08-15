@@ -13,8 +13,13 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.salahtawqit.coffee.R
 import com.salahtawqit.coffee.databinding.FragmentManualCalculationBinding
+import com.salahtawqit.coffee.helpers.ListAdapter
+import com.salahtawqit.coffee.hideKeyboard
+import com.salahtawqit.coffee.toEditable
 import com.salahtawqit.coffee.viewmodels.CalculationHelperViewModel
 import com.salahtawqit.coffee.viewmodels.ManualCalculationViewModel
 
@@ -27,6 +32,7 @@ class ManualCalculationFragment : Fragment() {
 
     private lateinit var citiesEditText: EditText
     private var dataMap = hashMapOf<String, String>()
+    private lateinit var recentSearchesList: RecyclerView
     private lateinit var countriesTextView: AutoCompleteTextView
     private lateinit var binding: FragmentManualCalculationBinding
     private val viewModel: ManualCalculationViewModel by viewModels()
@@ -36,7 +42,8 @@ class ManualCalculationFragment : Fragment() {
      * Start manual calculation from the form data.
      * @param view [View]?. The form submit button, though it can be null in case of a manual trigger.
      */
-    fun calculate(view: View? = null) {
+    fun calculate(v: View? = null) {
+        this.hideKeyboard()
         viewModel.validateForm()
     }
 
@@ -45,6 +52,32 @@ class ManualCalculationFragment : Fragment() {
      */
     private fun setCountriesAdapter() {
         countriesTextView.setAdapter(viewModel.getCountriesAdapter())
+    }
+
+    private fun setRecentSearchesAdapter() {
+        val listAdapter = ListAdapter(
+            inflater = layoutInflater,
+            textViewResId = R.id.list_title,
+            dataList = viewModel.recentSearchesList,
+            layoutResId = R.layout.template_list_item_history,
+            listener = object: ListAdapter.ItemClickListener {
+                override fun onItemClick(view: View, position: Int) {
+
+                    // Split the string from `city, country` format.
+                    val locationList = viewModel.recentSearchesList[position].split(",")
+
+                    // Assign the parts to views.
+                    citiesEditText.text = locationList[0].toEditable()
+                    countriesTextView.text = locationList[1].toEditable()
+                }
+            }
+        )
+
+        // Necessary step.
+        recentSearchesList.layoutManager = LinearLayoutManager(this.context)
+
+        // Set the adapter.
+        recentSearchesList.adapter = listAdapter
     }
 
     /**
@@ -98,18 +131,37 @@ class ManualCalculationFragment : Fragment() {
      * All observers for the viewModel's liveData instances at once place.
      */
     private fun setObservers() {
-        // Observe city validation liveData.
+        // Observe city validation.
         viewModel.isCityValid.observe(viewLifecycleOwner) {
             if(!it) {
-                Toast.makeText(context, R.string.invalid_city, Toast.LENGTH_LONG).show()
+                Toast.makeText(
+                    context,
+                    R.string.invalid_city,
+                    Toast.LENGTH_LONG)
+                    .show()
             }
+        }
+
+        // Observe the geocoder.
+        viewModel.isGeocodeErred.observe(viewLifecycleOwner) {
+            if(it) {
+                Toast.makeText(context,
+                    "The geocoder faced an internal problem, please try again.",
+                    Toast.LENGTH_LONG)
+                    .show()
+            }
+        }
+
+        // Observe recent searches' existence.
+        viewModel.doRecentSearchesExist.observe(viewLifecycleOwner) {
+            if(it) setRecentSearchesAdapter()
         }
 
         // Observe validation results.
         viewModel.readyToProceed.observe(viewLifecycleOwner) {
             if(it) {
-                // Get the data map.
                 dataMap = viewModel.getDataMap(dataMap)
+                viewModel.storeLocation()
 
                 // In case the timezone is found.
                 if(dataMap["timezone"]?.isNotEmpty() == true) {
@@ -143,12 +195,14 @@ class ManualCalculationFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // Cache the views.
-        countriesTextView = view.findViewById(R.id.countries_text_view)
         citiesEditText = view.findViewById(R.id.city_edit_text)
+        countriesTextView = view.findViewById(R.id.countries_text_view)
+        recentSearchesList = view.findViewById(R.id.recent_searches_list)
 
-        setCountriesAdapter()
         setListeners()
         setObservers()
+        setCountriesAdapter()
+        viewModel.checkRecentSearchesExistence()
 
         // Read the external JSON file in a background coroutine.
         viewModel.readCountriesJson()

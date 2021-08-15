@@ -10,10 +10,12 @@
         <entry key="..\:/workspace/android/salah-tawqit/app/src/main/res/drawable/gradient_primary.xml" value="0.2295" />
         <entry key="..\:/workspace/android/salah-tawqit/app/src/main/res/drawable/input_primary.xml" value="0.2295" />
         <entry key="..\:/workspace/android/salah-tawqit/app/src/main/res/drawable/input_primary_erred.xml" value="0.2295" />
+        <entry key="..\:/workspace/android/salah-tawqit/app/src/main/res/drawable/input_secondary.xml" value="0.2295" />
         <entry key="..\:/workspace/android/salah-tawqit/app/src/main/res/drawable/input_secondary_erred.xml" value="0.2295" />
         <entry key="..\:/workspace/android/salah-tawqit/app/src/main/res/drawable/input_tertiary_erred.xml" value="0.2295" />
         <entry key="..\:/workspace/android/salah-tawqit/app/src/main/res/drawable/list.xml" value="0.2295" />
         <entry key="..\:/workspace/android/salah-tawqit/app/src/main/res/drawable/list_primary.xml" value="0.2295" />
+        <entry key="..\:/workspace/android/salah-tawqit/app/src/main/res/drawable/notification_secondary.xml" value="0.2295" />
         <entry key="..\:/workspace/android/salah-tawqit/app/src/main/res/layout/activity_main.xml" value="0.4322916666666667" />
         <entry key="..\:/workspace/android/salah-tawqit/app/src/main/res/layout/fragment_home_page.xml" value="0.4322916666666667" />
         <entry key="..\:/workspace/android/salah-tawqit/app/src/main/res/layout/fragment_landing_page.xml" value="0.4322916666666667" />
@@ -25,6 +27,8 @@
         <entry key="..\:/workspace/android/salah-tawqit/app/src/main/res/layout/fragment_splash_page.xml" value="0.4322916666666667" />
         <entry key="..\:/workspace/android/salah-tawqit/app/src/main/res/layout/fragment_splash_screen.xml" value="0.4322916666666667" />
         <entry key="..\:/workspace/android/salah-tawqit/app/src/main/res/layout/home_screen_fragment.xml" value="0.4322916666666667" />
+        <entry key="..\:/workspace/android/salah-tawqit/app/src/main/res/layout/template_list_history.xml" value="0.4322916666666667" />
+        <entry key="..\:/workspace/android/salah-tawqit/app/src/main/res/layout/template_list_item_history.xml" value="0.4322916666666667" />
       </map>
     </option>
   </component>

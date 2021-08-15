@@ -67,4 +67,8 @@
     <string name="invalid_city">Invalid city name, Please enter an actual city\'s name.</string>
     <string name="error_timezone_not_found">Error finding timezone for this city, please try again or use automatic calculation.</string>
     <string name="navigate_to_prayer_times">Navigate to prayer times.</string>
+    <string name="showing_saved_prayer_times">Showing saved prayer times.</string>
+    <string name="close_notification">Close notification.</string>
+    <string name="history_repeats_itself">History repeats itself.</string>
+    <string name="recent_searches">Recent Searches</string>
 </resources>

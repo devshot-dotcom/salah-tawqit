@@ -143,7 +143,7 @@
     </style>
     <!-- Icons. -->
     <style name="icon" parent="layout.inline">
-        <item name="android:padding">@dimen/mp_medium</item>
+        <item name="android:padding">@dimen/mp_small</item>
         <item name="android:background">?selectableItemBackgroundBorderless</item>
         <item name="android:scaleType">centerInside</item>
         <item name="android:adjustViewBounds">true</item>
@@ -198,5 +198,16 @@
     <style name="ListItem.title" parent="typography.label">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_weight">1</item>
+    </style>
+    <!-- Notifications. -->
+    <style name="notification" parent="layout.horizontalFill">
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingTop">@dimen/mp_medium</item>
+        <item name="android:paddingEnd">@dimen/mp_large</item>
+        <item name="android:paddingBottom">@dimen/mp_medium</item>
+        <item name="android:paddingStart">@dimen/mp_large</item>
+    </style>
+    <style name="notification.secondary" parent="notification">
+        <item name="android:background">@drawable/notification_secondary</item>
     </style>
 </resources>

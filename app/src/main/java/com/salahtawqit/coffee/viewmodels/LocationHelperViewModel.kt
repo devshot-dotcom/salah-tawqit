@@ -9,7 +9,9 @@ import android.location.LocationManager
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.salahtawqit.coffee.R
-import com.salahtawqit.coffee.Utilities
+import com.salahtawqit.coffee.isGpsEnabled
+import com.salahtawqit.coffee.isNetworkEnabled
+import com.salahtawqit.coffee.viewmodels.LocationHelperViewModel.MyLocationListener
 import java.util.*
 
 
@@ -29,7 +31,6 @@ import java.util.*
  * @param application [Application]. The application context.
  */
 class LocationHelperViewModel(application: Application) : AndroidViewModel(application) {
-    private val utilities = Utilities()
     private val locationManager : LocationManager =
         application.getSystemService(Context.LOCATION_SERVICE) as LocationManager
     val loadingStatus = MutableLiveData(application.getString(R.string.calculating_timings))
@@ -94,11 +95,11 @@ class LocationHelperViewModel(application: Application) : AndroidViewModel(appli
         loadingStatus.value = getApplication<Application>().getString(R.string.finding_locating)
 
         // Request user location using GPS.
-        if(utilities.isGpsEnabled(getApplication()))
+        if(isGpsEnabled(getApplication()))
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0f, locationListener)
 
         // Request user location using network.
-        if(utilities.isNetworkEnabled(getApplication()))
+        if(isNetworkEnabled(getApplication()))
             locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0f, locationListener)
 
         // Start a timer to monitor location requests.

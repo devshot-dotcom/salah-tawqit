@@ -26,7 +26,7 @@ class PrayerTimesViewModel(application: Application): AndroidViewModel(applicati
     fun storeData() {
         // Database access must be limited to a background thread hence we use coroutines.
         viewModelScope.launch(Dispatchers.IO) {
-            val dao = RoomDatabaseHelper.getRoom(getApplication()).calculationResultsDao()
+            val dao = RoomDatabaseHelper.getRoom(getApplication()).getCalculationResultsDao()
             val calculationResults = RoomDatabaseHelper.CalculationResults(
                 id = 1,
                 latitude = dataMap["lat"],

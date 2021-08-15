@@ -2,320 +2,356 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
     <data>
+        <import type="android.view.View" />
         <variable name="dataMap" type="java.util.HashMap&lt;String, String&gt;" />
+        <variable name="fragment" type="com.salahtawqit.coffee.fragments.PrayerTimesFragment" />
+        <variable name="isSelectedFromDb" type="Boolean" />
     </data>
-    <LinearLayout
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:divider="@drawable/divider_vertical"
-        android:showDividers="middle"
-        android:dividerPadding="@dimen/mp_large"
-        android:padding="@dimen/mp_large"
         tools:context=".fragments.PrayerTimesFragment">
 
-        <!-- Location Information. -->
+        <ImageButton
+            style="@style/icon.large"
+            android:onClick="@{fragment::navigateBackwards}"
+            android:src="@drawable/icon_arrowbackwards_plain"
+            android:contentDescription="@string/navigate_to_prayer_times"/>
+
         <LinearLayout
-            style="@style/layout.horizontalFill"
-            android:gravity="center"
-            android:orientation="vertical">
+            android:padding="@dimen/mp_large"
+            android:dividerPadding="@dimen/mp_large"
+            android:showDividers="middle"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@drawable/divider_vertical">
 
-            <TextView
-                style="@style/typography.title"
-                android:text='@{dataMap["city"]}'
-                tools:text="City Name" />
+            <!-- Location Information. -->
+            <LinearLayout
+                android:gravity="center"
+                android:orientation="vertical"
+                style="@style/layout.horizontalFill">
 
-            <TextView
-                style="@style/typography.secondaryText.large"
-                android:text='@{dataMap["country"]}'
-                tools:text="Country Name" />
+                <TextView
+                    tools:text="City Name"
+                    style="@style/typography.title"
+                    android:text='@{dataMap["city"]}'/>
+
+                <TextView
+                    tools:text="Country Name"
+                    android:text='@{dataMap["country"]}'
+                    style="@style/typography.secondaryText.large"/>
+
+            </LinearLayout>
+
+            <ScrollView style="@style/layout.horizontalFill">
+                <LinearLayout
+                    android:showDividers="middle"
+                    android:orientation="vertical"
+                    android:dividerPadding="@dimen/mp_large"
+                    style="@style/layout.horizontalFill"
+                    android:divider="@drawable/divider_vertical">
+
+                    <!-- Notification -->
+                    <LinearLayout
+                        style="@style/notification.secondary"
+                        android:visibility="@{isSelectedFromDb ? View.VISIBLE : View.GONE}">
+
+                        <TextView
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            style="@style/typography.secondaryText.large"
+                            android:text="@string/showing_saved_prayer_times"/>
+
+                        <ImageButton
+                            style="@style/icon.medium"
+                            android:src="@drawable/icon_close_plain"
+                            android:onClick="@{fragment::hideNotification}"
+                            android:contentDescription="@string/close_notification"/>
+
+                    </LinearLayout>
+
+                    <!-- Dates. -->
+                    <LinearLayout
+                        style="@style/ListItem.vertical">
+
+                        <!-- Hijri Date. -->
+                        <LinearLayout
+                            android:gravity="center_vertical"
+                            tools:ignore="UseCompoundDrawables"
+                            style="@style/layout.horizontalFill">
+
+                            <ImageView
+                                style="@style/compoundIcon.medium"
+                                android:src="@drawable/icon_moon_plain"
+                                android:contentDescription="@string/a_crescent"/>
+
+                            <TextView
+                                android:layout_marginStart="@dimen/mp_large"
+                                android:text='@{dataMap["hijri"]}'
+                                tools:text="Hijri Date, Hijri Year"
+                                style="@style/typography.secondaryText.large"/>
+
+                        </LinearLayout>
+
+                        <!-- Gregorian Date. -->
+                        <LinearLayout
+                            style="@style/layout.horizontalFill"
+                            android:gravity="center_vertical"
+                            tools:ignore="UseCompoundDrawables">
+
+                            <ImageView
+                                style="@style/compoundIcon.medium"
+                                android:src="@drawable/icon_calendar_plain"
+                                android:contentDescription="@string/a_calendar"/>
+
+                            <TextView
+                                style="@style/typography.secondaryText.large"
+                                android:text='@{dataMap["gregorian"]}'
+                                tools:text="Gregorian Date, Gregorian Year"
+                                android:layout_marginStart="@dimen/mp_large" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <!-- Label (Fard Prayers). -->
+                    <TextView
+                        style="@style/typography.secondaryText"
+                        android:text="@string/fard_necessary_prayers"/>
+
+                    <!-- Fajr. -->
+                    <LinearLayout
+                        style="@style/ListItem.horizontal">
+
+                        <ImageView
+                            style="@style/compoundIcon.mediumLarge"
+                            android:src="@drawable/prayericon_fajr"
+                            android:contentDescription="@string/sleeping_sun_describes"/>
+
+                        <TextView
+                            style="@style/ListItem.title"
+                            android:text="@string/fajr"/>
+
+                        <TextView
+                            style="@style/typography.importantText"
+                            android:text='@{dataMap["Fajr"]}'
+                            tools:text="06:00 am"/>
+
+                    </LinearLayout>
+
+                    <!-- Sunrise. -->
+                    <LinearLayout
+                        style="@style/ListItem.horizontal">
+
+                        <ImageView
+                            style="@style/compoundIcon.mediumLarge"
+                            android:src="@drawable/prayericon_sunrise"
+                            android:contentDescription="@string/rising_smiling_sun_describes"/>
+
+                        <TextView
+                            style="@style/ListItem.title"
+                            android:text="@string/sunrise"/>
+
+                        <TextView
+                            style="@style/typography.importantText"
+                            android:text='@{dataMap["Sunrise"]}'
+                            tools:text="06:00 am"/>
+
+                    </LinearLayout>
+
+                    <!-- Dhuhr. -->
+                    <LinearLayout
+                        style="@style/ListItem.horizontal">
+
+                        <ImageView
+                            style="@style/compoundIcon.mediumLarge"
+                            android:src="@drawable/prayericon_dhuhr"
+                            android:contentDescription="@string/crying_sun_describes"/>
+
+                        <TextView
+                            style="@style/ListItem.title"
+                            android:text="@string/dhuhr"/>
+
+                        <TextView
+                            style="@style/typography.importantText"
+                            android:text='@{dataMap["Dhuhr"]}'
+                            tools:text="06:00 am"/>
+
+                    </LinearLayout>
+
+                    <!-- Asr. -->
+                    <LinearLayout
+                        style="@style/ListItem.horizontal">
+
+                        <ImageView
+                            style="@style/compoundIcon.mediumLarge"
+                            android:src="@drawable/prayericon_asr"
+                            android:contentDescription="@string/smiling_shining_sun_describes"/>
+
+                        <TextView
+                            style="@style/ListItem.title"
+                            android:text="@string/asr"/>
+
+                        <TextView
+                            style="@style/typography.importantText"
+                            android:text='@{dataMap["Asr"]}'
+                            tools:text="06:00 am"/>
+
+                    </LinearLayout>
+
+                    <!-- Sunset. -->
+                    <LinearLayout
+                        style="@style/ListItem.horizontal">
+
+                        <ImageView
+                            style="@style/compoundIcon.mediumLarge"
+                            android:src="@drawable/prayericon_sunset"
+                            android:contentDescription="@string/sun_is_setting"/>
+
+                        <TextView
+                            style="@style/ListItem.title"
+                            android:text="@string/sunset"/>
+
+                        <TextView
+                            style="@style/typography.importantText"
+                            android:text='@{dataMap["Sunset"]}'
+                            tools:text="06:00 am"/>
+
+                    </LinearLayout>
+
+                    <!-- Maghrib. -->
+                    <LinearLayout
+                        style="@style/ListItem.horizontal">
+
+                        <ImageView
+                            style="@style/compoundIcon.mediumLarge"
+                            android:src="@drawable/prayericon_maghrib"
+                            android:contentDescription="@string/sun_gone_moon_nowhere"/>
+
+                        <TextView
+                            style="@style/ListItem.title"
+                            android:text="@string/maghrib"/>
+
+                        <TextView
+                            style="@style/typography.importantText"
+                            android:text='@{dataMap["Maghrib"]}'
+                            tools:text="06:00 am"/>
+
+                    </LinearLayout>
+
+                    <!-- Isha. -->
+                    <LinearLayout
+                        style="@style/ListItem.horizontal">
+
+                        <ImageView
+                            style="@style/compoundIcon.mediumLarge"
+                            android:src="@drawable/prayericon_isha"
+                            android:contentDescription="@string/moon_shown_up"/>
+
+                        <TextView
+                            style="@style/ListItem.title"
+                            android:text="@string/isha"/>
+
+                        <TextView
+                            style="@style/typography.importantText"
+                            android:text='@{dataMap["Isha"]}'
+                            tools:text="06:00 am"/>
+
+                    </LinearLayout>
+
+                    <!-- Label (Voluntary Prayers). -->
+                    <TextView
+                        style="@style/typography.secondaryText"
+                        android:text="@string/nafl_voluntary_prayers"/>
+
+                    <!-- Tahajjud. -->
+                    <LinearLayout
+                        style="@style/ListItem.horizontal">
+
+                        <ImageView
+                            style="@style/compoundIcon.mediumLarge"
+                            android:src="@drawable/prayericon_tahajjud"
+                            android:contentDescription="@string/midnight_so_dark"/>
+
+                        <TextView
+                            style="@style/ListItem.title"
+                            android:text="@string/tahajjud"/>
+
+                        <TextView
+                            style="@style/typography.importantText"
+                            android:text='@{dataMap["Tahajjud"]}'
+                            tools:text="06:00 am"/>
+
+                    </LinearLayout>
+
+                    <!-- Ishraq. -->
+                    <LinearLayout
+                        style="@style/ListItem.horizontal">
+
+                        <ImageView
+                            style="@style/compoundIcon.mediumLarge"
+                            android:src="@drawable/prayericon_ishraq"
+                            android:contentDescription="@string/best_time_ishraq"/>
+
+                        <TextView
+                            style="@style/ListItem.title"
+                            android:text="@string/ishraq"/>
+
+                        <TextView
+                            style="@style/typography.importantText"
+                            android:text='@{dataMap["Ishraq"]}'
+                            tools:text="06:00 am"/>
+
+                    </LinearLayout>
+
+                    <!-- Duha. -->
+                    <LinearLayout
+                        style="@style/ListItem.horizontal">
+
+                        <ImageView
+                            style="@style/compoundIcon.mediumLarge"
+                            android:src="@drawable/prayericon_duha"
+                            android:contentDescription="@string/flowers_bloom_duha"/>
+
+                        <TextView
+                            style="@style/ListItem.title"
+                            android:text="@string/duha_chasht"/>
+
+                        <TextView
+                            style="@style/typography.importantText"
+                            android:text='@{dataMap["Duha"]}'
+                            tools:text="06:00 am"/>
+
+                    </LinearLayout>
+
+                    <!-- Awwabin. -->
+                    <LinearLayout
+                        style="@style/ListItem.horizontal">
+
+                        <ImageView
+                            style="@style/compoundIcon.mediumLarge"
+                            android:src="@drawable/prayericon_awwabin"
+                            android:contentDescription="@string/just_as_sun_settles_awwabin"/>
+
+                        <TextView
+                            style="@style/ListItem.title"
+                            android:text="@string/awwabin"/>
+
+                        <TextView
+                            style="@style/typography.importantText"
+                            android:text='@{dataMap["Maghrib"]}'
+                            tools:text="06:00 am"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </ScrollView>
 
         </LinearLayout>
 
-        <ScrollView style="@style/layout.horizontalFill">
-            <LinearLayout
-                style="@style/layout.horizontalFill"
-                android:divider="@drawable/divider_vertical"
-                android:showDividers="middle"
-                android:dividerPadding="@dimen/mp_large"
-                android:orientation="vertical">
+    </RelativeLayout>
 
-                <!-- Dates. -->
-                <LinearLayout
-                    style="@style/ListItem.vertical">
-
-                    <!-- Hijri Date. -->
-                    <LinearLayout
-                        style="@style/layout.horizontalFill"
-                        android:gravity="center_vertical"
-                        tools:ignore="UseCompoundDrawables">
-
-                        <ImageView
-                            style="@style/compoundIcon.medium"
-                            android:src="@drawable/icon_moon_plain"
-                            android:contentDescription="@string/a_crescent"/>
-
-                        <TextView
-                            style="@style/typography.secondaryText.large"
-                            android:text='@{dataMap["hijri"]}'
-                            tools:text="Hijri Date, Hijri Year"
-                            android:layout_marginStart="@dimen/mp_large" />
-
-                    </LinearLayout>
-
-                    <!-- Gregorian Date. -->
-                    <LinearLayout
-                        style="@style/layout.horizontalFill"
-                        android:gravity="center_vertical"
-                        tools:ignore="UseCompoundDrawables">
-
-                        <ImageView
-                            style="@style/compoundIcon.medium"
-                            android:src="@drawable/icon_calendar_plain"
-                            android:contentDescription="@string/a_calendar"/>
-
-                        <TextView
-                            style="@style/typography.secondaryText.large"
-                            android:text='@{dataMap["gregorian"]}'
-                            tools:text="Gregorian Date, Gregorian Year"
-                            android:layout_marginStart="@dimen/mp_large" />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <!-- Label (Fard Prayers). -->
-                <TextView
-                    style="@style/typography.secondaryText"
-                    android:text="@string/fard_necessary_prayers"/>
-
-                <!-- Fajr. -->
-                <LinearLayout
-                    style="@style/ListItem.horizontal">
-
-                    <ImageView
-                        style="@style/compoundIcon.mediumLarge"
-                        android:src="@drawable/prayericon_fajr"
-                        android:contentDescription="@string/sleeping_sun_describes"/>
-
-                    <TextView
-                        style="@style/ListItem.title"
-                        android:text="@string/fajr"/>
-
-                    <TextView
-                        style="@style/typography.importantText"
-                        android:text='@{dataMap["Fajr"]}'
-                        tools:text="06:00 am"/>
-
-                </LinearLayout>
-
-                <!-- Sunrise. -->
-                <LinearLayout
-                    style="@style/ListItem.horizontal">
-
-                    <ImageView
-                        style="@style/compoundIcon.mediumLarge"
-                        android:src="@drawable/prayericon_sunrise"
-                        android:contentDescription="@string/rising_smiling_sun_describes"/>
-
-                    <TextView
-                        style="@style/ListItem.title"
-                        android:text="@string/sunrise"/>
-
-                    <TextView
-                        style="@style/typography.importantText"
-                        android:text='@{dataMap["Sunrise"]}'
-                        tools:text="06:00 am"/>
-
-                </LinearLayout>
-
-                <!-- Dhuhr. -->
-                <LinearLayout
-                    style="@style/ListItem.horizontal">
-
-                    <ImageView
-                        style="@style/compoundIcon.mediumLarge"
-                        android:src="@drawable/prayericon_dhuhr"
-                        android:contentDescription="@string/crying_sun_describes"/>
-
-                    <TextView
-                        style="@style/ListItem.title"
-                        android:text="@string/dhuhr"/>
-
-                    <TextView
-                        style="@style/typography.importantText"
-                        android:text='@{dataMap["Dhuhr"]}'
-                        tools:text="06:00 am"/>
-
-                </LinearLayout>
-
-                <!-- Asr. -->
-                <LinearLayout
-                    style="@style/ListItem.horizontal">
-
-                    <ImageView
-                        style="@style/compoundIcon.mediumLarge"
-                        android:src="@drawable/prayericon_asr"
-                        android:contentDescription="@string/smiling_shining_sun_describes"/>
-
-                    <TextView
-                        style="@style/ListItem.title"
-                        android:text="@string/asr"/>
-
-                    <TextView
-                        style="@style/typography.importantText"
-                        android:text='@{dataMap["Asr"]}'
-                        tools:text="06:00 am"/>
-
-                </LinearLayout>
-
-                <!-- Sunset. -->
-                <LinearLayout
-                    style="@style/ListItem.horizontal">
-
-                    <ImageView
-                        style="@style/compoundIcon.mediumLarge"
-                        android:src="@drawable/prayericon_sunset"
-                        android:contentDescription="@string/sun_is_setting"/>
-
-                    <TextView
-                        style="@style/ListItem.title"
-                        android:text="@string/sunset"/>
-
-                    <TextView
-                        style="@style/typography.importantText"
-                        android:text='@{dataMap["Sunset"]}'
-                        tools:text="06:00 am"/>
-
-                </LinearLayout>
-
-                <!-- Maghrib. -->
-                <LinearLayout
-                    style="@style/ListItem.horizontal">
-
-                    <ImageView
-                        style="@style/compoundIcon.mediumLarge"
-                        android:src="@drawable/prayericon_maghrib"
-                        android:contentDescription="@string/sun_gone_moon_nowhere"/>
-
-                    <TextView
-                        style="@style/ListItem.title"
-                        android:text="@string/maghrib"/>
-
-                    <TextView
-                        style="@style/typography.importantText"
-                        android:text='@{dataMap["Maghrib"]}'
-                        tools:text="06:00 am"/>
-
-                </LinearLayout>
-
-                <!-- Isha. -->
-                <LinearLayout
-                    style="@style/ListItem.horizontal">
-
-                    <ImageView
-                        style="@style/compoundIcon.mediumLarge"
-                        android:src="@drawable/prayericon_isha"
-                        android:contentDescription="@string/moon_shown_up"/>
-
-                    <TextView
-                        style="@style/ListItem.title"
-                        android:text="@string/isha"/>
-
-                    <TextView
-                        style="@style/typography.importantText"
-                        android:text='@{dataMap["Isha"]}'
-                        tools:text="06:00 am"/>
-
-                </LinearLayout>
-
-                <!-- Label (Voluntary Prayers). -->
-                <TextView
-                    style="@style/typography.secondaryText"
-                    android:text="@string/nafl_voluntary_prayers"/>
-
-                <!-- Tahajjud. -->
-                <LinearLayout
-                    style="@style/ListItem.horizontal">
-
-                    <ImageView
-                        style="@style/compoundIcon.mediumLarge"
-                        android:src="@drawable/prayericon_tahajjud"
-                        android:contentDescription="@string/midnight_so_dark"/>
-
-                    <TextView
-                        style="@style/ListItem.title"
-                        android:text="@string/tahajjud"/>
-
-                    <TextView
-                        style="@style/typography.importantText"
-                        android:text='@{dataMap["Tahajjud"]}'
-                        tools:text="06:00 am"/>
-
-                </LinearLayout>
-
-                <!-- Ishraq. -->
-                <LinearLayout
-                    style="@style/ListItem.horizontal">
-
-                    <ImageView
-                        style="@style/compoundIcon.mediumLarge"
-                        android:src="@drawable/prayericon_ishraq"
-                        android:contentDescription="@string/best_time_ishraq"/>
-
-                    <TextView
-                        style="@style/ListItem.title"
-                        android:text="@string/ishraq"/>
-
-                    <TextView
-                        style="@style/typography.importantText"
-                        android:text='@{dataMap["Ishraq"]}'
-                        tools:text="06:00 am"/>
-
-                </LinearLayout>
-
-                <!-- Duha. -->
-                <LinearLayout
-                    style="@style/ListItem.horizontal">
-
-                    <ImageView
-                        style="@style/compoundIcon.mediumLarge"
-                        android:src="@drawable/prayericon_duha"
-                        android:contentDescription="@string/flowers_bloom_duha"/>
-
-                    <TextView
-                        style="@style/ListItem.title"
-                        android:text="@string/duha_chasht"/>
-
-                    <TextView
-                        style="@style/typography.importantText"
-                        android:text='@{dataMap["Duha"]}'
-                        tools:text="06:00 am"/>
-
-                </LinearLayout>
-
-                <!-- Awwabin. -->
-                <LinearLayout
-                    style="@style/ListItem.horizontal">
-
-                    <ImageView
-                        style="@style/compoundIcon.mediumLarge"
-                        android:src="@drawable/prayericon_awwabin"
-                        android:contentDescription="@string/just_as_sun_settles_awwabin"/>
-
-                    <TextView
-                        style="@style/ListItem.title"
-                        android:text="@string/awwabin"/>
-
-                    <TextView
-                        style="@style/typography.importantText"
-                        android:text='@{dataMap["Maghrib"]}'
-                        tools:text="06:00 am"/>
-
-                </LinearLayout>
-
-            </LinearLayout>
-        </ScrollView>
-
-    </LinearLayout>
 </layout>

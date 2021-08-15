@@ -7,8 +7,7 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.core.app.ActivityCompat.shouldShowRequestPermissionRationale
 import androidx.navigation.NavController
-import com.salahtawqit.coffee.R
-import com.salahtawqit.coffee.Utilities
+import com.salahtawqit.coffee.*
 import com.salahtawqit.coffee.fragments.LandingPageFragmentDirections
 import com.salahtawqit.coffee.fragments.LoadingPageFragment
 import com.salahtawqit.coffee.fragments.LocationRationaleFragment
@@ -29,7 +28,6 @@ class AutomaticCalculationHelper(
     private val context: Context,
     private val navController: NavController,
     private val resultLauncher: ActivityResultLauncher<String>) {
-    private val utilities = Utilities()
     private val permissionName = Manifest.permission.ACCESS_FINE_LOCATION
 
     /**
@@ -66,7 +64,7 @@ class AutomaticCalculationHelper(
     fun onButtonClick() {
 
         // Check for location provider's availability (at least one must be enabled).
-        if(!utilities.isGpsEnabled(context) && !utilities.isNetworkEnabled(context)) {
+        if(!isGpsEnabled(context) && !isNetworkEnabled(context)) {
             /**
              * The case represents the disabled status of GPS & network service.
              * Show a valid reason why the calculation stopped and what to do in case enabling
@@ -81,7 +79,7 @@ class AutomaticCalculationHelper(
          * Navigate to [NetworkErrorFragment] if offline
          * Add the "automatic" as an argument to the [navigation] action.
          */
-        if(!utilities.isConnectedToInternet(context)) {
+        if(!isConnectedToInternet(context)) {
             navController.navigate(LandingPageFragmentDirections
                     .actionLandingPageFragmentToNetworkErrorFragment("automatic"))
             return
@@ -92,7 +90,7 @@ class AutomaticCalculationHelper(
          * In case of automatic calculation, user's location needs to be known and that requires
          * the [permissionName] permission to be granted at runtime.
          */
-        if(!utilities.hasPermission(context, permissionName)) {
+        if(!hasPermission(context, permissionName)) {
             handlePermission()
             return
         }

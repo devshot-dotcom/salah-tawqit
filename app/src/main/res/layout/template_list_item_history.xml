@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:clickable="true"
+    android:focusable="true"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    style="@style/layout.horizontalFill"
+    android:paddingTop="@dimen/mp_medium"
+    android:paddingBottom="@dimen/mp_medium"
+    android:background="?selectableItemBackground"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ImageView
+        style="@style/compoundIcon"
+        android:src="@drawable/icon_history_plain"
+        android:contentDescription="@string/history_repeats_itself"/>
+
+    <TextView
+        android:id="@+id/list_title"
+        tools:text="Hello Template List Item"
+        style="@style/typography.paragraph"
+        android:layout_marginStart="@dimen/mp_large"/>
+
+</LinearLayout>

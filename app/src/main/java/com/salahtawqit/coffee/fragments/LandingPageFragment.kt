@@ -5,15 +5,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
-import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
-import com.salahtawqit.coffee.R
+import com.salahtawqit.coffee.databinding.FragmentLandingPageBinding
 import com.salahtawqit.coffee.helpers.AutomaticCalculationHelper
 import com.salahtawqit.coffee.helpers.RoomDatabaseHelper
 import com.salahtawqit.coffee.viewmodels.CalculationHelperViewModel
@@ -27,16 +24,9 @@ import kotlinx.coroutines.launch
  * @author Devshot devshot.coffee@gmail.com
  */
 class LandingPageFragment : Fragment() {
-    private lateinit var autoCalcButton: TextView
-    private lateinit var manualCalcButton: TextView
-    private lateinit var autoCalcHelpButton: ImageButton
-    private lateinit var manualCalcHelpButton: ImageButton
+    private lateinit var fragmentContext: Context
+    private lateinit var binding: FragmentLandingPageBinding
     private val calculationHelperViewModel: CalculationHelperViewModel by activityViewModels()
-    private val navListener = NavController.OnDestinationChangedListener { _, _, _ ->
-        // Set the app launch to false, since we're past the initial launch state.
-        calculationHelperViewModel.isJustLaunched = false
-    }
-
 
     /**
      * Register for the permission result.
@@ -61,7 +51,7 @@ class LandingPageFragment : Fragment() {
      */
     private fun checkExistingCalculationResults(context: Context) {
         lifecycleScope.launch(Dispatchers.IO) {
-            val calculationResultsDao = RoomDatabaseHelper.getRoom(context).calculationResultsDao()
+            val calculationResultsDao = RoomDatabaseHelper.getRoom(context).getCalculationResultsDao()
             val selectionResults = calculationResultsDao.selectAll()
 
             if(selectionResults.isNotEmpty()) {
@@ -77,40 +67,53 @@ class LandingPageFragment : Fragment() {
         }
     }
 
-    /**
-     * Initialize all lateinit variables.
-     */
-    private fun initLateInit(view: View) {
-        // Cache the views.
-        autoCalcButton = view.findViewById(R.id.home_auto_button)
-        manualCalcButton = view.findViewById(R.id.home_manual_button)
-        autoCalcHelpButton = view.findViewById(R.id.home_auto_button_help)
-        manualCalcHelpButton = view.findViewById(R.id.home_manual_button_help)
+    fun navigateToPrayerTimes(v: View) {
+        findNavController().navigate(LandingPageFragmentDirections
+            .actionLandingPageFragmentToPrayerTimesFragment())
     }
 
     /**
-     * Set all sorts of listeners.
+     * Start automatic calculation.
      */
-    private fun setListeners(view: View) {
-        autoCalcButton.setOnClickListener {
-            // The class handles everything.
-            AutomaticCalculationHelper(view.context,
-                findNavController(), requestPermissionsLauncher).onButtonClick()
-        }
-        manualCalcButton.setOnClickListener {
-            findNavController().navigate(LandingPageFragmentDirections
-                .actionLandingPageFragmentToManualCalculationFragment())
-        }
+    fun initAutomaticCalc(v: View) {
+        // The class handles everything.
+        AutomaticCalculationHelper(fragmentContext,
+            findNavController(), requestPermissionsLauncher).onButtonClick()
+    }
+
+    /**
+     * Show automatic calculation dialog.
+     */
+    fun initAutomaticCalcHelp(v: View) {
+        // TODO(Show automatic calculation dialog.)
+    }
+
+    /**
+     * Start manual calculation.
+     */
+    fun initManualCalc(v: View) {
+        findNavController().navigate(LandingPageFragmentDirections
+            .actionLandingPageFragmentToManualCalculationFragment())
+    }
+
+    /**
+     * Show manual calculation dialog.
+     */
+    fun initManualCalcHelp(v: View) {
+        // TODO(Show manual calculation dialog.)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_landing_page, container, false)
+                              savedInstanceState: Bundle?): View {
+        binding = FragmentLandingPageBinding.inflate(inflater, container, false)
+        binding.lifecycleOwner = viewLifecycleOwner
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        fragmentContext = view.context
 
         // If the fragment is called on app launch, check database.
         if(calculationHelperViewModel.isJustLaunched) {
@@ -119,9 +122,13 @@ class LandingPageFragment : Fragment() {
             checkExistingCalculationResults(view.context)
         }
 
-        findNavController().addOnDestinationChangedListener(navListener)
-        
-        initLateInit(view)
-        setListeners(view)
+        // Set binding variables.
+        binding.fragment = this
+        binding.justLaunched = calculationHelperViewModel.isJustLaunched
+
+        findNavController().addOnDestinationChangedListener { _, _, _ ->
+            // Set the app launch to false, since we're past the initial launch state.
+            calculationHelperViewModel.isJustLaunched = false
+        }
     }
 }

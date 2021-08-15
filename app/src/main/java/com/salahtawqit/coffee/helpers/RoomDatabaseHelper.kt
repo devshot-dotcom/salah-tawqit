@@ -1,7 +1,6 @@
 package com.salahtawqit.coffee.helpers
 
 import android.content.Context
-import androidx.lifecycle.LiveData
 import androidx.room.*
 
 /**
@@ -12,15 +11,6 @@ import androidx.room.*
  */
 object RoomDatabaseHelper {
     @Entity
-    /**
-     * Calculation results entity.
-     *
-     * Contains all the data related to the calculation results i.e; Prayer times, location details,
-     * etc, except the hijri and gregorian date as that'll be calculated on runtime.
-     *
-     * @since v1.0
-     * @author Devshot devshot.coffee@gmail.com
-     */
     data class CalculationResults(
         @PrimaryKey val id: Int,
         val latitude: String?,
@@ -39,66 +29,70 @@ object RoomDatabaseHelper {
         val isha: String?,
     )
 
+    @Entity(indices = [Index(value = ["city"], unique = true)])
+    data class RecentSearch(
+        @PrimaryKey(autoGenerate = true) val id: Int?,
+        @ColumnInfo(name = "country") val country: String,
+        @ColumnInfo(name = "city") val city: String,
+    )
+
     @Dao
-    /**
-     * Calculation results DAO (data access object) interface.
-     *
-     * Contains all the database-related query methods allowed by the room persistence library.
-     * @since v1.0
-     * @author Devshot devshot.coffee@gmail.com
-     */
     interface CalculationResultsDao {
 
-        /**
-         * Insert a new row of [CalculationResults] into the database.
-         * @param calculationResults [CalculationResults]. The new row to be inserted.
-         */
         @Insert
         fun insert(calculationResults: CalculationResults)
 
-        /**
-         * Select all rows of [CalculationResults] from the database.
-         * @return [List]<[CalculationResults]>.
-         */
         @Query("SELECT * FROM CalculationResults")
         fun selectAll(): List<CalculationResults>
 
-        /**
-         * Select all rows of [CalculationResults] from the database.
-         * @return [LiveData]<[List]<[CalculationResults]>>.
-         */
-        @Query("SELECT * FROM CalculationResults")
-        fun selectAllAsLiveData(): LiveData<List<CalculationResults>>
-
-        /**
-         * Update a row of [CalculationResults] from the database.
-         *
-         * Note that onConflict parameter, OnConflictStrategy.REPLACE will replace any conflicting
-         * data in a cell of the matching row.
-         *
-         * The match is done automatically by room by comparing the [CalculationResults.id] of both
-         * entries. This eliminates the need to provide a unique identifier.
-         */
         @Update(onConflict = OnConflictStrategy.REPLACE)
         fun update(calculationResults: CalculationResults)
     }
 
-    @Database(
-        version = 1,
-        entities = [CalculationResults::class],
-        exportSchema = true,
-    )
+    @Dao
+    interface RecentSearchesDao {
+
+        @Insert(onConflict = OnConflictStrategy.REPLACE)
+        fun insert(recentSearch: RecentSearch)
+
+        @Query("SELECT * FROM RecentSearch")
+        fun selectAll(): List<RecentSearch>
+
+        @Delete
+        fun delete(recentSearch: RecentSearch)
+
+        @Query("DELETE FROM RecentSearch")
+        fun deleteAll()
+    }
+
     /**
      * The actual database instance.
+     *
+     * version = 2) Added RecentSearch.
+     *
      * @since v1.0
      * @author Devshot devshot.coffee@gmail.com
      */
+    @Database(
+        version = 3,
+        exportSchema = true,
+        entities = [CalculationResults::class, RecentSearch::class],
+        autoMigrations = [
+            AutoMigration(from = 2, to = 3)
+        ]
+    )
     abstract class MyDatabase: RoomDatabase() {
         /**
          * Abstract method for receiving a [CalculationResultsDao] instance.
          * @return [CalculationResultsDao]. Instance of the data access object.
          */
-        abstract fun calculationResultsDao(): CalculationResultsDao
+        abstract fun getCalculationResultsDao(): CalculationResultsDao
+
+        /**
+         * Abstract method for receiving a [RecentSearchesDao] instance.
+         * @return [RecentSearchesDao]. Instance of the data access object.
+         */
+        abstract fun getRecentSearchesDao(): RecentSearchesDao
     }
 
     /**

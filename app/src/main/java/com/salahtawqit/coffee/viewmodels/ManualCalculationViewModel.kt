@@ -9,8 +9,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.google.gson.Gson
 import com.salahtawqit.coffee.helpers.CountrySet
+import com.salahtawqit.coffee.helpers.RoomDatabaseHelper
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.io.IOException
 
 /**
  * ViewModel for the [com.salahtawqit.coffee.fragments.ManualCalculationFragment].
@@ -19,13 +21,16 @@ import kotlinx.coroutines.launch
  */
 class ManualCalculationViewModel(application: Application): AndroidViewModel(application) {
 
-    lateinit var enteredCountry: String
     lateinit var enteredCity: String
-    lateinit var addressList: MutableList<Address>
+    lateinit var enteredCountry: String
     lateinit var countrySets: Array<CountrySet>
-    val isCalculationEnabled = MutableLiveData(false)
+    lateinit var recentSearchesList: List<String>
     val isCityValid = MutableLiveData(true)
+    lateinit var addressList: MutableList<Address>
     val readyToProceed = MutableLiveData(false)
+    val isGeocodeErred = MutableLiveData(false)
+    val isCalculationEnabled = MutableLiveData(false)
+    val doRecentSearchesExist = MutableLiveData(false)
 
     /**
      * Return an array adapter for the countries autocomplete textView.
@@ -42,7 +47,16 @@ class ManualCalculationViewModel(application: Application): AndroidViewModel(app
      */
     fun validateForm() {
         val geocoder = Geocoder(getApplication())
-        addressList = geocoder.getFromLocationName("$enteredCity, $enteredCountry", 1)
+
+        try {
+            // Geocoder can fail and throw IOException for some internal unidentified reason.
+            addressList = geocoder.getFromLocationName("$enteredCity, $enteredCountry", 1)
+        } catch (e: IOException) {
+
+            // Inform the observers.
+            isGeocodeErred.value = true
+            return
+        }
 
         // In case of a bad location.
         if(addressList.isEmpty()) {
@@ -104,6 +118,19 @@ class ManualCalculationViewModel(application: Application): AndroidViewModel(app
     }
 
     /**
+     * Store the searched location in database.
+     */
+    fun storeLocation() {
+        viewModelScope.launch(Dispatchers.IO) {
+            val recentSearchesDao = RoomDatabaseHelper
+                .getRoom(getApplication()).getRecentSearchesDao()
+
+            recentSearchesDao.insert(RoomDatabaseHelper
+                .RecentSearch(null, city = enteredCity, country = enteredCountry))
+        }
+    }
+
+    /**
      * Map the address values to a hashmap and return.
      * @return [HashMap]<[String],[String]>
      */
@@ -122,5 +149,34 @@ class ManualCalculationViewModel(application: Application): AndroidViewModel(app
         dataMap["timezone"] = getTimezoneOffset()
 
         return dataMap
+    }
+
+    /**
+     * Do recent searches exist in the database?
+     */
+    fun checkRecentSearchesExistence() {
+        viewModelScope.launch(Dispatchers.IO) {
+            val recentSearchesDao = RoomDatabaseHelper
+                .getRoom(getApplication()).getRecentSearchesDao()
+
+            val selectionResults = recentSearchesDao.selectAll()
+
+            if(selectionResults.isNotEmpty()) {
+
+                // Make a mutable list.
+                val mutableList = mutableListOf<String>()
+
+                // Add items to that list.
+                selectionResults.forEach {
+                    mutableList.add("${it.city}, ${it.country}")
+                }
+
+                // Assign the list to the globally available list.
+                recentSearchesList = mutableList
+
+                // Inform the observers.
+                doRecentSearchesExist.postValue(true)
+            }
+        }
     }
 }

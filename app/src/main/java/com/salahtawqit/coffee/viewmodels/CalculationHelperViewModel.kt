@@ -6,9 +6,9 @@ import android.location.Geocoder
 import android.location.Location
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import com.salahtawqit.coffee.Utilities
 import com.salahtawqit.coffee.calculators.PrayerTimesCalculator
 import com.salahtawqit.coffee.calculators.VoluntaryPrayersCalculator
+import com.salahtawqit.coffee.getTimezoneOffset
 import com.salahtawqit.coffee.helpers.PreferencesHelper
 import com.salahtawqit.coffee.helpers.RoomDatabaseHelper
 import java.util.*
@@ -17,20 +17,20 @@ import java.util.*
  * ViewModel that calculates prayer times and provides a hashmap to be observed.
  *
  * Perform all necessary calculations and provide a mutableMap containing all the data required by
- * the [com.salahtawqit.coffee.fragments.HomePageFragment].
+ * the [com.salahtawqit.coffee.fragments.PrayerTimesFragment].
  *
  * @since v1.0
  * @author Devshot devshot.coffee@gmail.com
  */
 class CalculationHelperViewModel(application: Application) : AndroidViewModel(application) {
-    private val utilities = Utilities()
+    var isJustLaunched = true
+    var isSelectedFromDb = false
     private lateinit var location: Location
     private val prefHelper = PreferencesHelper()
-    private val geocoder = Geocoder(getApplication())
-    private var dataMap: HashMap<String, String> = hashMapOf()
-    val isGeocodeErred = MutableLiveData(false)
     val isCalculated = MutableLiveData(false)
-    var isJustLaunched = true
+    private val geocoder = Geocoder(getApplication())
+    val isGeocodeErred = MutableLiveData(false)
+    private var dataMap: HashMap<String, String> = hashMapOf()
 
     // Calculate prayer timings.
     private fun calculatePrayerTimes(
@@ -117,13 +117,16 @@ class CalculationHelperViewModel(application: Application) : AndroidViewModel(ap
 
         // Map prayer times to dataMap.
         dataMap = calculatePrayerTimes(
-            utilities.getTimezoneOffset(), dataMap, location.latitude, location.longitude)
+            getTimezoneOffset(), dataMap, location.latitude, location.longitude)
 
         // Map additional times to dataMap.
         dataMap = calculateAdditionalTimes(dataMap)
 
         // LiveData instance that's being observed by the observer.
         isCalculated.value = true
+
+        // Set the identifier that tells whether database is used or not.
+        isSelectedFromDb = false
     }
 
     /**
@@ -140,6 +143,9 @@ class CalculationHelperViewModel(application: Application) : AndroidViewModel(ap
 
         // LiveData instance that's being observed by the observer.
         isCalculated.value = true
+
+        // Set the identifier that tells whether database is used or not.
+        isSelectedFromDb = false
     }
 
     // Getters.
@@ -177,6 +183,9 @@ class CalculationHelperViewModel(application: Application) : AndroidViewModel(ap
         dataMap["Sunset"] = calculationResults.sunset.toString()
         dataMap["Maghrib"] = calculationResults.maghrib.toString()
         dataMap["Isha"] = calculationResults.isha.toString()
+
+        // Set the identifier that tells whether database is used or not.
+        isSelectedFromDb = true
 
         /**
          * Finally, set the [isCalculated] to true to inform the observer that results have been

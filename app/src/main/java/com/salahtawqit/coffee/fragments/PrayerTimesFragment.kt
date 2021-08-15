@@ -4,9 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.salahtawqit.coffee.databinding.FragmentPrayerTimesBinding
 import com.salahtawqit.coffee.viewmodels.CalculationHelperViewModel
 import com.salahtawqit.coffee.viewmodels.PrayerTimesViewModel
@@ -22,9 +24,25 @@ class PrayerTimesFragment : Fragment() {
     private val calculationHelperViewModel: CalculationHelperViewModel by activityViewModels()
     private val viewModel: PrayerTimesViewModel by viewModels()
 
+    /**
+     * Pop back stack.
+     */
+    fun navigateBackwards(v: View) {
+        findNavController().popBackStack()
+    }
+
+    fun hideNotification(v: View) {
+        val notification = v.parent as LinearLayout
+        notification.visibility = View.GONE
+
+        // Set the identifier that tells whether database is used or not.
+        calculationHelperViewModel.isSelectedFromDb = false
+    }
+
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?,
     ): View {
         binding = FragmentPrayerTimesBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
@@ -33,9 +51,6 @@ class PrayerTimesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        // Set isJustLaunched to false as now we're not on the first screen.
-        calculationHelperViewModel.isJustLaunched = false
-
         viewModel.dataMap = calculationHelperViewModel.getDataMap()
 
         // Store the data in the database.
@@ -48,7 +63,9 @@ class PrayerTimesFragment : Fragment() {
         // Once everything has been calculated and stored, do presentational changes.
         viewModel.formatTimesWithPreferences()
 
-        // Finally, bind the map to the binding class.
+        // Set binding variables.
+        binding.fragment = this
         binding.dataMap = viewModel.dataMap
+        binding.isSelectedFromDb = calculationHelperViewModel.isSelectedFromDb
     }
 }

@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
+        <import type="android.view.View" />
         <variable
             name="fragment"
             type="com.salahtawqit.coffee.fragments.ManualCalculationFragment" />
@@ -38,7 +39,7 @@
 
         </LinearLayout>
 
-        <!-- Form -->
+        <!-- Form. -->
         <LinearLayout
             android:showDividers="middle"
             android:orientation="vertical"
@@ -74,6 +75,26 @@
                 style="@style/button.secondary"
                 android:text="@string/calculate"
                 android:onClick="@{fragment::calculate}"/>
+
+        </LinearLayout>
+
+        <!-- Recent Searches. -->
+        <LinearLayout
+            android:showDividers="middle"
+            android:orientation="vertical"
+            style="@style/layout.horizontalFill"
+            android:dividerPadding="@dimen/mp_large"
+            android:divider="@drawable/divider_vertical"
+            android:visibility="@{viewModel.doRecentSearchesExist ? View.VISIBLE : View.GONE}">
+
+            <TextView
+                style="@style/typography.secondaryText"
+                android:text="@string/recent_searches" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_height="@dimen/cover_vector_large"
+                style="@style/layout.horizontalFill"
+                android:id="@+id/recent_searches_list"/>
 
         </LinearLayout>
 

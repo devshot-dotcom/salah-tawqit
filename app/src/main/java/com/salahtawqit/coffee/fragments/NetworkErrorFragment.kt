@@ -1,29 +1,27 @@
 package com.salahtawqit.coffee.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.widget.TextView
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.salahtawqit.coffee.R
-import com.salahtawqit.coffee.Utilities
-import java.util.jar.Manifest
+import com.salahtawqit.coffee.hasPermission
+import com.salahtawqit.coffee.isConnectedToInternet
 
 /**
  * Display Internet Connectivity Error.
  */
 class NetworkErrorFragment : Fragment() {
     private lateinit var retryButton: TextView
-    private lateinit var utilities: Utilities
 
     /** Initialize all lateinit variables. */
     private fun initLateInit(view: View) {
         retryButton = view.findViewById(R.id.network_retry_button)
-        utilities = Utilities()
     }
 
     override fun onCreateView(
@@ -41,14 +39,14 @@ class NetworkErrorFragment : Fragment() {
         val args: NetworkErrorFragmentArgs by navArgs()
 
         retryButton.setOnClickListener {
-            if(!utilities.isConnectedToInternet(view.context)) {
+            if(!isConnectedToInternet(view.context)) {
                 retryButton.startAnimation(AnimationUtils.loadAnimation(view.context, R.anim.wobble))
                 return@setOnClickListener
             }
 
             /** Check if calculationMode is automatic and location permission isn't granted */
             if(args.calculationMode == "automatic") {
-                if(!utilities.hasPermission(view.context, android.Manifest.permission.ACCESS_FINE_LOCATION)) {
+                if(!hasPermission(view.context, android.Manifest.permission.ACCESS_FINE_LOCATION)) {
                     /** Pass on the received calculationMode to [LocationRationaleFragment] */
                     findNavController().navigate(NetworkErrorFragmentDirections
                         .actionNetworkErrorFragmentToLocationRationaleFragment(args.calculationMode))
