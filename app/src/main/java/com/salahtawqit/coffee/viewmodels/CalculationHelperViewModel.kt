@@ -35,7 +35,7 @@ class CalculationHelperViewModel(application: Application) : AndroidViewModel(ap
     // Calculate prayer timings.
     private fun calculatePrayerTimes(
         timezone: Long?, dataMap: HashMap<String, String>,
-        latitude: Double?, longitude: Double?
+        latitude: Double?, longitude: Double?,
     ): HashMap<String, String> {
         val calculator = PrayerTimesCalculator()
         prefHelper.setCalculator(calculator)
@@ -92,11 +92,11 @@ class CalculationHelperViewModel(application: Application) : AndroidViewModel(ap
     private fun reverseGeocode(): Address {
         val addressList = geocoder.getFromLocation(location.latitude, location.longitude, 1)
 
-        if(addressList == null) {
+        if (addressList == null) {
             isGeocodeErred.value = true
         }
 
-        if(addressList[0] == null) {
+        if (addressList[0] == null) {
             isGeocodeErred.value = true
         }
 

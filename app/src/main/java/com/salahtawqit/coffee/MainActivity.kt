@@ -2,10 +2,7 @@ package com.salahtawqit.coffee
 
 import android.os.Bundle
 import androidx.fragment.app.FragmentActivity
-import androidx.fragment.app.add
-import androidx.fragment.app.commit
 import androidx.lifecycle.ViewModelProvider
-import com.salahtawqit.coffee.fragments.SplashPageFragment
 import com.salahtawqit.coffee.viewmodels.CalculationHelperViewModel
 import java.util.*
 import kotlin.concurrent.schedule
@@ -39,15 +36,6 @@ class MainActivity : FragmentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        // Add Splash Screen.
-        if(savedInstanceState == null) {
-            supportFragmentManager.commit {
-                setReorderingAllowed(true)
-                add<SplashPageFragment>(R.id.fragment_splash_page)
-                addToBackStack(null)
-            }
-        }
 
         navigateFromSplashScreen(savedInstanceState)
 

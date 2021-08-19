@@ -1,8 +1,11 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
+
     <!-- Base application theme. -->
     <style name="Theme.SalahTawqit" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:colorAccent">@color/secondary_300</item>
+        <item name="colorAccent">@color/secondary_300</item>
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/secondary_200</item>
+        <item name="colorPrimary">@color/secondary_300</item>
         <item name="colorPrimaryVariant">@color/secondary_300</item>
         <item name="colorOnPrimary">@color/tertiary_200</item>
         <!-- Secondary brand color. -->
@@ -16,6 +19,7 @@
         <item name="android:textSize">@dimen/fs_primary</item>
         <item name="android:textColor">@color/tertiary_200</item>
     </style>
+
     <!-- Basic layout. -->
     <style name="layout.horizontalFill" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="android:layout_width">match_parent</item>
@@ -32,6 +36,11 @@
     <style name="layout.inline" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
+    </style>
+    <style name="layout.horizontalFill.itemHolder" parent="layout.horizontalFill">
+        <item name="android:showDividers">middle</item>
+        <item name="android:dividerPadding">@dimen/mp_large</item>
+        <item name="android:divider">@drawable/divider_horizontal</item>
     </style>
     <!-- Typography. -->
     <style name="typography.title" parent="layout.inline">
@@ -187,6 +196,10 @@
         <item name="android:padding">@dimen/mp_large</item>
         <item name="android:gravity">center_vertical</item>
     </style>
+    <style name="ListItem.clickable" parent="ListItem">
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+    </style>
     <style name="ListItem.horizontal" parent="ListItem">
         <item name="android:orientation">horizontal</item>
         <item name="android:divider">@drawable/divider_horizontal</item>
@@ -209,5 +222,22 @@
     </style>
     <style name="notification.secondary" parent="notification">
         <item name="android:background">@drawable/notification_secondary</item>
+    </style>
+    <!-- Cards. -->
+    <style name="card" parent="layout.horizontalStretch">
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:padding">@dimen/mp_large</item>
+    </style>
+    <style name="card.primary" parent="card">
+        <item name="android:background">@drawable/list_primary</item>
+    </style>
+    <style name="card.icon" parent="compoundIcon.medium">
+        <item name="android:layout_marginBottom">@dimen/mp_medium</item>
+    </style>
+    <style name="card.description" parent="typography.subtitle">
+        <item name="android:lines">2</item>
+        <item name="android:ellipsize">end</item>
     </style>
 </resources>

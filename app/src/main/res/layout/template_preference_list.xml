@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/ListItem"
+    android:orientation="vertical"
+    android:layout_marginTop="@dimen/mp_large">
+
+    <TextView
+        android:id="@android:id/title"
+        style="@style/typography.label"/>
+
+    <TextView
+        android:id="@android:id/summary"
+        style="@style/typography.secondaryText"/>
+
+</LinearLayout>

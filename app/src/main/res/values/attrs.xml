@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Card. -->
+    <declare-styleable name="Card">
+        <attr name="cardTitle" format="string" />
+        <attr name="cardIcon" format="reference" />
+        <attr name="cardDescription" format="string" />
+    </declare-styleable>
+
+    <!-- List Item. -->
+    <declare-styleable name="ListItem">
+        <attr name="listTitle" format="string" />
+        <attr name="listValue" format="string" />
+        <attr name="listIcon" format="reference" />
+        <attr name="listDescription" format="string" />
+    </declare-styleable>
+
+</resources>

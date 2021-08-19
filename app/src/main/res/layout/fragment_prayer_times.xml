@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <import type="android.view.View" />
         <variable name="dataMap" type="java.util.HashMap&lt;String, String&gt;" />
@@ -123,144 +124,53 @@
                         android:text="@string/fard_necessary_prayers"/>
 
                     <!-- Fajr. -->
-                    <LinearLayout
-                        style="@style/ListItem.horizontal">
-
-                        <ImageView
-                            style="@style/compoundIcon.mediumLarge"
-                            android:src="@drawable/prayericon_fajr"
-                            android:contentDescription="@string/sleeping_sun_describes"/>
-
-                        <TextView
-                            style="@style/ListItem.title"
-                            android:text="@string/fajr"/>
-
-                        <TextView
-                            style="@style/typography.importantText"
-                            android:text='@{dataMap["Fajr"]}'
-                            tools:text="06:00 am"/>
-
-                    </LinearLayout>
+                    <com.salahtawqit.coffee.views.ListItem
+                        style="@style/ListItem.horizontal"
+                        app:listIcon="@drawable/prayericon_fajr"
+                        app:listTitle="@string/fajr"
+                        app:listValue='@{dataMap["Fajr"]}'/>
 
                     <!-- Sunrise. -->
-                    <LinearLayout
-                        style="@style/ListItem.horizontal">
-
-                        <ImageView
-                            style="@style/compoundIcon.mediumLarge"
-                            android:src="@drawable/prayericon_sunrise"
-                            android:contentDescription="@string/rising_smiling_sun_describes"/>
-
-                        <TextView
-                            style="@style/ListItem.title"
-                            android:text="@string/sunrise"/>
-
-                        <TextView
-                            style="@style/typography.importantText"
-                            android:text='@{dataMap["Sunrise"]}'
-                            tools:text="06:00 am"/>
-
-                    </LinearLayout>
+                    <com.salahtawqit.coffee.views.ListItem
+                        style="@style/ListItem.horizontal"
+                        app:listIcon="@drawable/prayericon_sunrise"
+                        app:listTitle="@string/sunrise"
+                        app:listValue='@{dataMap["Sunrise"]}'/>
 
                     <!-- Dhuhr. -->
-                    <LinearLayout
-                        style="@style/ListItem.horizontal">
-
-                        <ImageView
-                            style="@style/compoundIcon.mediumLarge"
-                            android:src="@drawable/prayericon_dhuhr"
-                            android:contentDescription="@string/crying_sun_describes"/>
-
-                        <TextView
-                            style="@style/ListItem.title"
-                            android:text="@string/dhuhr"/>
-
-                        <TextView
-                            style="@style/typography.importantText"
-                            android:text='@{dataMap["Dhuhr"]}'
-                            tools:text="06:00 am"/>
-
-                    </LinearLayout>
+                    <com.salahtawqit.coffee.views.ListItem
+                        style="@style/ListItem.horizontal"
+                        app:listIcon="@drawable/prayericon_dhuhr"
+                        app:listTitle="@string/dhuhr"
+                        app:listValue='@{dataMap["Dhuhr"]}'/>
 
                     <!-- Asr. -->
-                    <LinearLayout
-                        style="@style/ListItem.horizontal">
-
-                        <ImageView
-                            style="@style/compoundIcon.mediumLarge"
-                            android:src="@drawable/prayericon_asr"
-                            android:contentDescription="@string/smiling_shining_sun_describes"/>
-
-                        <TextView
-                            style="@style/ListItem.title"
-                            android:text="@string/asr"/>
-
-                        <TextView
-                            style="@style/typography.importantText"
-                            android:text='@{dataMap["Asr"]}'
-                            tools:text="06:00 am"/>
-
-                    </LinearLayout>
+                    <com.salahtawqit.coffee.views.ListItem
+                        style="@style/ListItem.horizontal"
+                        app:listIcon="@drawable/prayericon_asr"
+                        app:listTitle="@string/asr"
+                        app:listValue='@{dataMap["Asr"]}'/>
 
                     <!-- Sunset. -->
-                    <LinearLayout
-                        style="@style/ListItem.horizontal">
-
-                        <ImageView
-                            style="@style/compoundIcon.mediumLarge"
-                            android:src="@drawable/prayericon_sunset"
-                            android:contentDescription="@string/sun_is_setting"/>
-
-                        <TextView
-                            style="@style/ListItem.title"
-                            android:text="@string/sunset"/>
-
-                        <TextView
-                            style="@style/typography.importantText"
-                            android:text='@{dataMap["Sunset"]}'
-                            tools:text="06:00 am"/>
-
-                    </LinearLayout>
+                    <com.salahtawqit.coffee.views.ListItem
+                        style="@style/ListItem.horizontal"
+                        app:listIcon="@drawable/prayericon_sunset"
+                        app:listTitle="@string/sunset"
+                        app:listValue='@{dataMap["Sunset"]}'/>
 
                     <!-- Maghrib. -->
-                    <LinearLayout
-                        style="@style/ListItem.horizontal">
-
-                        <ImageView
-                            style="@style/compoundIcon.mediumLarge"
-                            android:src="@drawable/prayericon_maghrib"
-                            android:contentDescription="@string/sun_gone_moon_nowhere"/>
-
-                        <TextView
-                            style="@style/ListItem.title"
-                            android:text="@string/maghrib"/>
-
-                        <TextView
-                            style="@style/typography.importantText"
-                            android:text='@{dataMap["Maghrib"]}'
-                            tools:text="06:00 am"/>
-
-                    </LinearLayout>
+                    <com.salahtawqit.coffee.views.ListItem
+                        style="@style/ListItem.horizontal"
+                        app:listIcon="@drawable/prayericon_maghrib"
+                        app:listTitle="@string/maghrib"
+                        app:listValue='@{dataMap["Maghrib"]}'/>
 
                     <!-- Isha. -->
-                    <LinearLayout
-                        style="@style/ListItem.horizontal">
-
-                        <ImageView
-                            style="@style/compoundIcon.mediumLarge"
-                            android:src="@drawable/prayericon_isha"
-                            android:contentDescription="@string/moon_shown_up"/>
-
-                        <TextView
-                            style="@style/ListItem.title"
-                            android:text="@string/isha"/>
-
-                        <TextView
-                            style="@style/typography.importantText"
-                            android:text='@{dataMap["Isha"]}'
-                            tools:text="06:00 am"/>
-
-                    </LinearLayout>
+                    <com.salahtawqit.coffee.views.ListItem
+                        style="@style/ListItem.horizontal"
+                        app:listIcon="@drawable/prayericon_isha"
+                        app:listTitle="@string/isha"
+                        app:listValue='@{dataMap["Isha"]}'/>
 
                     <!-- Label (Voluntary Prayers). -->
                     <TextView
@@ -268,84 +178,32 @@
                         android:text="@string/nafl_voluntary_prayers"/>
 
                     <!-- Tahajjud. -->
-                    <LinearLayout
-                        style="@style/ListItem.horizontal">
-
-                        <ImageView
-                            style="@style/compoundIcon.mediumLarge"
-                            android:src="@drawable/prayericon_tahajjud"
-                            android:contentDescription="@string/midnight_so_dark"/>
-
-                        <TextView
-                            style="@style/ListItem.title"
-                            android:text="@string/tahajjud"/>
-
-                        <TextView
-                            style="@style/typography.importantText"
-                            android:text='@{dataMap["Tahajjud"]}'
-                            tools:text="06:00 am"/>
-
-                    </LinearLayout>
+                    <com.salahtawqit.coffee.views.ListItem
+                        style="@style/ListItem.horizontal"
+                        app:listIcon="@drawable/prayericon_tahajjud"
+                        app:listTitle="@string/tahajjud"
+                        app:listValue='@{dataMap["Tahajjud"]}'/>
 
                     <!-- Ishraq. -->
-                    <LinearLayout
-                        style="@style/ListItem.horizontal">
-
-                        <ImageView
-                            style="@style/compoundIcon.mediumLarge"
-                            android:src="@drawable/prayericon_ishraq"
-                            android:contentDescription="@string/best_time_ishraq"/>
-
-                        <TextView
-                            style="@style/ListItem.title"
-                            android:text="@string/ishraq"/>
-
-                        <TextView
-                            style="@style/typography.importantText"
-                            android:text='@{dataMap["Ishraq"]}'
-                            tools:text="06:00 am"/>
-
-                    </LinearLayout>
+                    <com.salahtawqit.coffee.views.ListItem
+                        style="@style/ListItem.horizontal"
+                        app:listIcon="@drawable/prayericon_ishraq"
+                        app:listTitle="@string/ishraq"
+                        app:listValue='@{dataMap["Ishraq"]}'/>
 
                     <!-- Duha. -->
-                    <LinearLayout
-                        style="@style/ListItem.horizontal">
-
-                        <ImageView
-                            style="@style/compoundIcon.mediumLarge"
-                            android:src="@drawable/prayericon_duha"
-                            android:contentDescription="@string/flowers_bloom_duha"/>
-
-                        <TextView
-                            style="@style/ListItem.title"
-                            android:text="@string/duha_chasht"/>
-
-                        <TextView
-                            style="@style/typography.importantText"
-                            android:text='@{dataMap["Duha"]}'
-                            tools:text="06:00 am"/>
-
-                    </LinearLayout>
+                    <com.salahtawqit.coffee.views.ListItem
+                        style="@style/ListItem.horizontal"
+                        app:listIcon="@drawable/prayericon_duha"
+                        app:listTitle="@string/duha_chasht"
+                        app:listValue='@{dataMap["Duha"]}'/>
 
                     <!-- Awwabin. -->
-                    <LinearLayout
-                        style="@style/ListItem.horizontal">
-
-                        <ImageView
-                            style="@style/compoundIcon.mediumLarge"
-                            android:src="@drawable/prayericon_awwabin"
-                            android:contentDescription="@string/just_as_sun_settles_awwabin"/>
-
-                        <TextView
-                            style="@style/ListItem.title"
-                            android:text="@string/awwabin"/>
-
-                        <TextView
-                            style="@style/typography.importantText"
-                            android:text='@{dataMap["Maghrib"]}'
-                            tools:text="06:00 am"/>
-
-                    </LinearLayout>
+                    <com.salahtawqit.coffee.views.ListItem
+                        style="@style/ListItem.horizontal"
+                        app:listIcon="@drawable/prayericon_awwabin"
+                        app:listTitle="@string/awwabin"
+                        app:listValue='@{dataMap["Awwabin"]}'/>
 
                 </LinearLayout>
             </ScrollView>

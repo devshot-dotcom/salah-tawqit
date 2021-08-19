@@ -21,8 +21,8 @@ import java.io.IOException
  */
 class ManualCalculationViewModel(application: Application): AndroidViewModel(application) {
 
-    lateinit var enteredCity: String
-    lateinit var enteredCountry: String
+    var enteredCity: String = ""
+    var enteredCountry: String = ""
     lateinit var countrySets: Array<CountrySet>
     lateinit var recentSearchesList: List<String>
     val isCityValid = MutableLiveData(true)

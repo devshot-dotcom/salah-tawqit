@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ImageView
+        style="@style/card.icon"
+        android:id="@+id/card_icon"/>
+
+    <TextView
+        android:id="@+id/card_title"
+        style="@style/typography.label"/>
+
+    <TextView
+        style="@style/card.description"
+        android:id="@+id/card_description"/>
+
+</merge>

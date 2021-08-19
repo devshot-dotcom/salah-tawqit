@@ -17,7 +17,7 @@ android {
         minSdkVersion 23
         targetSdkVersion 30
         versionCode 1
-        versionName "1.0"
+        versionName "v1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         kapt {
@@ -65,20 +65,23 @@ dependencies {
     kapt "com.android.databinding:compiler:3.2.0-alpha10"
     implementation "com.github.msarhan:ummalqura-calendar:2.0.2"
 
-    // Kotlin
+    // Kotlin.
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
 
-    // Feature module Support
+    // Feature module Support.
     implementation "androidx.navigation:navigation-dynamic-features-fragment:$nav_version"
 
-    // Testing Navigation
+    // Testing Navigation.
     androidTestImplementation "androidx.navigation:navigation-testing:$nav_version"
 
-    // Room
+    // Room.
     implementation "androidx.room:room-runtime:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
 
-    // Gson
+    // Gson.
     implementation 'com.google.code.gson:gson:2.8.7'
+
+    // Preferences.
+    implementation 'androidx.preference:preference-ktx:1.1.1'
 }

@@ -7,45 +7,28 @@
     android:background="@color/primary_100"
     tools:context=".MainActivity">
 
-    <!-- App Bar. -->
-    <LinearLayout
+    <!-- AppBarFragment. -->
+    <androidx.fragment.app.FragmentContainerView
         android:id="@+id/appbar"
-        style="@style/appbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
-        <ImageView
-            android:id="@+id/appbar_icon"
-            style="@style/appbar.icon"
-            android:src="@drawable/logo_circle"
-            android:contentDescription="@string/the_application_logo" />
-        <TextView
-            android:id="@+id/appbar_title"
-            style="@style/typography.title"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:text="@string/app_name"/>
-        <ImageButton
-            android:id="@+id/appbar_menuItem"
-            style="@style/appbar.menuItem"
-            android:src="@drawable/icon_settings_plain"
-            android:contentDescription="@string/go_to_settings"/>
-    </LinearLayout>
+        android:name="com.salahtawqit.coffee.fragments.AppBarFragment"/>
 
-    <!-- Fragment Container. -->
+    <!-- Navigation Host. -->
     <androidx.fragment.app.FragmentContainerView
+        app:defaultNavHost="true"
+        android:layout_below="@id/appbar"
+        android:layout_width="match_parent"
         android:id="@+id/fragment_container"
-        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_height="match_parent"
+        app:navGraph="@navigation/nav_graph"
+        android:name="androidx.navigation.fragment.NavHostFragment"/>
+
+    <!-- SplashPageFragment. -->
+    <androidx.fragment.app.FragmentContainerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/appbar"
-        app:defaultNavHost="true"
-        app:navGraph="@navigation/nav_graph"/>
-
-    <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment_splash_page"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:name="com.salahtawqit.coffee.fragments.SplashPageFragment"/>
 
 </RelativeLayout>

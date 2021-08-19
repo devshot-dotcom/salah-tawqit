@@ -1,0 +1,47 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory
+        app:title="@string/calculation_methods"
+        app:layout="@layout/template_pref_category" />
+
+    <ListPreference
+        app:key="school"
+        app:entries="@array/school_entries"
+        app:useSimpleSummaryProvider="true"
+        app:entryValues="@array/school_values"
+        app:title="@string/school_of_thoughts"
+        app:defaultValue="@string/school_default"
+        app:layout="@layout/template_preference_list"/>
+
+    <ListPreference
+        app:key="latitude_adjustment"
+        app:useSimpleSummaryProvider="true"
+        app:layout="@layout/template_preference_list"
+        app:title="@string/latitude_adjustment_method"
+        app:entries="@array/latitude_adjustment_entries"
+        app:entryValues="@array/latitude_adjustment_values"
+        app:defaultValue="@string/latitude_adjustment_default"/>
+
+    <PreferenceCategory
+        app:title="@string/date_and_time"
+        app:layout="@layout/template_pref_category_margined"/>
+
+    <ListPreference
+        app:key="time_format"
+        app:title="@string/time_format"
+        app:useSimpleSummaryProvider="true"
+        app:entries="@array/time_format_entries"
+        app:entryValues="@array/time_format_values"
+        app:layout="@layout/template_preference_list"
+        app:defaultValue="@string/time_format_default"/>
+
+    <ListPreference
+        app:key="hijri_adjustment"
+        app:title="Hijri Date Adjustment"
+        app:useSimpleSummaryProvider="true"
+        app:layout="@layout/template_preference_list"
+        app:entries="@array/hijri_adjustment_entries"
+        app:entryValues="@array/hijri_adjustment_values"
+        app:defaultValue="@string/hijri_adjustment_default"/>
+
+</PreferenceScreen>

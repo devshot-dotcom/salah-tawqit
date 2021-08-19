@@ -58,6 +58,7 @@
     <string name="duha_detail">Can be prayed right next to ishraq until dhuhr but, it\'s preferred to pray when the sun has risen quite high above the sky.</string>
     <string name="awwabin_detail">Can be prayed right next to maghrib but it\'s preferred to complete maghrib and pray awwabin anytime before isha starts.</string>
     <string name="just_a_doodle">Just a doodle.</string>
+    <string name="automatic_calculation">Automatic Calculation</string>
     <string name="manual_calculation">Manual Calculation</string>
     <string name="prayer_times_for_any_city">Prayer times for any city</string>
     <string name="select_country">Select Country</string>
@@ -71,4 +72,26 @@
     <string name="close_notification">Close notification.</string>
     <string name="history_repeats_itself">History repeats itself.</string>
     <string name="recent_searches">Recent Searches</string>
+    <string name="automatic_calc_description">Automatically calculates your location and displays prayer times for it. Requires permission to calculate your location, is a lot more accurate, takes a couple of seconds.</string>
+    <string name="manual_calc_description">Asks for the country and city you want to calculate prayer times for. Takes about no time but, can be a little inaccurate.</string>
+    <string name="feature_request">Feature Request</string>
+    <string name="suggest_features_improve">Suggest new features &amp; improve the app.</string>
+    <string name="contact_us">Contact Us</string>
+    <string name="e_mail_us_for_anything">E-Mail us for anything, we\'ll be there.</string>
+    <string name="calculation_methods">Calculation Methods</string>
+    <string name="school_of_thoughts">School of Thoughts</string>
+    <string name="latitude_adjustment_method">Latitude Adjustment Method</string>
+    <string name="date_and_time">Date &amp; Time</string>
+    <string name="time_format">Time Format</string>
+    <string name="utilities">Utilities</string>
+    <string name="delete_records_locations">Delete records of manually searched locations.</string>
+    <string name="clear_search_history">Clear Search History</string>
+    <string name="about_app">About The App</string>
+    <string name="current_version">Current Version</string>
+    <string name="rate_the_app">Rate The App</string>
+    <string name="your_feedback_matters">Your feedback matters the most.</string>
+    <string name="read_privacy_terms">Read our privacy policy &amp; terms of service.</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="credits">Credits</string>
+    <string name="kudos_to_everyone">Kudos to everyone who made this possible.</string>
 </resources>

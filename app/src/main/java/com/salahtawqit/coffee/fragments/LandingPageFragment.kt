@@ -5,11 +5,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.salahtawqit.coffee.R
 import com.salahtawqit.coffee.databinding.FragmentLandingPageBinding
 import com.salahtawqit.coffee.helpers.AutomaticCalculationHelper
 import com.salahtawqit.coffee.helpers.RoomDatabaseHelper
@@ -85,7 +87,19 @@ class LandingPageFragment : Fragment() {
      * Show automatic calculation dialog.
      */
     fun initAutomaticCalcHelp(v: View) {
-        // TODO(Show automatic calculation dialog.)
+        var descriptionDialog: DescriptionDialogFragment? = null
+
+        // Dialog throws IllegalStateException if activity is null.
+        try {
+            descriptionDialog = DescriptionDialogFragment(
+                title = getString(R.string.automatic_calculation),
+                description = getString(R.string.automatic_calc_description)
+            )
+        } catch (e: IllegalStateException) {
+            Toast.makeText(fragmentContext, R.string.automatic_calc_description, Toast.LENGTH_LONG).show()
+        }
+
+        descriptionDialog?.show(parentFragmentManager, "automatic-calculation-dialog")
     }
 
     /**
@@ -100,7 +114,19 @@ class LandingPageFragment : Fragment() {
      * Show manual calculation dialog.
      */
     fun initManualCalcHelp(v: View) {
-        // TODO(Show manual calculation dialog.)
+        var descriptionDialog: DescriptionDialogFragment? = null
+
+        // Dialog throws IllegalStateException if activity is null.
+        try {
+            descriptionDialog = DescriptionDialogFragment(
+                title = getString(R.string.manual_calculation),
+                description = getString(R.string.manual_calc_description)
+            )
+        } catch (e: IllegalStateException) {
+            Toast.makeText(fragmentContext, R.string.manual_calc_description, Toast.LENGTH_LONG).show()
+        }
+
+        descriptionDialog?.show(parentFragmentManager, "automatic-calculation-dialog")
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,

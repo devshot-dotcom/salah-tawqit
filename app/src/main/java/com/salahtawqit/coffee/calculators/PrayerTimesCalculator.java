@@ -78,8 +78,8 @@ public class PrayerTimesCalculator {
      * this.methodParams[methodNum] = new Array(fa, ms, mv, is, iv);
      *
      * fa : fajr angle ms : maghrib selector (0 = angle; 1 = minutes after
-     * sunset) mv : maghrib parameter value (in angle or minutes) is : isha
-     * selector (0 = angle; 1 = minutes after maghrib) iv : isha parameter value
+     * sunset) mv : maghrib parameter valueView (in angle or minutes) is : isha
+     * selector (0 = angle; 1 = minutes after maghrib) iv : isha parameter valueView
      * (in angle or minutes)
      */
     public double[] prayerTimesCurrent;
@@ -152,9 +152,9 @@ public class PrayerTimesCalculator {
         /*
          *
          * fa : fajr angle ms : maghrib selector (0 = angle; 1 = minutes after
-         * sunset) mv : maghrib parameter value (in angle or minutes) is : isha
+         * sunset) mv : maghrib parameter valueView (in angle or minutes) is : isha
          * selector (0 = angle; 1 = minutes after maghrib) iv : isha parameter
-         * value (in angle or minutes)
+         * valueView (in angle or minutes)
          */
         methodParams = new HashMap<Integer, double[]>();
 

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable name="fragment" type="com.salahtawqit.coffee.fragments.SettingsFragment" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".fragments.SettingsFragment">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:divider="@drawable/divider_vertical"
+            android:orientation="vertical"
+            android:padding="@dimen/mp_large"
+            android:showDividers="middle"
+            tools:context=".fragments.SettingsFragment">
+
+            <!-- Cards. -->
+            <LinearLayout style="@style/layout.horizontalFill.itemHolder">
+
+                <!-- Card. -->
+                <com.salahtawqit.coffee.views.Card
+                    style="@style/card.primary"
+                    app:cardTitle="@string/feature_request"
+                    app:cardIcon="@drawable/icon_layers_plain"
+                    app:cardDescription="@string/suggest_features_improve" />
+
+                <!-- Card. -->
+                <com.salahtawqit.coffee.views.Card
+                    style="@style/card.primary"
+                    app:cardTitle="@string/contact_us"
+                    app:cardIcon="@drawable/icon_contact_plain"
+                    app:cardDescription="@string/e_mail_us_for_anything" />
+
+            </LinearLayout>
+
+            <!--SettingsHierarchyFragment.-->
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/fragment_settings_hierarchy"
+                android:name="com.salahtawqit.coffee.fragments.SettingsHierarchyFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <!-- Utilities. -->
+            <TextView
+                style="@style/typography.secondaryText"
+                android:text="@string/utilities" />
+
+            <!-- Search History -->
+            <com.salahtawqit.coffee.views.ListItem
+                style="@style/ListItem.clickable"
+                app:listDescription="@string/delete_records_locations"
+                app:listTitle="@string/clear_search_history"
+                android:onClick="@{fragment::clearSearchHistory}"/>
+
+            <!-- About. -->
+            <TextView
+                style="@style/typography.secondaryText"
+                android:text="@string/about_app" />
+
+            <com.salahtawqit.coffee.views.ListItem
+                style="@style/ListItem.clickable"
+                app:listDescription="@string/version_name"
+                app:listTitle="@string/current_version" />
+
+            <com.salahtawqit.coffee.views.ListItem
+                style="@style/ListItem.clickable"
+                app:listDescription="@string/your_feedback_matters"
+                app:listTitle="@string/rate_the_app" />
+
+            <com.salahtawqit.coffee.views.ListItem
+                style="@style/ListItem.clickable"
+                app:listDescription="@string/read_privacy_terms"
+                app:listTitle="@string/privacy_policy" />
+
+            <com.salahtawqit.coffee.views.ListItem
+                style="@style/ListItem.clickable"
+                app:listDescription="@string/kudos_to_everyone"
+                app:listTitle="@string/credits" />
+
+        </LinearLayout>
+
+    </ScrollView>
+</layout>

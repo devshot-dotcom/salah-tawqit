@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <ImageView
+        android:visibility="gone"
+        android:id="@+id/list_icon"
+        style="@style/compoundIcon.mediumLarge"/>
+
+    <LinearLayout
+        android:orientation="vertical"
+        style="@style/layout.horizontalStretch">
+
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/list_title"
+            style="@style/typography.label"/>
+
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/list_description"
+            style="@style/typography.secondaryText"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/list_value"
+        style="@style/typography.importantText"/>
+
+</merge>

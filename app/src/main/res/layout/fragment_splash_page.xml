@@ -14,6 +14,7 @@
         android:contentDescription="@string/welcome_to_salah_tawqit" />
 
     <TextView
+        android:id="@+id/version_name"
         style="@style/typography.subtitle"
         android:padding="@dimen/mp_large"
         android:text="@string/version_name"
