@@ -13,9 +13,10 @@
         android:roundIcon="@drawable/logo_circle"
         android:supportsRtl="true"
         android:theme="@style/Theme.SalahTawqit"
-        android:windowSoftInputMode="adjustResize"
         tools:ignore="AllowBackup">
-        <activity android:name="com.salahtawqit.coffee.MainActivity">
+        <activity
+            android:name="com.salahtawqit.coffee.MainActivity"
+            android:windowSoftInputMode="adjustPan|stateVisible">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

@@ -23,22 +23,24 @@ import java.util.*
  * @author Devshot devshot.coffee@gmail.com
  */
 class CalculationHelperViewModel(application: Application) : AndroidViewModel(application) {
-    var isJustLaunched = true
-    var isSelectedFromDb = false
+
+    /**
+     * Boolean variable that indicates whether the displayed prayer times are coming from the
+     * database or a calculation method.
+     */
+    var areTimingsSelectedFromDatabase = false
+
     private lateinit var location: Location
-    private val prefHelper = PreferencesHelper()
     val isCalculated = MutableLiveData(false)
     private val geocoder = Geocoder(getApplication())
     val isGeocodeErred = MutableLiveData(false)
     private var dataMap: HashMap<String, String> = hashMapOf()
 
     // Calculate prayer timings.
-    private fun calculatePrayerTimes(
-        timezone: Long?, dataMap: HashMap<String, String>,
-        latitude: Double?, longitude: Double?,
-    ): HashMap<String, String> {
+    private fun calculatePrayerTimes(dataMap: HashMap<String, String>): HashMap<String, String> {
+
         val calculator = PrayerTimesCalculator()
-        prefHelper.setCalculator(calculator)
+        val prefHelper = PreferencesHelper(getApplication())
 
         // Get values based on user preferences.
         calculator.timeFormat = calculator.Time24
@@ -56,8 +58,8 @@ class CalculationHelperViewModel(application: Application) : AndroidViewModel(ap
 
         // Map all the data to be presented to the user.
         val prayerNames = calculator.timeNames
-        val prayerTimes = calculator.getPrayerTimes(
-            cal, latitude, longitude, timezone?.toDouble())
+        val prayerTimes = calculator.getPrayerTimes(cal, dataMap["lat"]?.toDouble(),
+            dataMap["lon"]?.toDouble(), dataMap["timezone"]?.toDouble())
 
         // Enter prayer times into the dataMap.
         for (i in prayerTimes.indices) {
@@ -114,10 +116,10 @@ class CalculationHelperViewModel(application: Application) : AndroidViewModel(ap
         dataMap["country"] = address.countryName
         dataMap["lat"] = address.latitude.toString()
         dataMap["lon"] = address.longitude.toString()
+        dataMap["timezone"] = getTimezoneOffset().toString()
 
         // Map prayer times to dataMap.
-        dataMap = calculatePrayerTimes(
-            getTimezoneOffset(), dataMap, location.latitude, location.longitude)
+        dataMap = calculatePrayerTimes(dataMap)
 
         // Map additional times to dataMap.
         dataMap = calculateAdditionalTimes(dataMap)
@@ -126,7 +128,7 @@ class CalculationHelperViewModel(application: Application) : AndroidViewModel(ap
         isCalculated.value = true
 
         // Set the identifier that tells whether database is used or not.
-        isSelectedFromDb = false
+        areTimingsSelectedFromDatabase = false
     }
 
     /**
@@ -134,9 +136,7 @@ class CalculationHelperViewModel(application: Application) : AndroidViewModel(ap
      */
     fun manuallyCalculate() {
         // Map prayer times to dataMap.
-        dataMap = calculatePrayerTimes(
-            dataMap["timezone"]?.toDouble()?.toLong(),
-            dataMap, dataMap["lat"]?.toDouble(), dataMap["lon"]?.toDouble())
+        dataMap = calculatePrayerTimes(dataMap)
 
         // Map additional times to dataMap.
         dataMap = calculateAdditionalTimes(dataMap)
@@ -145,7 +145,23 @@ class CalculationHelperViewModel(application: Application) : AndroidViewModel(ap
         isCalculated.value = true
 
         // Set the identifier that tells whether database is used or not.
-        isSelectedFromDb = false
+        areTimingsSelectedFromDatabase = false
+    }
+
+    /**
+     * Use to re-calculate the entire calculation process from the beginning.
+     *
+     * Requires the [dataMap] to have timezone, latitude, and longitude to work.
+     *
+     * @return [Boolean]. Whether the calculation was successful or not.
+     */
+    fun reCalculate(): Boolean {
+        if(dataMap["lat"] == null || dataMap["lon"] == null || dataMap["timezone"] == null)
+            return false
+
+        dataMap = calculatePrayerTimes(dataMap)
+        dataMap = calculateAdditionalTimes(dataMap)
+        return true
     }
 
     // Getters.
@@ -173,6 +189,7 @@ class CalculationHelperViewModel(application: Application) : AndroidViewModel(ap
         dataMap["country"] = calculationResults.country.toString()
         dataMap["lat"] = calculationResults.latitude.toString()
         dataMap["lon"] = calculationResults.longitude.toString()
+        dataMap["timezone"] = calculationResults.timezone.toString()
         dataMap["Tahajjud"] = calculationResults.tahajjud.toString()
         dataMap["Fajr"] = calculationResults.fajr.toString()
         dataMap["Sunrise"] = calculationResults.sunrise.toString()
@@ -185,7 +202,7 @@ class CalculationHelperViewModel(application: Application) : AndroidViewModel(ap
         dataMap["Isha"] = calculationResults.isha.toString()
 
         // Set the identifier that tells whether database is used or not.
-        isSelectedFromDb = true
+        areTimingsSelectedFromDatabase = true
 
         /**
          * Finally, set the [isCalculated] to true to inform the observer that results have been

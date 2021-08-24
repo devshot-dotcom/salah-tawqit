@@ -4,8 +4,12 @@
 
     <data>
         <import type="android.view.View" />
-        <variable name="fragment" type="com.salahtawqit.coffee.fragments.LandingPageFragment" />
-        <variable name="justLaunched" type="Boolean" />
+        <variable
+            name="fragment"
+            type="com.salahtawqit.coffee.fragments.LandingPageFragment" />
+        <variable
+            name="areTimingsCalculated"
+            type="Boolean" />
     </data>
 
     <RelativeLayout
@@ -19,7 +23,7 @@
             android:src="@drawable/icon_arrowforwards_plain"
             android:onClick="@{fragment::navigateToPrayerTimes}"
             android:contentDescription="@string/navigate_to_prayer_times"
-            android:visibility='@{justLaunched ? View.GONE : View.VISIBLE}'/>
+            android:visibility='@{areTimingsCalculated ? View.VISIBLE : View.GONE}'/>
 
         <LinearLayout
             android:gravity="center"

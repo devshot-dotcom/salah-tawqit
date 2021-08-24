@@ -27,16 +27,18 @@
                 <!-- Card. -->
                 <com.salahtawqit.coffee.views.Card
                     style="@style/card.primary"
-                    app:cardTitle="@string/feature_request"
+                    android:onClick="@{fragment::navigateToFeatureRequest}"
+                    app:cardDescription="@string/suggest_features_improve"
                     app:cardIcon="@drawable/icon_layers_plain"
-                    app:cardDescription="@string/suggest_features_improve" />
+                    app:cardTitle="@string/feature_request" />
 
                 <!-- Card. -->
                 <com.salahtawqit.coffee.views.Card
                     style="@style/card.primary"
-                    app:cardTitle="@string/contact_us"
+                    android:onClick="@{fragment::navigateToContactUs}"
+                    app:cardDescription="@string/e_mail_us_for_anything"
                     app:cardIcon="@drawable/icon_contact_plain"
-                    app:cardDescription="@string/e_mail_us_for_anything" />
+                    app:cardTitle="@string/contact_us" />
 
             </LinearLayout>
 
@@ -64,25 +66,32 @@
                 style="@style/typography.secondaryText"
                 android:text="@string/about_app" />
 
+            <!-- Current Version. -->
             <com.salahtawqit.coffee.views.ListItem
-                style="@style/ListItem.clickable"
+                style="@style/ListItem"
                 app:listDescription="@string/version_name"
                 app:listTitle="@string/current_version" />
 
+            <!-- Rate the App. -->
             <com.salahtawqit.coffee.views.ListItem
                 style="@style/ListItem.clickable"
                 app:listDescription="@string/your_feedback_matters"
-                app:listTitle="@string/rate_the_app" />
+                app:listTitle="@string/rate_the_app"
+                android:onClick="@{fragment::rateTheApp}"/>
 
+            <!-- Privacy Policy. -->
             <com.salahtawqit.coffee.views.ListItem
                 style="@style/ListItem.clickable"
                 app:listDescription="@string/read_privacy_terms"
-                app:listTitle="@string/privacy_policy" />
+                app:listTitle="@string/privacy_policy"
+                android:onClick="@{fragment::showPrivacyPolicy}"/>
 
+            <!-- Credits. -->
             <com.salahtawqit.coffee.views.ListItem
                 style="@style/ListItem.clickable"
                 app:listDescription="@string/kudos_to_everyone"
-                app:listTitle="@string/credits" />
+                app:listTitle="@string/credits"
+                android:onClick="@{fragment::showCredits}"/>
 
         </LinearLayout>
 

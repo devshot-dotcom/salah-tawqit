@@ -29,10 +29,7 @@
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_weight">1</item>
     </style>
-    <style name="layout.verticalFill" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">match_parent</item>
-    </style>
+
     <style name="layout.inline" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -79,9 +76,7 @@
         <item name="android:focusable">true</item>
         <item name="android:selectable">true</item>
     </style>
-    <style name="button.primary" parent="button">
-        <item name="android:background">@drawable/button_primary</item>
-    </style>
+
     <style name="button.secondary" parent="button">
         <item name="android:background">@drawable/button_secondary</item>
         <item name="android:textColor">@color/color_tertiary</item>
@@ -99,37 +94,7 @@
     </style>
     <style name="input.primary" parent="input">
         <item name="android:background">@drawable/input_primary</item>
-    </style>
-    <style name="input.primary.erred" parent="input.primary">
-        <item name="android:background">@drawable/input_primary_erred</item>
-        <item name="android:textColor">@color/accent_secondary</item>
-        <item name="android:textColorHint">@color/accent_secondary</item>
-        <item name="android:drawableEnd">@drawable/icon_error_plain</item>
-        <item name="android:drawableTint">@color/accent_secondary</item>
-    </style>
-    <style name="input.secondary" parent="input">
-        <item name="android:background">@drawable/input_secondary</item>
-        <item name="android:textCursorDrawable">@null</item>
-    </style>
-    <style name="input.secondary.erred" parent="input.secondary">
-        <item name="android:background">@drawable/input_secondary_erred</item>
-        <item name="android:textColor">@color/accent_secondary</item>
-        <item name="android:textColorHint">@color/accent_secondary</item>
-        <item name="android:drawableEnd">@drawable/icon_error_plain</item>
-        <item name="android:drawableTint">@color/accent_secondary</item>
-    </style>
-    <style name="input.tertiary" parent="input">
-        <item name="android:background">@drawable/input_tertiary</item>
-        <item name="android:textCursorDrawable">@null</item>
-        <item name="android:textColor">@color/color_primary</item>
-        <item name="android:textColorHint">@color/primary_300</item>
-    </style>
-    <style name="input.tertiary.erred" parent="input.tertiary">
-        <item name="android:background">@drawable/input_tertiary_erred</item>
-        <item name="android:textColor">@color/accent_secondary</item>
-        <item name="android:textColorHint">@color/accent_secondary</item>
-        <item name="android:drawableEnd">@drawable/icon_error_plain</item>
-        <item name="android:drawableTint">@color/accent_secondary</item>
+        <item name="android:textColorHint">@color/tertiary_100</item>
     </style>
     <!-- Appbar -->
     <style name="appbar" parent="layout.horizontalFill">
@@ -161,9 +126,7 @@
         <item name="android:layout_width">@dimen/icon_medium</item>
         <item name="android:layout_height">@dimen/icon_medium</item>
     </style>
-    <style name="icon.medium.altBackground" parent="icon.medium">
-        <item name="android:background">?selectableItemBackground</item>
-    </style>
+
     <style name="icon.large" parent="icon">
         <item name="android:layout_width">@dimen/icon_large</item>
         <item name="android:layout_height">@dimen/icon_large</item>
@@ -184,10 +147,6 @@
         <item name="android:layout_width">@dimen/icon_medium_large</item>
         <item name="android:layout_height">@dimen/icon_medium_large</item>
     </style>
-    <style name="compoundIcon.large" parent="compoundIcon">
-        <item name="android:layout_width">@dimen/icon_large</item>
-        <item name="android:layout_height">@dimen/icon_large</item>
-    </style>
     <!-- Lists. -->
     <style name="ListItem" parent="layout.horizontalFill">
         <item name="android:showDividers">middle</item>
@@ -207,10 +166,6 @@
     <style name="ListItem.vertical" parent="ListItem">
         <item name="android:orientation">vertical</item>
         <item name="android:divider">@drawable/divider_vertical</item>
-    </style>
-    <style name="ListItem.title" parent="typography.label">
-        <item name="android:layout_width">0dp</item>
-        <item name="android:layout_weight">1</item>
     </style>
     <!-- Notifications. -->
     <style name="notification" parent="layout.horizontalFill">

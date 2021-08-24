@@ -5,7 +5,7 @@
         app:layout="@layout/template_pref_category" />
 
     <ListPreference
-        app:key="school"
+        app:key="@string/key_school"
         app:entries="@array/school_entries"
         app:useSimpleSummaryProvider="true"
         app:entryValues="@array/school_values"
@@ -14,7 +14,7 @@
         app:layout="@layout/template_preference_list"/>
 
     <ListPreference
-        app:key="latitude_adjustment"
+        app:key="@string/key_latitude_adjustment"
         app:useSimpleSummaryProvider="true"
         app:layout="@layout/template_preference_list"
         app:title="@string/latitude_adjustment_method"
@@ -27,7 +27,7 @@
         app:layout="@layout/template_pref_category_margined"/>
 
     <ListPreference
-        app:key="time_format"
+        app:key="@string/key_time_format"
         app:title="@string/time_format"
         app:useSimpleSummaryProvider="true"
         app:entries="@array/time_format_entries"
@@ -36,7 +36,7 @@
         app:defaultValue="@string/time_format_default"/>
 
     <ListPreference
-        app:key="hijri_adjustment"
+        app:key="@string/key_hijri_adjustment"
         app:title="Hijri Date Adjustment"
         app:useSimpleSummaryProvider="true"
         app:layout="@layout/template_preference_list"

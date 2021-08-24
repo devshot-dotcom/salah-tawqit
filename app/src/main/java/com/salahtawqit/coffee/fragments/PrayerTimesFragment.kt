@@ -4,14 +4,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.salahtawqit.coffee.databinding.FragmentPrayerTimesBinding
+import com.salahtawqit.coffee.hideParent
 import com.salahtawqit.coffee.viewmodels.CalculationHelperViewModel
 import com.salahtawqit.coffee.viewmodels.PrayerTimesViewModel
+import com.salahtawqit.coffee.viewmodels.SharedViewModel
 
 /**
  * The fragment that displays the prayer times.
@@ -22,21 +24,18 @@ import com.salahtawqit.coffee.viewmodels.PrayerTimesViewModel
 class PrayerTimesFragment : Fragment() {
     private lateinit var binding: FragmentPrayerTimesBinding
     private val calculationHelperViewModel: CalculationHelperViewModel by activityViewModels()
+    private val sharedViewModel: SharedViewModel by activityViewModels()
     private val viewModel: PrayerTimesViewModel by viewModels()
 
-    /**
-     * Pop back stack.
-     */
     fun navigateBackwards(v: View) {
         findNavController().popBackStack()
     }
 
-    fun hideNotification(v: View) {
-        val notification = v.parent as LinearLayout
-        notification.visibility = View.GONE
+    fun hideSavedTimesNotification(v: View) {
+        v.hideParent()
 
         // Set the identifier that tells whether database is used or not.
-        calculationHelperViewModel.isSelectedFromDb = false
+        calculationHelperViewModel.areTimingsSelectedFromDatabase = false
     }
 
     override fun onCreateView(
@@ -51,21 +50,26 @@ class PrayerTimesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.dataMap = calculationHelperViewModel.getDataMap()
 
-        // Store the data in the database.
-        viewModel.storeData()
+        // If settings are updated, re-calculate prayer times and inform in case of failure.
+        if(sharedViewModel.areSettingsUpdated) {
+            if(!calculationHelperViewModel.reCalculate()) {
+                Toast.makeText(this.context, "Error updating settings, please contact us to report the issue."
+                    , Toast.LENGTH_SHORT).show()
+            }
+        }
 
-        // Calculate the dates.
-        viewModel.calculateHijriDate()
-        viewModel.calculateGregorianDate()
+        viewModel.set(map = calculationHelperViewModel.getDataMap())
+        viewModel.startWorking()
 
-        // Once everything has been calculated and stored, do presentational changes.
-        viewModel.formatTimesWithPreferences()
-
-        // Set binding variables.
-        binding.fragment = this
-        binding.dataMap = viewModel.dataMap
-        binding.isSelectedFromDb = calculationHelperViewModel.isSelectedFromDb
+        viewModel.viewData.observe(viewLifecycleOwner) {
+            if(it != null) {
+                // Set binding data.
+                binding.fragment = this
+                binding.viewData = it
+                binding.areTimingsSelectedFromDatabase =
+                    calculationHelperViewModel.areTimingsSelectedFromDatabase
+            }
+        }
     }
 }

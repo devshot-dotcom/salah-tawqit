@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/doodle_bottom">
+
+    <LinearLayout
+        style="@style/layout.horizontalFill"
+        android:divider="@drawable/divider_vertical_largest"
+        android:dividerPadding="@dimen/mp_large"
+        android:orientation="vertical"
+        android:padding="@dimen/mp_large"
+        android:showDividers="middle"
+        tools:context=".fragments.ContactFormFragment">
+
+        <!-- Title. -->
+        <LinearLayout
+            android:gravity="center"
+            android:orientation="vertical"
+            style="@style/layout.horizontalFill">
+
+            <TextView
+                style="@style/typography.title"
+                android:text="@string/contact_us" />
+
+            <TextView
+                style="@style/typography.secondaryText"
+                android:text="@string/report_ask_anything" />
+
+        </LinearLayout>
+
+        <!-- Form. -->
+        <LinearLayout
+            style="@style/layout.horizontalFill"
+            android:divider="@drawable/divider_vertical"
+            android:dividerPadding="@dimen/mp_large"
+            android:orientation="vertical"
+            android:showDividers="middle">
+
+            <!-- Display Name. -->
+            <EditText
+                android:id="@+id/display_name_edit_text"
+                style="@style/input.primary"
+                android:autofillHints="name"
+                android:hint="@string/enter_display_name"
+                android:imeOptions="actionNext"
+                android:inputType="textCapWords"
+                android:maxLength="32" />
+
+            <TextView
+                style="@style/typography.subtitle"
+                android:text="@string/display_name_purpose"/>
+
+            <!-- Message. -->
+            <EditText
+                android:id="@+id/message_edit_text"
+                style="@style/input.primary"
+                android:hint="@string/enter_message"
+                android:imeOptions="actionDone"
+                android:importantForAutofill="no"
+                android:inputType="textMultiLine"
+                android:maxLength="1000" />
+
+            <!-- Pseudo Button.-->
+            <TextView
+                android:id="@+id/submit_button"
+                style="@style/button.secondary"
+                android:enabled="false"
+                android:text="@string/select_mailing_app" />
+
+        </LinearLayout>
+
+        <!-- Contact Information. -->
+        <LinearLayout
+            style="@style/layout.horizontalFill"
+            android:divider="@drawable/divider_vertical"
+            android:dividerPadding="@dimen/mp_large"
+            android:orientation="vertical"
+            android:showDividers="middle">
+
+            <TextView
+                style="@style/typography.secondaryText"
+                android:text="@string/contact_info" />
+
+            <LinearLayout
+                style="@style/layout.horizontalFill"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    style="@style/compoundIcon.medium"
+                    android:src="@drawable/icon_mail_plain"
+                    android:contentDescription="@string/our_mail"/>
+
+                <TextView
+                    style="@style/typography.paragraph"
+                    android:text="@string/our_mail"
+                    android:layout_marginStart="@dimen/mp_large"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

@@ -14,6 +14,5 @@
     <color name="tertiary_200">#47404A</color>
     <color name="tertiary_300">#2E2931</color>
     <!-- Accent. -->
-    <color name="accent_primary">#FFC033</color>
     <color name="accent_secondary">#FF0000</color>
 </resources>

@@ -3,14 +3,18 @@ package com.salahtawqit.coffee
 import android.Manifest
 import android.app.Activity
 import android.app.Application
+import android.content.ActivityNotFoundException
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.LocationManager
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
+import android.net.Uri
 import android.text.Editable
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import java.text.SimpleDateFormat
@@ -166,7 +170,7 @@ fun Activity.hideKeyboard() {
 /**
  * Hide soft keyboard.
  */
-private fun Context.hideKeyboard(view: View) {
+fun Context.hideKeyboard(view: View) {
     val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
     inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
 }
@@ -176,3 +180,40 @@ private fun Context.hideKeyboard(view: View) {
  * @return [String]. The editable retrieved from a string.
  */
 fun String.toEditable(): Editable = Editable.Factory.getInstance().newEditable(this)
+
+/**
+ * Show the option to select a mailing app.
+ *
+ * @param context [Context]. the application context.
+ * @param to [String]. The receiver's e-mail address, it's the development team, mostly.
+ * @param subject [String]. The e-mail's subject.
+ * @param message [String]. The e-mail's message.
+ */
+fun showMailingApps(context: Context,
+    to: String, subject: String, message: String) {
+
+    val mailIntent = Intent(Intent.ACTION_SEND)
+
+    // Appropriate data and type are necessary for the best UX.
+    mailIntent.data = Uri.parse("mailto:")
+    mailIntent.type = "text/plain"
+
+    mailIntent.putExtra(Intent.EXTRA_EMAIL, arrayOf(to))
+    mailIntent.putExtra(Intent.EXTRA_SUBJECT, subject)
+    mailIntent.putExtra(Intent.EXTRA_TEXT, message)
+
+    try {
+        context.startActivity(Intent.createChooser(mailIntent, "Send mail..."))
+    } catch (e: ActivityNotFoundException) {
+        Toast.makeText(context,
+            context.getString(R.string.email_error), Toast.LENGTH_SHORT).show()
+    }
+}
+
+/**
+ * Hide parent element of this view.
+ */
+fun View.hideParent() {
+    val parent = this.parent as View
+    parent.visibility = View.GONE
+}

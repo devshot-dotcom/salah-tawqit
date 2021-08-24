@@ -4,9 +4,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <import type="android.view.View" />
-        <variable name="dataMap" type="java.util.HashMap&lt;String, String&gt;" />
-        <variable name="fragment" type="com.salahtawqit.coffee.fragments.PrayerTimesFragment" />
-        <variable name="isSelectedFromDb" type="Boolean" />
+        <variable
+            name="fragment"
+            type="com.salahtawqit.coffee.fragments.PrayerTimesFragment" />
+        <variable
+            name="viewData"
+            type="com.salahtawqit.coffee.viewmodels.PrayerTimesViewModel.ViewData"/>
+        <variable
+            name="areTimingsSelectedFromDatabase"
+            type="Boolean" />
     </data>
 
     <RelativeLayout
@@ -21,29 +27,29 @@
             android:contentDescription="@string/navigate_to_prayer_times"/>
 
         <LinearLayout
-            android:padding="@dimen/mp_large"
-            android:dividerPadding="@dimen/mp_large"
-            android:showDividers="middle"
-            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:divider="@drawable/divider_vertical">
+            android:divider="@drawable/divider_vertical"
+            android:dividerPadding="@dimen/mp_large"
+            android:orientation="vertical"
+            android:padding="@dimen/mp_large"
+            android:showDividers="middle">
 
             <!-- Location Information. -->
             <LinearLayout
+                style="@style/layout.horizontalFill"
                 android:gravity="center"
-                android:orientation="vertical"
-                style="@style/layout.horizontalFill">
+                android:orientation="vertical">
 
                 <TextView
-                    tools:text="City Name"
                     style="@style/typography.title"
-                    android:text='@{dataMap["city"]}'/>
+                    android:text='@{viewData.cityName}'
+                    tools:text="City Name" />
 
                 <TextView
-                    tools:text="Country Name"
-                    android:text='@{dataMap["country"]}'
-                    style="@style/typography.secondaryText.large"/>
+                    style="@style/typography.secondaryText.large"
+                    android:text='@{viewData.countryName}'
+                    tools:text="Country Name" />
 
             </LinearLayout>
 
@@ -55,10 +61,10 @@
                     style="@style/layout.horizontalFill"
                     android:divider="@drawable/divider_vertical">
 
-                    <!-- Notification -->
+                    <!-- Saved Times Notification. -->
                     <LinearLayout
                         style="@style/notification.secondary"
-                        android:visibility="@{isSelectedFromDb ? View.VISIBLE : View.GONE}">
+                        android:visibility="@{areTimingsSelectedFromDatabase ? View.VISIBLE : View.GONE}">
 
                         <TextView
                             android:layout_weight="1"
@@ -69,7 +75,7 @@
                         <ImageButton
                             style="@style/icon.medium"
                             android:src="@drawable/icon_close_plain"
-                            android:onClick="@{fragment::hideNotification}"
+                            android:onClick="@{fragment::hideSavedTimesNotification}"
                             android:contentDescription="@string/close_notification"/>
 
                     </LinearLayout>
@@ -91,7 +97,7 @@
 
                             <TextView
                                 android:layout_marginStart="@dimen/mp_large"
-                                android:text='@{dataMap["hijri"]}'
+                                android:text='@{viewData.hijriDate}'
                                 tools:text="Hijri Date, Hijri Year"
                                 style="@style/typography.secondaryText.large"/>
 
@@ -110,7 +116,7 @@
 
                             <TextView
                                 style="@style/typography.secondaryText.large"
-                                android:text='@{dataMap["gregorian"]}'
+                                android:text='@{viewData.gregorianDate}'
                                 tools:text="Gregorian Date, Gregorian Year"
                                 android:layout_marginStart="@dimen/mp_large" />
 
@@ -128,49 +134,49 @@
                         style="@style/ListItem.horizontal"
                         app:listIcon="@drawable/prayericon_fajr"
                         app:listTitle="@string/fajr"
-                        app:listValue='@{dataMap["Fajr"]}'/>
+                        app:listValue='@{viewData.prayerTimes.fajr}'/>
 
                     <!-- Sunrise. -->
                     <com.salahtawqit.coffee.views.ListItem
                         style="@style/ListItem.horizontal"
                         app:listIcon="@drawable/prayericon_sunrise"
                         app:listTitle="@string/sunrise"
-                        app:listValue='@{dataMap["Sunrise"]}'/>
+                        app:listValue='@{viewData.prayerTimes.sunrise}'/>
 
                     <!-- Dhuhr. -->
                     <com.salahtawqit.coffee.views.ListItem
                         style="@style/ListItem.horizontal"
                         app:listIcon="@drawable/prayericon_dhuhr"
                         app:listTitle="@string/dhuhr"
-                        app:listValue='@{dataMap["Dhuhr"]}'/>
+                        app:listValue='@{viewData.prayerTimes.dhuhr}'/>
 
                     <!-- Asr. -->
                     <com.salahtawqit.coffee.views.ListItem
                         style="@style/ListItem.horizontal"
                         app:listIcon="@drawable/prayericon_asr"
                         app:listTitle="@string/asr"
-                        app:listValue='@{dataMap["Asr"]}'/>
+                        app:listValue='@{viewData.prayerTimes.asr}'/>
 
                     <!-- Sunset. -->
                     <com.salahtawqit.coffee.views.ListItem
                         style="@style/ListItem.horizontal"
                         app:listIcon="@drawable/prayericon_sunset"
                         app:listTitle="@string/sunset"
-                        app:listValue='@{dataMap["Sunset"]}'/>
+                        app:listValue='@{viewData.prayerTimes.sunset}'/>
 
                     <!-- Maghrib. -->
                     <com.salahtawqit.coffee.views.ListItem
                         style="@style/ListItem.horizontal"
                         app:listIcon="@drawable/prayericon_maghrib"
                         app:listTitle="@string/maghrib"
-                        app:listValue='@{dataMap["Maghrib"]}'/>
+                        app:listValue='@{viewData.prayerTimes.maghrib}'/>
 
                     <!-- Isha. -->
                     <com.salahtawqit.coffee.views.ListItem
                         style="@style/ListItem.horizontal"
                         app:listIcon="@drawable/prayericon_isha"
                         app:listTitle="@string/isha"
-                        app:listValue='@{dataMap["Isha"]}'/>
+                        app:listValue='@{viewData.prayerTimes.isha}'/>
 
                     <!-- Label (Voluntary Prayers). -->
                     <TextView
@@ -182,28 +188,28 @@
                         style="@style/ListItem.horizontal"
                         app:listIcon="@drawable/prayericon_tahajjud"
                         app:listTitle="@string/tahajjud"
-                        app:listValue='@{dataMap["Tahajjud"]}'/>
+                        app:listValue='@{viewData.prayerTimes.tahajjud}'/>
 
                     <!-- Ishraq. -->
                     <com.salahtawqit.coffee.views.ListItem
                         style="@style/ListItem.horizontal"
                         app:listIcon="@drawable/prayericon_ishraq"
                         app:listTitle="@string/ishraq"
-                        app:listValue='@{dataMap["Ishraq"]}'/>
+                        app:listValue='@{viewData.prayerTimes.ishraq}'/>
 
                     <!-- Duha. -->
                     <com.salahtawqit.coffee.views.ListItem
                         style="@style/ListItem.horizontal"
                         app:listIcon="@drawable/prayericon_duha"
                         app:listTitle="@string/duha_chasht"
-                        app:listValue='@{dataMap["Duha"]}'/>
+                        app:listValue='@{viewData.prayerTimes.duha}'/>
 
                     <!-- Awwabin. -->
                     <com.salahtawqit.coffee.views.ListItem
                         style="@style/ListItem.horizontal"
                         app:listIcon="@drawable/prayericon_awwabin"
                         app:listTitle="@string/awwabin"
-                        app:listValue='@{dataMap["Awwabin"]}'/>
+                        app:listValue='@{viewData.prayerTimes.maghrib}'/>
 
                 </LinearLayout>
             </ScrollView>

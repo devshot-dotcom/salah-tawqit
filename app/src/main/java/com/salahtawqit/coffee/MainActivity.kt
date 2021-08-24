@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProvider
 import com.salahtawqit.coffee.viewmodels.CalculationHelperViewModel
+import com.salahtawqit.coffee.viewmodels.SharedViewModel
 import java.util.*
 import kotlin.concurrent.schedule
 
@@ -13,8 +14,6 @@ import kotlin.concurrent.schedule
  * @author Devshot devshot.coffee@gmail.com
  */
 class MainActivity : FragmentActivity() {
-    private lateinit var calculationHelperViewModel: CalculationHelperViewModel
-
     /**
      * Propagate the navigation from splash screen after a delay.
      * @param savedInstanceState [Bundle] whether the savedInstanceState is available or not.
@@ -39,7 +38,8 @@ class MainActivity : FragmentActivity() {
 
         navigateFromSplashScreen(savedInstanceState)
 
-        // Initialize the ViewModel.
-        calculationHelperViewModel = ViewModelProvider(this).get(CalculationHelperViewModel::class.java)
+        // Initialize the ViewModels.
+        ViewModelProvider(this).get(CalculationHelperViewModel::class.java)
+        ViewModelProvider(this).get(SharedViewModel::class.java)
     }
 }

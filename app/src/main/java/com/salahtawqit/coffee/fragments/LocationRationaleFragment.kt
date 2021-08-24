@@ -2,12 +2,12 @@ package com.salahtawqit.coffee.fragments
 
 import android.Manifest
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.salahtawqit.coffee.R
@@ -47,16 +47,16 @@ class LocationRationaleFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val grantLocationButton = activity?.findViewById<TextView>(R.id.rationale_grant_button)
-        val manualSelectButton = activity?.findViewById<TextView>(R.id.rationale_manual_button)
-
-        grantLocationButton?.setOnClickListener{
+        // Grant location button.
+        activity?.findViewById<TextView>(R.id.rationale_grant_button)?.setOnClickListener{
             // Show request permission dialog.
             requestPermissionsLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION)
         }
 
-        manualSelectButton?.setOnClickListener{
-            // TODO: Navigate to [ManualSearchFragment]
+        // Manual selection button.
+        activity?.findViewById<TextView>(R.id.rationale_manual_button)?.setOnClickListener{
+            findNavController().navigate(LocationRationaleFragmentDirections
+                .actionLocationRationaleFragmentToManualCalculationFragment())
         }
     }
 }

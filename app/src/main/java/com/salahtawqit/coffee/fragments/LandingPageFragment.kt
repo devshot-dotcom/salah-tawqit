@@ -16,6 +16,7 @@ import com.salahtawqit.coffee.databinding.FragmentLandingPageBinding
 import com.salahtawqit.coffee.helpers.AutomaticCalculationHelper
 import com.salahtawqit.coffee.helpers.RoomDatabaseHelper
 import com.salahtawqit.coffee.viewmodels.CalculationHelperViewModel
+import com.salahtawqit.coffee.viewmodels.SharedViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -28,6 +29,7 @@ import kotlinx.coroutines.launch
 class LandingPageFragment : Fragment() {
     private lateinit var fragmentContext: Context
     private lateinit var binding: FragmentLandingPageBinding
+    private val sharedViewModel: SharedViewModel by activityViewModels()
     private val calculationHelperViewModel: CalculationHelperViewModel by activityViewModels()
 
     /**
@@ -41,9 +43,22 @@ class LandingPageFragment : Fragment() {
     private val requestPermissionsLauncher = registerForActivityResult(
         ActivityResultContracts.RequestPermission()) {
             isGranted -> run {
-                /** In case of denial, navigate to [LocationRationaleFragment]. */
-                if (!isGranted) findNavController().navigate(LandingPageFragmentDirections
-                    .actionLandingPageFragmentToLocationRationaleFragment("automatic"))
+
+                /**
+                 * In case of denial, navigate to [LocationRationaleFragment].
+                 */
+                if (!isGranted) {
+                    findNavController().navigate(LandingPageFragmentDirections
+                        .actionLandingPageFragmentToLocationRationaleFragment("automatic"))
+
+                    return@run
+                }
+
+                /**
+                 * Else navigate to [LoadingPageFragment] to start automatic calculation
+                 */
+                findNavController().navigate(LandingPageFragmentDirections
+                    .actionLandingPageFragmentToLoadingPageFragment("automatic"))
             }
     }
 
@@ -138,11 +153,10 @@ class LandingPageFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         fragmentContext = view.context
 
-        // If the fragment is called on app launch, check database.
-        if(calculationHelperViewModel.isJustLaunched) {
+        // Check whether we're past initial fragment displacement or not.
+        if(!sharedViewModel.isLandingPageDisplaced) {
 
             // Check if calculation results exist, navigate to the results page if so.
             checkExistingCalculationResults(view.context)
@@ -150,11 +164,17 @@ class LandingPageFragment : Fragment() {
 
         // Set binding variables.
         binding.fragment = this
-        binding.justLaunched = calculationHelperViewModel.isJustLaunched
+        binding.areTimingsCalculated = calculationHelperViewModel.isCalculated.value
 
-        findNavController().addOnDestinationChangedListener { _, _, _ ->
-            // Set the app launch to false, since we're past the initial launch state.
-            calculationHelperViewModel.isJustLaunched = false
+        findNavController().addOnDestinationChangedListener { _, destination, _ ->
+            // Set title every time the destination is changed.
+            sharedViewModel.appBarTitle.value = getString(R.string.app_name)
+
+            // Set label of the current destination fragment.
+            sharedViewModel.currentFragmentLabel.value = destination.label?.toString()
+
+            // Since the fragment is getting displaced.
+            sharedViewModel.isLandingPageDisplaced = true
         }
     }
 }

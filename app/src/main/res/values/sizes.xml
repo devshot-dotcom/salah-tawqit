@@ -8,15 +8,12 @@
     <!-- Cover vectors. -->
     <dimen name="cover_vector_medium">120dp</dimen>
     <dimen name="cover_vector_large">140dp</dimen>
-    <dimen name="cover_vector_larger">160dp</dimen>
     <dimen name="cover_vector_largest">180dp</dimen>
     <!-- Margin, Padding. -->
-    <dimen name="mp_smallest">1dp</dimen>
     <dimen name="mp_smaller">2.5dp</dimen>
     <dimen name="mp_small">5dp</dimen>
     <dimen name="mp_medium">10dp</dimen>
     <dimen name="mp_large">15dp</dimen>
-    <dimen name="mp_larger">20dp</dimen>
     <dimen name="mp_largest">30dp</dimen>
     <!-- View sizes. -->
     <dimen name="item_height">60dp</dimen>

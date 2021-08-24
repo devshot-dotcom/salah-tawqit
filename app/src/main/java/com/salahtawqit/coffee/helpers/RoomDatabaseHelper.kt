@@ -17,6 +17,7 @@ object RoomDatabaseHelper {
         val longitude: String?,
         val city: String?,
         val country: String?,
+        val timezone: Double?,
         val tahajjud: String?,
         val fajr: String?,
         val sunrise: String?,
@@ -69,16 +70,18 @@ object RoomDatabaseHelper {
      * The actual database instance.
      *
      * version = 2) Added RecentSearch.
+     * version = 3) Updated RecentSearch.
+     * version = 4) Added `timezone` to CalculationResults.
      *
      * @since v1.0
      * @author Devshot devshot.coffee@gmail.com
      */
     @Database(
-        version = 3,
+        version = 4,
         exportSchema = true,
         entities = [CalculationResults::class, RecentSearch::class],
         autoMigrations = [
-            AutoMigration(from = 2, to = 3)
+            AutoMigration(from = 3, to = 4)
         ]
     )
     abstract class MyDatabase: RoomDatabase() {

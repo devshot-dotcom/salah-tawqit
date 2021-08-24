@@ -1,12 +1,10 @@
 <resources>
     <string name="app_name" translatable="false">Salah Tawqit</string>
     <string name="version_name" translatable="false">v1.0</string>
+    <string name="our_mail">devshot.coffee@gmail.com</string>
     <string name="welcome_to_salah_tawqit">Welcome To Salah Tawqit</string>
     <string name="the_application_logo">The Application Logo</string>
     <string name="go_to_settings">Go to Settings?</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="scroll_to_prayer_times">Scroll to prayer times.</string>
     <string name="please_select_a_calculation_mode">Please select a calculation mode</string>
     <string name="automatic">Automatic</string>
     <string name="manual">Manual</string>
@@ -25,43 +23,25 @@
     <string name="location_access_disabled">Location isn\'t enabled, please enable GPS, or use manual calculation mode</string>
     <string name="located_user_location">Located, Calculating Timings</string>
     <string name="error_finding_location">Error Finding Location\nPlease Try Again\nOr Use Manual Calculation.</string>
-    <string name="locating_using_network">Locating Through Network</string>
     <string name="finding_locating">Finding Your Location</string>
-    <string name="sleeping_sun_describes">Sleeping Sun, describes how sleepy we are when it\'s fajr time.</string>
     <string name="fajr">Fajr</string>
     <string name="sunrise">Sunrise</string>
-    <string name="crying_sun_describes">Crying sun with a thermometer, describes the usual warmth at the time of dhuhr.</string>
     <string name="dhuhr">Dhuhr</string>
-    <string name="rising_smiling_sun_describes">A rising sun with a smile, describes the sweet tenderness of the morning.</string>
-    <string name="smiling_shining_sun_describes">A smiling and shining sun, describes the usual mild temperature at the time of Asr.</string>
-    <string name="sun_is_setting">The sun is setting off and dozing, normal sunset behaviour.</string>
-    <string name="sun_gone_moon_nowhere">The sun is gone and the moon is nowhere, we are left in darkness. It\'s maghrib time.</string>
-    <string name="moon_shown_up">The moon has shown up and it\'s happy, quite the time for Isha.</string>
     <string name="asr">Asr</string>
     <string name="sunset">Sunset</string>
     <string name="maghrib">Maghrib</string>
     <string name="isha">Isha</string>
     <string name="nafl_voluntary_prayers">Nafl / Voluntary Prayers</string>
-    <string name="midnight_so_dark">It\'s midnight and its so dark even the moon is asleep, indeed you should pray Tahajjud.</string>
     <string name="tahajjud">Tahajjud</string>
     <string name="a_crescent">A crescent</string>
     <string name="a_calendar">A calendar</string>
     <string name="ishraq">Ishraq</string>
-    <string name="best_time_ishraq">The best of the day, indeed, is the mild sunlight and chirping birds of Ishraq.</string>
-    <string name="flowers_bloom_duha">Flowers bloom and birds chirp in the sharp yet lovely sunlight while you pray Duha.</string>
     <string name="duha_chasht">Duha / Chasht</string>
-    <string name="just_as_sun_settles_awwabin">Just as the sun settles and the moon starts to rise, pray awwabin.</string>
     <string name="awwabin">Awwabin</string>
     <string name="fard_necessary_prayers">Fard / Necessary Prayers</string>
-    <string name="tahajjud_detail">Can be prayed anytime after isha and before fajr but, the best time to pray is after 6/7th of the night and before fajr.</string>
-    <string name="ishraq_detail">Can be prayed 10–20 minutes after sunrise, although 20 minutes are preferred to stay safe from post-sunrise makruh time.</string>
-    <string name="duha_detail">Can be prayed right next to ishraq until dhuhr but, it\'s preferred to pray when the sun has risen quite high above the sky.</string>
-    <string name="awwabin_detail">Can be prayed right next to maghrib but it\'s preferred to complete maghrib and pray awwabin anytime before isha starts.</string>
-    <string name="just_a_doodle">Just a doodle.</string>
     <string name="automatic_calculation">Automatic Calculation</string>
     <string name="manual_calculation">Manual Calculation</string>
     <string name="prayer_times_for_any_city">Prayer times for any city</string>
-    <string name="select_country">Select Country</string>
     <string name="enter_city_name">Enter City Name</string>
     <string name="calculate">Calculate</string>
     <string name="enter_country_name">Enter Country Name</string>
@@ -72,8 +52,8 @@
     <string name="close_notification">Close notification.</string>
     <string name="history_repeats_itself">History repeats itself.</string>
     <string name="recent_searches">Recent Searches</string>
-    <string name="automatic_calc_description">Automatically calculates your location and displays prayer times for it. Requires permission to calculate your location, is a lot more accurate, takes a couple of seconds.</string>
-    <string name="manual_calc_description">Asks for the country and city you want to calculate prayer times for. Takes about no time but, can be a little inaccurate.</string>
+    <string name="automatic_calc_description"><![CDATA[Requires permission to calculate user location.\n\nAutomatically calculates user location.\n\nAssures 100% accurate prayer times.\n\nCalculation time can be longer depending on the internet speed.]]></string>
+    <string name="manual_calc_description"><![CDATA[Requests the user to enter their location information (city & country name).\n\nUses Google geocoder to calculate exact country name from the user input.\n\nUses a manually managed collection of timezones that might not work for some countries (for now, work in progress).]]></string>
     <string name="feature_request">Feature Request</string>
     <string name="suggest_features_improve">Suggest new features &amp; improve the app.</string>
     <string name="contact_us">Contact Us</string>
@@ -94,4 +74,17 @@
     <string name="privacy_policy">Privacy Policy</string>
     <string name="credits">Credits</string>
     <string name="kudos_to_everyone">Kudos to everyone who made this possible.</string>
+    <string name="request_feature_suggest_improvements">Request a feature or suggest improvements</string>
+    <string name="report_ask_anything">Report bugs, ask questions, or anything else</string>
+    <string name="enter_display_name">Enter Display Name</string>
+    <string name="enter_message">Enter Message</string>
+    <string name="contact_info">Contact Information</string>
+    <string name="display_name_purpose">* Display name is just for the mailing purposes.</string>
+    <string name="select_mailing_app">Select Mailing App</string>
+    <string name="enter_request_or_suggestion">Enter Request or Suggestion</string>
+    <string name="email_error">There are no email clients installed on your device.</string>
+    <string name="key_school">school</string>
+    <string name="key_latitude_adjustment">latitude_adjustment</string>
+    <string name="key_time_format">time_format</string>
+    <string name="key_hijri_adjustment">hijri_adjustment</string>
 </resources>
