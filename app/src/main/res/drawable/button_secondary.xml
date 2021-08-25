@@ -50,7 +50,7 @@
                     <corners android:radius="@dimen/mp_medium" />
                 </shape>
             </item>
-            <item android:bottom="@dimen/mp_small">
+            <item android:bottom="@dimen/border_small">
                 <shape>
                     <solid android:color="@color/color_secondary" />
                     <corners android:radius="@dimen/mp_medium" />

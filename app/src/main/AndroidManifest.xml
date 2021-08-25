@@ -16,7 +16,10 @@
         tools:ignore="AllowBackup">
         <activity
             android:name="com.salahtawqit.coffee.MainActivity"
-            android:windowSoftInputMode="adjustPan|stateVisible">
+            android:configChanges="orientation|keyboardHidden|screenLayout"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateVisible"
+            tools:ignore="LockedOrientationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

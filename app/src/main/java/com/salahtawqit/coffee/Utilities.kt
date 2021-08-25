@@ -217,3 +217,17 @@ fun View.hideParent() {
     val parent = this.parent as View
     parent.visibility = View.GONE
 }
+
+/**
+ * Open a url in the browser.
+ * @param context [Context], the application context.
+ * @param url [String], the URL to open in the browser.
+ */
+fun browse(context: Context?, url: String) {
+    val browseIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+
+    // Starting an activity from a non-activity context throws IllegalStateException
+    browseIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+
+    context?.startActivity(browseIntent)
+}

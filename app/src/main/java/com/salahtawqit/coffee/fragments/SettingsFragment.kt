@@ -12,6 +12,8 @@ import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.salahtawqit.coffee.BuildConfig
+import com.salahtawqit.coffee.R
+import com.salahtawqit.coffee.browse
 import com.salahtawqit.coffee.databinding.FragmentSettingsBinding
 import com.salahtawqit.coffee.viewmodels.SettingsViewModel
 import com.salahtawqit.coffee.viewmodels.SharedViewModel
@@ -73,12 +75,9 @@ class SettingsFragment : Fragment() {
     /**
      * Open the app's web instance in a browser that displays the privacy policy & terms of service.
      */
-    fun showPrivacyPolicy(v: View) {}
-
-    /**
-     * Open the app's web instance in a browser that displays the credits.
-     */
-    fun showCredits(v: View) {}
+    fun showPrivacyPolicy(v: View) {
+        browse(activity?.baseContext, getString(R.string.link_privacy_policy))
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

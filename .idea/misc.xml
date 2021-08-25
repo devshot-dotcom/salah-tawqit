@@ -4,6 +4,8 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/workspace/android/salah-tawqit/app/src/main/res/drawable/button_primary.xml" value="0.2295" />
+        <entry key="..\:/workspace/android/salah-tawqit/app/src/main/res/drawable/button_secondary.xml" value="0.2295" />
+        <entry key="..\:/workspace/android/salah-tawqit/app/src/main/res/drawable/button_tertiary.xml" value="0.2295" />
         <entry key="..\:/workspace/android/salah-tawqit/app/src/main/res/drawable/divider_horizontal.xml" value="0.2295" />
         <entry key="..\:/workspace/android/salah-tawqit/app/src/main/res/drawable/divider_vertical.xml" value="0.2295" />
         <entry key="..\:/workspace/android/salah-tawqit/app/src/main/res/drawable/divider_vertical_large.xml" value="0.2295" />

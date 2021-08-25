@@ -12,6 +12,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.salahtawqit.coffee.R
+import com.salahtawqit.coffee.browse
 import com.salahtawqit.coffee.databinding.FragmentLandingPageBinding
 import com.salahtawqit.coffee.helpers.AutomaticCalculationHelper
 import com.salahtawqit.coffee.helpers.RoomDatabaseHelper
@@ -87,6 +88,10 @@ class LandingPageFragment : Fragment() {
     fun navigateToPrayerTimes(v: View) {
         findNavController().navigate(LandingPageFragmentDirections
             .actionLandingPageFragmentToPrayerTimesFragment())
+    }
+
+    fun navigateToPrivacyPolicy(v: View) {
+        browse(activity?.baseContext, getString(R.string.link_privacy_policy))
     }
 
     /**

@@ -94,7 +94,8 @@
             <TextView
                 style="@style/typography.subtitle"
                 android:textAlignment="center"
-                android:text="@string/by_selecting_one_or_the_other" />
+                android:onClick="@{fragment::navigateToPrivacyPolicy}"
+                android:text="@string/by_selecting_privacy_terms" />
 
         </LinearLayout>
 

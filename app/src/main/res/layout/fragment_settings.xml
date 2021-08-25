@@ -86,13 +86,6 @@
                 app:listTitle="@string/privacy_policy"
                 android:onClick="@{fragment::showPrivacyPolicy}"/>
 
-            <!-- Credits. -->
-            <com.salahtawqit.coffee.views.ListItem
-                style="@style/ListItem.clickable"
-                app:listDescription="@string/kudos_to_everyone"
-                app:listTitle="@string/credits"
-                android:onClick="@{fragment::showCredits}"/>
-
         </LinearLayout>
 
     </ScrollView>
