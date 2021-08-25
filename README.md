@@ -3,5 +3,5 @@ The fastest, most accurate, and the most alluring prayer times calculator for an
 
 **Work in Progress**
 
-1\. [Privacy Policy](./privacy-policy)
-2\. [Terms of Service](./terms-of-service)
+1. [Privacy Policy](https://devshot-dotcom.github.io/salah-tawqit/privacy-policy)
+2. [Terms of Service](https://devshot-dotcom.github.io/salah-tawqit/terms-of-service)
