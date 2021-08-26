@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.jakewharton.threetenabp.AndroidThreeTen
 import com.salahtawqit.coffee.databinding.FragmentPrayerTimesBinding
 import com.salahtawqit.coffee.hideParent
 import com.salahtawqit.coffee.viewmodels.CalculationHelperViewModel
@@ -36,6 +37,11 @@ class PrayerTimesFragment : Fragment() {
 
         // Set the identifier that tells whether database is used or not.
         calculationHelperViewModel.areTimingsSelectedFromDatabase = false
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        AndroidThreeTen.init(this.context)
     }
 
     override fun onCreateView(

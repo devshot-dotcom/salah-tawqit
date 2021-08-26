@@ -4,13 +4,17 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.github.msarhan.ummalqura.calendar.UmmalquraCalendar
 import com.salahtawqit.coffee.R
 import com.salahtawqit.coffee.helpers.PreferencesHelper
 import com.salahtawqit.coffee.helpers.RoomDatabaseHelper
 import com.salahtawqit.coffee.helpers.TimeFormatHelper
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import org.threeten.bp.LocalDate
+import org.threeten.bp.Period
+import org.threeten.bp.chrono.HijrahDate
+import org.threeten.bp.format.DateTimeFormatter
+import org.threeten.bp.temporal.ChronoField
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -49,7 +53,7 @@ class PrayerTimesViewModel(application: Application): AndroidViewModel(applicati
         var asr: String?,
         var sunset: String?,
         var maghrib: String?,
-        var isha: String?
+        var isha: String?,
     )
 
     /**
@@ -65,7 +69,7 @@ class PrayerTimesViewModel(application: Application): AndroidViewModel(applicati
         val gregorianDate: String,
         val cityName: String?,
         val countryName: String?,
-        val prayerTimes: PrayerTimes
+        val prayerTimes: PrayerTimes,
     )
 
     /**
@@ -108,27 +112,57 @@ class PrayerTimesViewModel(application: Application): AndroidViewModel(applicati
     }
 
     /**
+     * Parse a [LocalDate] object into a [HijrahDate] object. Add or subtract days from the object
+     * based on user preferences.
+     * @param gregorianDate [LocalDate], the date to be converted into the [HijrahDate].
+     * @return [HijrahDate], The current date in Islamic date format.
+     */
+    private fun getPreferredHijriDate(gregorianDate: LocalDate): HijrahDate {
+        val hijriDate = HijrahDate.from(gregorianDate)
+
+        return when(PreferencesHelper(getApplication()).getHijriDate()) {
+            "1" -> hijriDate.plus(Period.ofDays(1))
+            "2" -> hijriDate.plus(Period.ofDays(2))
+            "3" -> hijriDate.minus(Period.ofDays(1))
+            "4" -> hijriDate.minus(Period.ofDays(2))
+            else -> hijriDate
+        }
+    }
+
+    /**
      * Calculate the Hijri date and add it to the map.
      * @return [String]. The calculated hijri date.
      */
     private fun getHijriDate(): String {
-        val calendar = UmmalquraCalendar()
-        val sdf = SimpleDateFormat("d MMMM, y", Locale.ENGLISH)
 
-        // Calendar somehow shows a day less and parses a day more, adding 0 fixes this.
-        calendar.add(UmmalquraCalendar.DATE, 0)
+        // Generate time formatter.
+        val formatter = DateTimeFormatter.ofPattern("d MMMM, y")
 
-        // Adjust date using preferred adjustment.
-        when(PreferencesHelper(getApplication()).getHijriDate()) {
-            "1" -> calendar.add(UmmalquraCalendar.DATE, 1)
-            "2" -> calendar.add(UmmalquraCalendar.DATE, 2)
-            "3" -> calendar.add(UmmalquraCalendar.DATE, -1)
-            "4" -> calendar.add(UmmalquraCalendar.DATE, -2)
+        // Get gregorian date.
+        val gregorianDate = LocalDate.parse(getGregorianDate(), formatter)
+
+        // Get hijri date from gregorian date.
+        val islamicDate = getPreferredHijriDate(gregorianDate)
+
+        // Get individual dates.
+        val year = islamicDate[ChronoField.YEAR]
+        val day = islamicDate[ChronoField.DAY_OF_MONTH]
+        val month = when(islamicDate[ChronoField.MONTH_OF_YEAR]) {
+            1 -> "Muharram"
+            2 -> "Safar"
+            3 -> "Rabi' al-awwal"
+            4 -> "Rabi' al-thani"
+            5 -> "Jumada al-awwal"
+            6 -> "Jumada al-thani"
+            7 -> "Rajab"
+            8 -> "Sha'ban"
+            9 -> "Ramadan"
+            10 -> "Shawwal"
+            11 -> "Dhu al-Qi'dah"
+            else -> "Dhu al-Hijjah"
         }
 
-        sdf.calendar = calendar
-
-        return sdf.format(calendar.time)
+        return "$day $month, $year"
     }
 
     /**
