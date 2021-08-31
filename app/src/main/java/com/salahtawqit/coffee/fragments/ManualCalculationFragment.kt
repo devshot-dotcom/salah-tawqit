@@ -11,6 +11,7 @@ import android.view.inputmethod.EditorInfo
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.EditText
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
@@ -240,8 +241,15 @@ class ManualCalculationFragment : Fragment() {
 
     fun startGeocoding() {
         this.hideKeyboard()
-        viewModel.geocode(
-            "${ citiesView?.text.toString() }, ${ countriesView?.text.toString() }")
+
+        try {
+            val address = viewModel.getGeocodedAddress(
+                country = countriesView?.text.toString(),
+                city = citiesView?.text.toString())
+        } catch (e: Exception) {
+            Toast.makeText(activityContext, getString(
+                R.string.geocoder_failure_message), Toast.LENGTH_LONG).show()
+        }
     }
 
     /**

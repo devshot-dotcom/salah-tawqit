@@ -3,10 +3,8 @@ package com.salahtawqit.coffee.viewmodels
 import android.app.Application
 import android.location.Address
 import android.location.Geocoder
-import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import com.salahtawqit.coffee.R
 import java.util.*
 
 /**
@@ -169,41 +167,15 @@ class ManualCalculationViewModel(application: Application): AndroidViewModel(app
     val isCityValid = MutableLiveData(true)
     val isHistoryEmpty = MutableLiveData(true)
     private val geocoder = Geocoder(getApplication())
-    private var isGeocoded = false
 
-    private fun toastGeocodeError() {
-        Toast.makeText(getApplication(), getApplication<Application>()
-            .getString(R.string.geocoder_failure_message), Toast.LENGTH_LONG).show()
-    }
-
-    fun geocode(locationName: String) {
-        println(getApplication<Application>().getString(R.string.TIMEZONE_API_KEY))
-
-        val addressList: List<Address>?
-
-        try {
-            addressList = geocoder.getFromLocationName(locationName, 1)
-        } catch (e: Exception) {
-            toastGeocodeError()
-            return
-        }
-
-        // Guard clause.
-        if(addressList == null) {
-
-            return
-        }
-
-        addressList.forEach {
-            if(it.locality == null && it.countryName == null) {
-                toastGeocodeError()
-                return@forEach
-            }
-
-            // City isn't empty but country is.
-            if(it.locality != null && it.countryName == null) {
-
-            }
-        }
+    /**
+     * Geocode a location and return an address.
+     * @param country [String], the country name.
+     * @param city [String], the city name.
+     * @return [Address], the geocoded address instance.
+     */
+    fun getGeocodedAddress(country: String, city: String): Address {
+        val addressList = geocoder.getFromLocationName("$city, $country", 1)
+        throw Exception()
     }
 }
