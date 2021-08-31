@@ -13,5 +13,6 @@
 /captures
 .externalNativeBuild
 .cxx
+./app/src/main/res/values/keys.xml
 local.properties
 Salah Tawqit.zip

@@ -91,4 +91,5 @@
     <string name="key_time_format">time_format</string>
     <string name="key_hijri_adjustment">hijri_adjustment</string>
     <string name="by_selecting_privacy_terms">By selecting one or the other, you\'re agreeing to our <u>privacy policy</u> and <u>terms of service</u>. JazakAllah.</string>
+    <string name="geocoder_failure_message">The geocoder encountered satan, internal app error, please use automatic calculation and report the error.</string>
 </resources>

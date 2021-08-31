@@ -3,16 +3,11 @@ package com.salahtawqit.coffee.viewmodels
 import android.app.Application
 import android.location.Address
 import android.location.Geocoder
-import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
-import com.google.gson.Gson
-import com.salahtawqit.coffee.helpers.CountrySet
-import com.salahtawqit.coffee.helpers.RoomDatabaseHelper
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import java.io.IOException
+import com.salahtawqit.coffee.R
+import java.util.*
 
 /**
  * ViewModel for the [com.salahtawqit.coffee.fragments.ManualCalculationFragment].
@@ -21,21 +16,21 @@ import java.io.IOException
  */
 class ManualCalculationViewModel(application: Application): AndroidViewModel(application) {
 
-    var enteredCity: String = ""
+    /*var enteredCity: String = ""
     var enteredCountry: String = ""
     lateinit var countrySets: Array<CountrySet>
     lateinit var recentSearchesList: List<String>
     val isCityValid = MutableLiveData(true)
-    lateinit var addressList: MutableList<Address>
+    private var addressList = mutableListOf(Address(Locale.getDefault()))
     val readyToProceed = MutableLiveData(false)
     val isGeocodeErred = MutableLiveData(false)
     val isCalculationEnabled = MutableLiveData(false)
-    val doRecentSearchesExist = MutableLiveData(false)
+    val doRecentSearchesExist = MutableLiveData(false)*/
 
     /**
      * Check whether the entered city and country name are valid.
      */
-    fun validateForm() {
+    /*fun validateForm() {
         val geocoder = Geocoder(getApplication())
 
         try {
@@ -71,9 +66,9 @@ class ManualCalculationViewModel(application: Application): AndroidViewModel(app
         readyToProceed.value = true
     }
 
-    /**
+    *//**
      * Parse the raw counties.json file and store it in a variable.
-     */
+     *//*
     fun readCountriesJson() {
         // Launch a coroutine.
         viewModelScope.launch(Dispatchers.IO) {
@@ -88,11 +83,11 @@ class ManualCalculationViewModel(application: Application): AndroidViewModel(app
         }
     }
 
-    /**
+    *//**
      * Find a matching timezone offset for the [enteredCountry].
      * In case of no match, inform the user with an error message.
      * @return [String]. The timezone offset as a string.
-     */
+     *//*
     private fun getTimezoneOffset(): String {
 
         // Iterate over the generated array of country sets.
@@ -107,9 +102,9 @@ class ManualCalculationViewModel(application: Application): AndroidViewModel(app
         return ""
     }
 
-    /**
+    *//**
      * Store the searched location in database.
-     */
+     *//*
     fun storeLocation() {
         viewModelScope.launch(Dispatchers.IO) {
             val recentSearchesDao = RoomDatabaseHelper
@@ -120,10 +115,10 @@ class ManualCalculationViewModel(application: Application): AndroidViewModel(app
         }
     }
 
-    /**
+    *//**
      * Map the address values to a hashmap and return.
      * @return [HashMap]<[String],[String]>
-     */
+     *//*
     fun getDataMap(dataMap: HashMap<String, String>): HashMap<String, String> {
         val address = addressList.first()
 
@@ -141,9 +136,9 @@ class ManualCalculationViewModel(application: Application): AndroidViewModel(app
         return dataMap
     }
 
-    /**
+    *//**
      * Do recent searches exist in the database?
-     */
+     *//*
     fun checkRecentSearchesExistence() {
         viewModelScope.launch(Dispatchers.IO) {
             val recentSearchesDao = RoomDatabaseHelper
@@ -166,6 +161,47 @@ class ManualCalculationViewModel(application: Application): AndroidViewModel(app
 
                 // Inform the observers.
                 doRecentSearchesExist.postValue(true)
+            }
+        }
+    }*/
+
+    val isCalculationEnabled = MutableLiveData(false)
+    val isCityValid = MutableLiveData(true)
+    val isHistoryEmpty = MutableLiveData(true)
+    private val geocoder = Geocoder(getApplication())
+
+    private fun toastGeocodeError() {
+        Toast.makeText(getApplication(), getApplication<Application>()
+            .getString(R.string.geocoder_failure_message), Toast.LENGTH_LONG).show()
+    }
+
+    fun geocode(locationName: String) {
+        println(getApplication<Application>().getString(R.string.TIMEZONE_API_KEY))
+
+        var addressList: List<Address>? = null
+
+        try {
+            addressList = geocoder.getFromLocationName(locationName, 1)
+        } catch (e: Exception) {
+            toastGeocodeError()
+            return
+        }
+
+        // Guard clause.
+        if(addressList == null) {
+
+            return
+        }
+
+        addressList.forEach {
+            if(it.locality == null && it.countryName == null) {
+                toastGeocodeError()
+                return@forEach
+            }
+
+            // City isn't empty but country is.
+            if(it.locality != null && it.countryName == null) {
+
             }
         }
     }

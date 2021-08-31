@@ -231,3 +231,18 @@ fun browse(context: Context?, url: String) {
 
     context?.startActivity(browseIntent)
 }
+
+/**
+ * Check whether an index of a list is empty or not.
+ * @return [Boolean], true when an index is empty, false otherwise.
+ */
+fun isAnIndexEmpty(list: List<String>): Boolean {
+    var isEmpty = false
+
+    list.forEach {
+        if(it.isEmpty())
+            isEmpty = true
+    }
+
+    return isEmpty
+}

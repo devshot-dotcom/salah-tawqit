@@ -71,10 +71,10 @@
 
             <!-- Pseudo Button.-->
             <TextView
-                android:enabled="@{viewModel.isCalculationEnabled}"
                 style="@style/button.secondary"
+                android:enabled="@{viewModel.isCalculationEnabled}"
                 android:text="@string/calculate"
-                android:onClick="@{fragment::calculate}"/>
+                android:onClick="@{() -> fragment.startGeocoding()}"/>
 
         </LinearLayout>
 
@@ -85,7 +85,7 @@
             style="@style/layout.horizontalFill"
             android:dividerPadding="@dimen/mp_large"
             android:divider="@drawable/divider_vertical"
-            android:visibility="@{viewModel.doRecentSearchesExist ? View.VISIBLE : View.GONE}">
+            android:visibility="@{viewModel.isHistoryEmpty ? View.GONE : View.VISIBLE}">
 
             <TextView
                 style="@style/typography.secondaryText"
