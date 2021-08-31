@@ -5,6 +5,14 @@ import android.location.Address
 import android.location.Geocoder
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
+import com.salahtawqit.coffee.helpers.GeocoderException
+import com.salahtawqit.coffee.helpers.InvalidCityException
+import com.salahtawqit.coffee.helpers.NetworkException
+import com.salahtawqit.coffee.helpers.RoomDatabaseHelper
+import com.salahtawqit.coffee.isConnectedToInternet
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.util.*
 
 /**
@@ -17,7 +25,7 @@ class ManualCalculationViewModel(application: Application): AndroidViewModel(app
     /*var enteredCity: String = ""
     var enteredCountry: String = ""
     lateinit var countrySets: Array<CountrySet>
-    lateinit var recentSearchesList: List<String>
+    lateinit var historyItems: List<String>
     val isCityValid = MutableLiveData(true)
     private var addressList = mutableListOf(Address(Locale.getDefault()))
     val readyToProceed = MutableLiveData(false)
@@ -155,7 +163,7 @@ class ManualCalculationViewModel(application: Application): AndroidViewModel(app
                 }
 
                 // Assign the list to the globally available list.
-                recentSearchesList = mutableList
+                historyItems = mutableList
 
                 // Inform the observers.
                 doRecentSearchesExist.postValue(true)
@@ -164,9 +172,32 @@ class ManualCalculationViewModel(application: Application): AndroidViewModel(app
     }*/
 
     val isCalculationEnabled = MutableLiveData(false)
-    val isCityValid = MutableLiveData(true)
     val isHistoryEmpty = MutableLiveData(true)
     private val geocoder = Geocoder(getApplication())
+
+    /**
+     * Identifier that identifies whether the entered city is valid or not.
+     *
+     * Is directly attached to the city field's attributes
+     * hence a change directly changes the view's appearance.
+     *
+     * True indicated that there is no error and the view displays as normal,
+     * false indicates an error and the view displays an erred state.
+     */
+    val isCityValid = MutableLiveData(true)
+
+    /**
+     * List of recently searched locations by the user, also called history.
+     */
+    val historyItems = MutableLiveData<List<String>?>()
+
+    private fun geocode(location: String): List<Address?>? {
+        try {
+            return geocoder.getFromLocationName(location, 1)
+        } catch (e: Exception) {
+            throw GeocoderException()
+        }
+    }
 
     /**
      * Geocode a location and return an address.
@@ -174,8 +205,76 @@ class ManualCalculationViewModel(application: Application): AndroidViewModel(app
      * @param city [String], the city name.
      * @return [Address], the geocoded address instance.
      */
-    fun getGeocodedAddress(country: String, city: String): Address {
-        val addressList = geocoder.getFromLocationName("$city, $country", 1)
-        throw Exception()
+    fun getGeocodedAddress(country: String, city: String): Address? {
+        if(!isConnectedToInternet(getApplication())) throw NetworkException()
+
+        var addressList = geocode("$city, $country")
+
+        /*
+         * Whether `city, country` is an actual address or not?
+         * Geocode using the city alone if not.
+         */
+        if(addressList?.isEmpty() == true) {
+           addressList = geocode(city)
+        }
+
+        // Last resort, the city is invalid otherwise.
+        if(addressList?.isEmpty() == true) {
+            isCityValid.value = false
+            throw InvalidCityException()
+        }
+
+        val address = addressList?.get(0)
+
+        // Just a guard clause, might never get triggered.
+        if(address?.locality?.isEmpty() == true || address?.countryName?.isEmpty() == true) {
+            isCityValid.value = false
+            throw InvalidCityException()
+        }
+
+        return address
+    }
+
+    /**
+     * Store the address in the database to propagate history.
+     * @param address [Address], the address to be stored.
+     */
+    fun store(address: Address?) {
+        address?.let {
+            viewModelScope.launch(Dispatchers.IO) {
+                val recentSearchesDao = RoomDatabaseHelper
+                    .getRoom(getApplication()).getRecentSearchesDao()
+
+                recentSearchesDao.insert(RoomDatabaseHelper.RecentSearch(
+                    null, city = it.locality, country = it.countryName))
+            }
+        }
+    }
+
+    init {
+        // Check whether history is empty or not.
+        viewModelScope.launch(Dispatchers.IO) {
+            val recentSearchesDao = RoomDatabaseHelper
+                .getRoom(getApplication()).getRecentSearchesDao()
+
+            val selectionResults = recentSearchesDao.selectAll()
+
+            if(selectionResults.isNotEmpty()) {
+
+                // Make a mutable list.
+                val mutableList = mutableListOf<String>()
+
+                // Add items to that list.
+                selectionResults.forEach {
+                    mutableList.add("${it.city}, ${it.country}")
+                }
+
+                // Assign the list to the globally available list.
+                historyItems.postValue(mutableList)
+
+                // Inform the observers.
+                isHistoryEmpty.postValue(false)
+            }
+        }
     }
 }

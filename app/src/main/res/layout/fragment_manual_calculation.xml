@@ -80,11 +80,11 @@
 
         <!-- Recent Searches. -->
         <LinearLayout
-            android:showDividers="middle"
-            android:orientation="vertical"
             style="@style/layout.horizontalFill"
-            android:dividerPadding="@dimen/mp_large"
             android:divider="@drawable/divider_vertical"
+            android:dividerPadding="@dimen/mp_large"
+            android:orientation="vertical"
+            android:showDividers="middle"
             android:visibility="@{viewModel.isHistoryEmpty ? View.GONE : View.VISIBLE}">
 
             <TextView
@@ -92,9 +92,9 @@
                 android:text="@string/recent_searches" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:layout_height="@dimen/cover_vector_large"
+                android:id="@+id/recent_searches_list"
                 style="@style/layout.horizontalFill"
-                android:id="@+id/recent_searches_list"/>
+                android:layout_height="@dimen/cover_vector_large"/>
 
         </LinearLayout>
 

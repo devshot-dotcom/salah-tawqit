@@ -1,6 +1,7 @@
 package com.salahtawqit.coffee.viewmodels
 
 import android.app.Application
+import android.location.Address
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -42,4 +43,13 @@ class SharedViewModel(application: Application): AndroidViewModel(application) {
      * updates a preference.
      */
     var areSettingsUpdated = false
+
+    /**
+     * Shared address between ManualCalculationFragment & LoadingPageFragment.
+     *
+     * When the user manually searches for a location,
+     * the former fragment does it's thing and sets this address
+     * for the later fragment to request timezone from an API for this address.
+     */
+    var manualAddress: Address? = null
 }
