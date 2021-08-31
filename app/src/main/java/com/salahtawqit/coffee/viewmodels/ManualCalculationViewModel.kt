@@ -169,6 +169,7 @@ class ManualCalculationViewModel(application: Application): AndroidViewModel(app
     val isCityValid = MutableLiveData(true)
     val isHistoryEmpty = MutableLiveData(true)
     private val geocoder = Geocoder(getApplication())
+    private var isGeocoded = false
 
     private fun toastGeocodeError() {
         Toast.makeText(getApplication(), getApplication<Application>()
@@ -178,7 +179,7 @@ class ManualCalculationViewModel(application: Application): AndroidViewModel(app
     fun geocode(locationName: String) {
         println(getApplication<Application>().getString(R.string.TIMEZONE_API_KEY))
 
-        var addressList: List<Address>? = null
+        val addressList: List<Address>?
 
         try {
             addressList = geocoder.getFromLocationName(locationName, 1)

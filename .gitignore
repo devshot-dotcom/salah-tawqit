@@ -7,12 +7,13 @@
 /.idea/workspace.xml
 /.idea/navEditor.xml
 /.idea/assetWizardSettings.xml
-/app/schemas
 .DS_Store
 /build
 /captures
 .externalNativeBuild
 .cxx
-./app/src/main/res/values/keys.xml
 local.properties
 Salah Tawqit.zip
+/app/build
+/app/schemas
+/app/src/main/res/values/keys.xml
