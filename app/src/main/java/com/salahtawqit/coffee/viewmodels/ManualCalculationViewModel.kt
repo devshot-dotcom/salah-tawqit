@@ -226,8 +226,13 @@ class ManualCalculationViewModel(application: Application): AndroidViewModel(app
 
         val address = addressList?.get(0)
 
-        // Just a guard clause, might never get triggered.
-        if(address?.locality?.isEmpty() == true || address?.countryName?.isEmpty() == true) {
+        // If a city is empty, assign the state/province to the city name instead.
+        if(address?.locality.isNullOrEmpty()) {
+            address?.locality = address?.adminArea
+        }
+
+        // Final guard clause, no error shall pass.
+        if(address?.locality.isNullOrEmpty() || address?.countryName.isNullOrEmpty()) {
             isCityValid.value = false
             throw InvalidCityException()
         }
@@ -270,7 +275,7 @@ class ManualCalculationViewModel(application: Application): AndroidViewModel(app
                 }
 
                 // Assign the list to the globally available list.
-                historyItems.postValue(mutableList)
+                historyItems.postValue(mutableList.asReversed())
 
                 // Inform the observers.
                 isHistoryEmpty.postValue(false)

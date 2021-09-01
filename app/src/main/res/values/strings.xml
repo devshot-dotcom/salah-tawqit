@@ -1,7 +1,7 @@
 <resources>
     <!-- Meta data. -->
     <string name="app_name" translatable="false">Salah Tawqit</string>
-    <string name="version_name" translatable="false">v1.0</string>
+    <string name="version_name" translatable="false">v1.0.1</string>
     <string name="our_mail">devshot.coffee@gmail.com</string>
     <string name="link_privacy_policy">https://devshot-dotcom.github.io/salah-tawqit/privacy-policy</string>
     <!-- Strings. -->
@@ -91,5 +91,6 @@
     <string name="key_time_format">time_format</string>
     <string name="key_hijri_adjustment">hijri_adjustment</string>
     <string name="by_selecting_privacy_terms">By selecting one or the other, you\'re agreeing to our <u>privacy policy</u> and <u>terms of service</u>. JazakAllah.</string>
-    <string name="geocoder_failure_message">The geocoder encountered satan, internal app error, please use automatic calculation and report the error.</string>
+    <string name="geocoder_failure_message">There was an error geocoding the location, please try again or use automatic calculation and report the error.</string>
+    <string name="timezone_failure_message">There was an error calculating the timezone, please try again or use automatic calculation and report the error.</string>
 </resources>

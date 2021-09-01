@@ -17,6 +17,10 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import com.salahtawqit.coffee.helpers.EmptyStringException
+import org.threeten.bp.Instant
+import org.threeten.bp.ZoneId
+import org.threeten.bp.ZoneOffset
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.concurrent.TimeUnit
@@ -245,4 +249,20 @@ fun isAnIndexEmpty(list: List<String>): Boolean {
     }
 
     return isEmpty
+}
+
+/**
+ * Convert timezone name to UTC offset.
+ * @param name [String], the zone name to convert.
+ * @return [Int], the UTC offset of the provided timezone.
+ * @throws EmptyStringException when the parameter [name] is empty or null.
+ */
+fun getTimezoneOffsetFrom(name: String?): ZoneOffset? {
+    if(name.isNullOrEmpty()) {
+        throw EmptyStringException()
+    }
+
+    val zoneId = ZoneId.of(name)
+    val zonedDateTime = Instant.now().atZone(zoneId)
+    return zonedDateTime.offset
 }

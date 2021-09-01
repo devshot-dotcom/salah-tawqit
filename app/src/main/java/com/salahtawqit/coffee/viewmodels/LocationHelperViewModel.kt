@@ -33,7 +33,7 @@ import java.util.*
 class LocationHelperViewModel(application: Application) : AndroidViewModel(application) {
     private val locationManager : LocationManager =
         application.getSystemService(Context.LOCATION_SERVICE) as LocationManager
-    val loadingStatus = MutableLiveData(application.getString(R.string.calculating_timings))
+    val loadingStatus = MutableLiveData<String>()
     val location = MutableLiveData<Location>()
     val isLocationErred = MutableLiveData(false)
     private lateinit var requestTimer : Timer

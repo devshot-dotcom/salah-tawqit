@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import android.widget.VideoView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -16,6 +17,8 @@ import androidx.navigation.fragment.navArgs
 import com.salahtawqit.coffee.R
 import com.salahtawqit.coffee.viewmodels.CalculationHelperViewModel
 import com.salahtawqit.coffee.viewmodels.LocationHelperViewModel
+import com.salahtawqit.coffee.viewmodels.SharedViewModel
+import com.salahtawqit.coffee.viewmodels.TimezoneViewModel
 import java.util.*
 import kotlin.concurrent.schedule
 
@@ -108,6 +111,54 @@ class LoadingPageFragment : Fragment() {
                 navigateBackwardsDelayed(3000)
             }
         }
+
+        // Observe loading status.
+        locationHelperViewModel.loadingStatus.observe(viewLifecycleOwner) {
+                loadingStatus -> loadingStatusView?.text = loadingStatus
+        }
+    }
+
+    private fun handleManualCalculation() {
+        calculationHelperViewModel.isCalculated.value = false
+
+        val timezoneViewModel: TimezoneViewModel by viewModels()
+        val sharedViewModel: SharedViewModel by activityViewModels()
+
+        sharedViewModel.manualAddress?.let { address ->
+            try {
+                timezoneViewModel.requestTimezoneFor(address)
+
+                // Observer for timezone offset.
+                timezoneViewModel.timezoneOffset.observe(viewLifecycleOwner) { offset ->
+                    offset?.let {
+
+                        val map = hashMapOf<String, String>()
+                        map["lat"] = address.latitude.toString()
+                        map["lon"] = address.longitude.toString()
+                        map["city"] = address.locality
+                        map["country"] = address.countryName
+                        map["timezone"] = offset
+
+                        // Start manual calculation.
+                        calculationHelperViewModel.setDataMap(map)
+                        calculationHelperViewModel.manuallyCalculate()
+                    }
+                }
+
+                // Observer for network error.
+                timezoneViewModel.networkError.observe(viewLifecycleOwner) { error ->
+                    if(error) findNavController().popBackStack()
+                }
+
+                // Observer for timezone usage error.
+                timezoneViewModel.timezoneUsageError.observe(viewLifecycleOwner) { error ->
+                    if(error) findNavController().popBackStack()
+                }
+            } catch (e: Exception) {
+                Toast.makeText(this.context, getString(R.string
+                    .timezone_failure_message), Toast.LENGTH_LONG).show()
+            }
+        }
     }
 
     override fun onCreateView(
@@ -120,34 +171,21 @@ class LoadingPageFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Start the loading video
         videoView = view.findViewById(R.id.gif_video_view)
-        startLoadingVideo()
-
-        // Loading status TextView
         loadingStatusView = activity?.findViewById(R.id.loading_status_text)
 
-        /**
-         * Set loading status Text as the one in the [LocationHelperViewModel]
-         */
-        loadingStatusView?.text = locationHelperViewModel.loadingStatus.value
-
-        // Observe loading status.
-        locationHelperViewModel.loadingStatus.observe(viewLifecycleOwner) {
-            loadingStatus -> loadingStatusView?.text = loadingStatus
-        }
+        startLoadingVideo()
 
         // Observe calculation completion.
         calculationHelperViewModel.isCalculated.observe(viewLifecycleOwner) {
             if(it) navigateForwardsDelayed(2000)
         }
 
-        // Get the navigation arguments [calculationMode in this case]
         val args: LoadingPageFragmentArgs by navArgs()
 
         when (args.calculationMode) {
             "automatic" -> handleAutomaticCalculation()
-            "manual" -> calculationHelperViewModel.manuallyCalculate()
+            "manual" -> handleManualCalculation()
         }
     }
 
