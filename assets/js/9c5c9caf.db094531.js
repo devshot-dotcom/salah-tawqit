@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunksalah_tawqit=self.webpackChunksalah_tawqit||[]).push([[709],{3167:function(a){a.exports=JSON.parse('{"allTagsPath":"/salah-tawqit/blog/tags","slug":"/salah-tawqit/blog/tags/hola","name":"hola","count":1,"permalink":"/salah-tawqit/blog/tags/hola"}')}}]);

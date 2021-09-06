@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunksalah_tawqit=self.webpackChunksalah_tawqit||[]).push([[977],{2270:function(a){a.exports=JSON.parse('{"permalink":"salah-tawqit/blog","page":1,"postsPerPage":10,"totalPages":1,"totalCount":4,"previousPage":null,"nextPage":null,"blogDescription":"Blog","blogTitle":"Blog"}')}}]);
